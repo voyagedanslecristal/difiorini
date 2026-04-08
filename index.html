@@ -11,7 +11,7 @@
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     body{background:#faf8f5;-webkit-font-smoothing:antialiased}
     a{color:inherit}button{font:inherit}
-  .cursor-diamond{position:fixed;width:10px;height:10px;border:1.5px solid #2c2622;transform:translate(-50%,-50%) rotate(45deg);pointer-events:none;z-index:9999;transition:width 0.2s,height 0.2s,border-color 0.2s}body,a,button{cursor:none!important}.cursor-diamond.hover{width:16px;height:16px;border-color:#9e948a}</style>
+  .cursor-diamond{position:fixed;width:10px;height:10px;border:1.5px solid #2c2622;transform:translate(-50%,-50%) rotate(45deg);pointer-events:none;z-index:9999;transition:width 0.2s,height 0.2s,border-color 0.2s}body,a,button{cursor:none!important}a{transition:color 0.3s ease,transform 0.3s ease,letter-spacing 0.3s ease}.cursor-diamond.hover{width:14px;height:14px;border-color:#9e948a;animation:diamond-spin 1.5s linear infinite}@keyframes diamond-spin{from{transform:translate(-50%,-50%) rotate(45deg)}to{transform:translate(-50%,-50%) rotate(405deg)}}</style>
 </head>
 <body>
   <div id="root"></div>
