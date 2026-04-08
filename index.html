@@ -11,7 +11,7 @@
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     body{background:#faf8f5;-webkit-font-smoothing:antialiased}
     a{color:inherit}button{font:inherit}
-  </style>
+  .cursor-diamond{position:fixed;width:10px;height:10px;border:1.5px solid #2c2622;transform:translate(-50%,-50%) rotate(45deg);pointer-events:none;z-index:9999;transition:width 0.2s,height 0.2s,border-color 0.2s}body,a,button{cursor:none!important}.cursor-diamond.hover{width:16px;height:16px;border-color:#9e948a}</style>
 </head>
 <body>
   <div id="root"></div>
@@ -231,4 +231,4 @@ function App() {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-</script></body></html>
+</script><div class="cursor-diamond" id="cursor-diamond"></div><script>const cd=document.getElementById("cursor-diamond");document.addEventListener("mousemove",e=>{cd.style.left=e.clientX+"px";cd.style.top=e.clientY+"px"});document.querySelectorAll("a,button").forEach(el=>{el.addEventListener("mouseenter",()=>cd.classList.add("hover"));el.addEventListener("mouseleave",()=>cd.classList.remove("hover"))});</script></body></html>
