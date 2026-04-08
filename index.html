@@ -231,4 +231,4 @@ function App() {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-</script><div class="cursor-diamond" id="cursor-diamond"></div><script>const cd=document.getElementById("cursor-diamond");document.addEventListener("mousemove",e=>{cd.style.left=e.clientX+"px";cd.style.top=e.clientY+"px"});document.querySelectorAll("a,button").forEach(el=>{el.addEventListener("mouseenter",()=>cd.classList.add("hover"));el.addEventListener("mouseleave",()=>cd.classList.remove("hover"))});</script></body></html>
+</script><div class="cursor-diamond" id="cursor-diamond"></div><script>var cd=document.getElementById("cursor-diamond");document.addEventListener("mousemove",function(e){cd.style.left=e.clientX+"px";cd.style.top=e.clientY+"px"});document.addEventListener("mouseover",function(e){if(e.target.closest("a,button")){cd.classList.add("hover")}});document.addEventListener("mouseout",function(e){if(e.target.closest("a,button")){cd.classList.remove("hover")}});</script></body></html>
