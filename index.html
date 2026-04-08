@@ -22,6 +22,21 @@
     #diamond.on-link{width:14px;height:14px;border-color:#b4aaa0;opacity:0.65}
     #diamond.on-title{width:12px;height:12px;background:#1a2d5a;border-color:#1a2d5a;opacity:0.9}
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded",function(){
+      var d=document.getElementById("diamond");
+      if(!d)return;
+      document.addEventListener("mousemove",function(e){
+        d.style.left=e.clientX+"px";
+        d.style.top=e.clientY+"px";
+      });
+      document.addEventListener("mouseover",function(e){
+        if(e.target.closest&&e.target.closest("h1,h2,h3")){d.className="on-title";}
+        else if(e.target.closest&&e.target.closest("a,button")){d.className="on-link";}
+        else{d.className="";}
+      });
+    });
+  </script>
 </head>
 <body>
   <div id="diamond"></div>
@@ -242,20 +257,6 @@ function App() {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-  </script>
-  <script>
-    (function(){
-      var d=document.getElementById("diamond");
-      document.addEventListener("mousemove",function(e){
-        d.style.left=e.clientX+"px";
-        d.style.top=e.clientY+"px";
-      });
-      document.addEventListener("mouseover",function(e){
-        if(e.target.closest("h1,h2,h3")){d.className="on-title";}
-        else if(e.target.closest("a,button")){d.className="on-link";}
-        else{d.className="";}
-      });
-    })();
   </script>
 </body>
 </html>
