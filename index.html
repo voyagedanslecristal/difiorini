@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Di Fiorini — Laura-Rachel Dubos di Fiorini</title>
-  <meta name="description" content="Creative & Strategic Director · Art & Jewellery Historian · Writer & Art Critic. Selected works from 2020 to present." />
+  <meta name="description" content="Creative & Strategic Director · Art & Jewellery Historian · Writer & Art Critic. Selected works for De Beers, Cartier, and Chopard." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #faf8f5; -webkit-font-smoothing: antialiased; }
-    a { color: inherit; }
-    button { font: inherit; }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    body{background:#faf8f5;-webkit-font-smoothing:antialiased}
+    a{color:inherit}button{font:inherit}
   </style>
 </head>
 <body>
@@ -24,197 +24,52 @@ const { useState, useEffect } = React;
 const SECTIONS = ["Profile", "Creative Direction", "Writing & Research", "Contact"];
 
 const CREATIVE_WORKS = [
-  {
-    title: "Voyage through the Diamond Realm",
-    subtitle: "Film Installation",
-    house: "De Beers",
-    period: "2025–2026",
-    locations: "Frieze Masters London · India Art Fair · Shanghai · Los Angeles · New York",
-    role: "Concept, Research, Creative Direction & Film",
-    text: "An immersive cinematic and spatial experience tracing the origins of natural diamonds through history, myth, and symbolic narratives. From their birth as stardust in the fiery hearts of stars to their discovery within rivers, deserts, and polar landscapes. An art book was conceived alongside the experience, translating the film's visual and intellectual universe into a printed object.",
-    tags: ["Film", "Installation", "Art Book", "Scenography", "Press"],
-    video: "https://www.youtube.com/watch?v=h8Md9xaytuQ",
-  },
-  {
-    title: "The Mythological Labyrinth",
-    subtitle: "Open-World Narrative",
-    house: "Cartier",
-    period: "2022",
-    locations: "Paris · Geneva",
-    role: "Concept, Research & Narrative Direction",
-    text: "An original narrative universe structured around interconnected realms and gardens — spaces dedicated to love, beauty, fertility, metamorphosis, craftsmanship, and initiation. At its core, the Labyrinth mirrors the act of jewellery creation itself: an ordering of the primordial into form, light, and symbol. Time is non-linear, gravity is mutable, and matter is conceived as animistic, endowed with soul and agency.",
-    tags: ["Narrative Design", "Mythology", "Immersive", "Creative Direction", "Moodboards"],
-    video: "https://www.youtube.com/watch?v=dldoGX0GERg",
-  },
-  {
-    title: "The Panther Myth",
-    subtitle: "Triptych Film",
-    house: "Cartier",
-    period: "2023",
-    locations: "Marrakech",
-    role: "Creative Direction, Research & Filmmaking",
-    text: "A cinematic exploration of the panther as a mythological, cultural, and symbolic figure at the core of Cartier's imaginary. The film unfolds in three interrelated movements, tracing the panther across deep time and civilisations. The panther appears as goddess, predator, guide, alter ego, and creative force — never illustrated, always invoked.",
-    tags: ["Film", "Performance Capture", "Mythology", "Triptych Installation"],
-    video: "https://www.youtube.com/watch?v=j68485v3Y74",
-  },
-  {
-    title: "Living Heritage Tarot",
-    subtitle: "Research & Card Game inspired by the Italian Renaissance Philosophical Tarot",
-    house: "Cartier",
-    period: "2023",
-    locations: "Paris",
-    role: "Research, Creative Direction & Illustration",
-    text: "A research-driven visual project situating the tarot within the intellectual climate of nineteenth-century Paris. The project draws a parallel between the tarot as a composed system and jewellery as an object of transformation: both operate through precision, symbolism, and the controlled orchestration of material and meaning.",
-    tags: ["Research", "Illustration", "Visual Art", "Heritage"],
-  },
-  {
-    title: "Living Heritage Cosmogony",
-    subtitle: "Open-World Metaverse",
-    house: "Cartier",
-    period: "2023",
-    locations: "Paris",
-    role: "Creative Direction & Production",
-    text: "An open-world digital universe structured around a constellation of islands, landscapes, and symbolic spaces, each connected to a facet of the Maison's history. The structure of interconnected islands — above and below the surface — serves as metaphor for the visible and invisible layers of a Maison's history: objects, places, craftsmanship, ideas, and memory.",
-    tags: ["Metaverse", "3D", "Heritage", "Creative Direction"],
-    video: "https://www.youtube.com/watch?v=whXwxdSS8gc",
-  },
+  { title: "Voyage through the Diamond Realm", subtitle: "Film Installation", house: "De Beers", period: "2025–2026", locations: "Frieze Masters London · India Art Fair · Shanghai · Los Angeles · New York", role: "Concept, Research, Creative Direction & Film", text: "An immersive cinematic and spatial experience tracing the origins of natural diamonds through history, myth, and symbolic narratives. From their birth as stardust in the fiery hearts of stars to their discovery within rivers, deserts, and polar landscapes. An art book was conceived alongside the experience, translating the film's visual and intellectual universe into a printed object.", tags: ["Film", "Installation", "Art Book", "Scenography", "Press"], video: "https://www.youtube.com/watch?v=h8Md9xaytuQ" },
+  { title: "The Mythological Labyrinth", subtitle: "Open-World Narrative", house: "Cartier", period: "2022", locations: "Paris · Geneva", role: "Concept, Research & Narrative Direction", text: "An original narrative universe structured around interconnected realms and gardens — spaces dedicated to love, beauty, fertility, metamorphosis, craftsmanship, and initiation. At its core, the Labyrinth mirrors the act of jewellery creation itself: an ordering of the primordial into form, light, and symbol.", tags: ["Narrative Design", "Mythology", "Immersive", "Creative Direction", "Moodboards"], video: "https://www.youtube.com/watch?v=dldoGX0GERg" },
+  { title: "The Panther Myth", subtitle: "Triptych Film", house: "Cartier", period: "2023", locations: "Marrakech", role: "Creative Direction, Research & Filmmaking", text: "A cinematic exploration of the panther as a mythological, cultural, and symbolic figure at the core of Cartier's imaginary. The film unfolds in three interrelated movements, tracing the panther across deep time and civilisations. The panther appears as goddess, predator, guide, alter ego, and creative force — never illustrated, always invoked.", tags: ["Film", "Performance Capture", "Mythology", "Triptych Installation"], video: "https://www.youtube.com/watch?v=j68485v3Y74" },
+  { title: "Living Heritage Tarot", subtitle: "Research & Card Game inspired by the Italian Renaissance Philosophical Tarot", house: "Cartier", period: "2023", locations: "Paris", role: "Research, Creative Direction & Illustration", text: "A research-driven visual project situating the tarot within the intellectual climate of nineteenth-century Paris. The project draws a parallel between the tarot as a composed system and jewellery as an object of transformation: both operate through precision, symbolism, and the controlled orchestration of material and meaning.", tags: ["Research", "Illustration", "Visual Art", "Heritage"] },
+  { title: "Living Heritage Cosmogony", subtitle: "Open-World Metaverse", house: "Cartier", period: "2023", locations: "Paris", role: "Creative Direction & Production", text: "An open-world digital universe structured around a constellation of islands, landscapes, and symbolic spaces, each connected to a facet of the Maison's history. The structure of interconnected islands — above and below the surface — serves as metaphor for the visible and invisible layers of a Maison's history.", tags: ["Metaverse", "3D", "Heritage", "Creative Direction"], video: "https://www.youtube.com/watch?v=whXwxdSS8gc" },
 ];
 
 const WRITINGS = [
-  {
-    title: "Art Criticism",
-    subtitle: "Critical Essays for Bilan Magazine",
-    publication: "Bilan, Switzerland",
-    period: "2020",
-    role: "Research & Writing",
-    text: "A body of critical texts positioning artworks as intellectual structures through which the world may be read, questioned, and reconfigured. Art emerges as a site where history condenses and abstract forces — time, power, violence, belief — become perceptible.",
-    links: [
-      { label: "Jackson Pollock — Abstract Expressionism as CIA Trojan Horse", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/lexpressionnisme-abstrait-cheval-de-troie-de-la-cia" },
-      { label: "Géricault — Le Radeau de la Méduse", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/le-radeau-de-la-meduse-naufrage-theatral-dun-monde-en-declin" },
-      { label: "Dalí — La Persistance de la Mémoire", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/la-persistance-de-la-memoire-lorfevre-et-le-temps" },
-      { label: "Basquiat — From Pictorial Rage to Social Revolt", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/de-basquiat-a-black-lives-matter-de-la-rage-picturale-a-la-revolte-sociale" },
-      { label: "Brueghel — The Pandemic through the Prism of Art", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/le-fleau-pandemique-a-travers-le-prisme-de-lart" },
-    ],
-  },
-  {
-    title: "Naoshima & the Chichu Art Museum",
-    subtitle: "Art Criticism on Key Masterpieces",
-    publication: "Independent Research",
-    period: "2021–2024",
-    role: "Research & Writing",
-    text: "Works by Claude Monet, James Turrell, and Walter De Maria examined as threshold experiences — sites where art ceases to be an object of contemplation and becomes an instrument of transformation. Architecture, natural light, and bodily perception are treated as integral components of the artwork itself.",
-    links: [{ label: "Read the manuscript", url: "http://e.pc.cd/Oiny6alK" }],
-  },
-  {
-    title: "The Power of Myths",
-    subtitle: "Research-Driven Authorial Writing on History, Myths & Tales",
-    publication: "Cartier",
-    period: "2022",
-    role: "Research, Writing & Curation",
-    text: "Love, beauty, fertility, metamorphosis, magic, and the figure of the panther articulated as active symbolic forces — jewellery appearing as a medium of transformation and meaning. The writing oscillates between essay, poetic prose, and philosophical reflection.",
-    links: [{ label: "Read", url: "http://e.pc.cd/dJxy6alK" }],
-  },
-  {
-    title: "Living Heritage Conferences",
-    subtitle: "Research into Cultural Heritage, Mythological Systems & Femininity",
-    publication: "Cartier Hong Kong",
-    period: "2022",
-    role: "Research & Conferences",
-    text: "A research and conference programme engaging with Chinese cosmogonies, Taoist and Confucian philosophies, calligraphic space, the logic of ornament, and the relationship between nature, circulation, and transformation.",
-    links: [
-      { label: "Conference 1 — Hong Kong City, Centre and Circle", url: "https://youtu.be/pIFQgZ2AE1g" },
-      { label: "Conference 2 — Hidden Light of the Feminine", url: "https://youtu.be/vDfBO_kukb8" },
-      { label: "Conference 3 — Building Bridges over Blurred Borders", url: "https://youtu.be/pD7R7GJmcF4" },
-      { label: "Conference 4 — Like the Sun, Like the Moon, Like Water, Like Gold", url: "https://youtu.be/C7pl6-ag4Ik" },
-    ],
-  },
-  {
-    title: "Ars Electronica",
-    subtitle: "Critical Research on Art, Technology & Society",
-    publication: "Cartier Living Heritage",
-    period: "2022",
-    role: "Research, Critical Analysis & Dialogues",
-    text: "A critical cartography where artificial intelligence, ecological urgency, post-human imaginaries, and technological acceleration are approached as interconnected expressions of a broader cultural shift — technological futures understood as cultural and ethical landscapes shaped as much by imagination and myth as by code and computation.",
-    links: [{ label: "Read more", url: "http://e.pc.cd/L5xy6alK" }],
-  },
-  {
-    title: "Ukiyo-e: Art & Philosophy Conference",
-    subtitle: "Japonism Event with Cartier & Sorbonne University",
-    publication: "Cartier & Sorbonne University",
-    period: "2021",
-    role: "Strategy, Creative Direction & Event Management",
-    text: "A site-specific conference held in a historic Parisian printing manufactory. The programme included a keynote by Cyrille Vigneron alongside an intervention by Sophie Basch, Sorbonne professor and Proust specialist, establishing bridges between Japanese art, French literature, and Western visual thought.",
-    links: [],
-  },
+  { title: "Art Criticism", subtitle: "Critical Essays for Bilan Magazine", publication: "Bilan, Switzerland", period: "2020", role: "Research & Writing", text: "A body of critical texts positioning artworks as intellectual structures through which the world may be read, questioned, and reconfigured. Art emerges as a site where history condenses and abstract forces — time, power, violence, belief — become perceptible.", links: [
+    { label: "Jackson Pollock — Abstract Expressionism as CIA Trojan Horse", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/lexpressionnisme-abstrait-cheval-de-troie-de-la-cia" },
+    { label: "Géricault — Le Radeau de la Méduse", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/le-radeau-de-la-meduse-naufrage-theatral-dun-monde-en-declin" },
+    { label: "Dalí — La Persistance de la Mémoire", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/la-persistance-de-la-memoire-lorfevre-et-le-temps" },
+    { label: "Basquiat — From Pictorial Rage to Social Revolt", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/de-basquiat-a-black-lives-matter-de-la-rage-picturale-a-la-revolte-sociale" },
+    { label: "Brueghel — The Pandemic through the Prism of Art", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/le-fleau-pandemique-a-travers-le-prisme-de-lart" },
+  ]},
+  { title: "Naoshima & the Chichu Art Museum", subtitle: "Art Criticism on Key Masterpieces", publication: "Independent Research", period: "2021–2024", role: "Research & Writing", text: "Works by Claude Monet, James Turrell, and Walter De Maria examined as threshold experiences — sites where art ceases to be an object of contemplation and becomes an instrument of transformation.", links: [{ label: "Read the manuscript", url: "http://e.pc.cd/Oiny6alK" }] },
+  { title: "The Power of Myths", subtitle: "Research-Driven Authorial Writing on History, Myths & Tales", publication: "Cartier", period: "2022", role: "Research, Writing & Curation", text: "Love, beauty, fertility, metamorphosis, magic, and the figure of the panther articulated as active symbolic forces — jewellery appearing as a medium of transformation and meaning.", links: [{ label: "Read", url: "http://e.pc.cd/dJxy6alK" }] },
+  { title: "Living Heritage Conferences", subtitle: "Research into Cultural Heritage, Mythological Systems & Femininity", publication: "Cartier Hong Kong", period: "2022", role: "Research & Conferences", text: "A research and conference programme engaging with Chinese cosmogonies, Taoist and Confucian philosophies, calligraphic space, the logic of ornament, and the relationship between nature, circulation, and transformation.", links: [
+    { label: "Conference 1 — Hong Kong City, Centre and Circle", url: "https://youtu.be/pIFQgZ2AE1g" },
+    { label: "Conference 2 — Hidden Light of the Feminine", url: "https://youtu.be/vDfBO_kukb8" },
+    { label: "Conference 3 — Building Bridges over Blurred Borders", url: "https://youtu.be/pD7R7GJmcF4" },
+    { label: "Conference 4 — Like the Sun, Like the Moon, Like Water, Like Gold", url: "https://youtu.be/C7pl6-ag4Ik" },
+  ]},
+  { title: "Ars Electronica", subtitle: "Critical Research on Art, Technology & Society", publication: "Cartier Living Heritage", period: "2022", role: "Research, Critical Analysis & Dialogues", text: "A critical cartography where artificial intelligence, ecological urgency, post-human imaginaries, and technological acceleration are approached as interconnected expressions of a broader cultural shift — technological futures understood as cultural and ethical landscapes shaped as much by imagination and myth as by code and computation.", links: [{ label: "Read more", url: "http://e.pc.cd/L5xy6alK" }] },
+  { title: "Ukiyo-e: Art & Philosophy Conference", subtitle: "Japonism Event with Cartier & Sorbonne University", publication: "Cartier & Sorbonne University", period: "2021", role: "Strategy, Creative Direction & Event Management", text: "A site-specific conference held in a historic Parisian printing manufactory. The programme included a keynote by Cyrille Vigneron alongside an intervention by Sophie Basch, Sorbonne professor and Proust specialist, establishing bridges between Japanese art, French literature, and Western visual thought.", links: [] },
 ];
 
 function useReveal(count, delay = 80) {
   const [visible, setVisible] = useState([]);
-  useEffect(() => {
-    setVisible([]);
-    const timers = Array.from({ length: count }, (_, i) =>
-      setTimeout(() => setVisible(v => [...v, i]), 200 + i * delay)
-    );
-    return () => timers.forEach(clearTimeout);
-  }, [count, delay]);
+  useEffect(() => { setVisible([]); const t = Array.from({ length: count }, (_, i) => setTimeout(() => setVisible(v => [...v, i]), 200 + i * delay)); return () => t.forEach(clearTimeout); }, [count, delay]);
   return visible;
 }
+const fa = (r, i) => ({ opacity: r.includes(i) ? 1 : 0, transform: r.includes(i) ? "none" : "translateY(14px)", transition: "opacity 0.65s ease, transform 0.65s ease" });
 
-const fa = (r, i) => ({
-  opacity: r.includes(i) ? 1 : 0,
-  transform: r.includes(i) ? "none" : "translateY(14px)",
-  transition: "opacity 0.65s ease, transform 0.65s ease",
-});
-
-function Lbl({ children, s = {} }) {
-  return (
-    <p style={{
-      fontFamily: "'Outfit', sans-serif", fontSize: "10px",
-      letterSpacing: "3.5px", textTransform: "uppercase",
-      color: "#a69e94", margin: 0, fontWeight: 400, ...s,
-    }}>{children}</p>
-  );
-}
-
-function Hr({ w = 44, s = {} }) {
-  return <div style={{ width: w, height: "0.5px", background: "#c8bfb4", ...s }} />;
-}
+function Lbl({ children, s = {} }) { return <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10px", letterSpacing: "3.5px", textTransform: "uppercase", color: "#a69e94", margin: 0, fontWeight: 400, ...s }}>{children}</p>; }
+function Hr({ w = 44, s = {} }) { return <div style={{ width: w, height: "0.5px", background: "#c8bfb4", ...s }} />; }
 
 function Nav({ current, onChange }) {
   return (
-    <nav style={{
-      position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      display: "flex", alignItems: "center", justifyContent: "space-between",
-      padding: "0 56px", height: "72px",
-      background: "rgba(250,248,245,0.88)",
-      backdropFilter: "blur(16px) saturate(1.2)",
-      borderBottom: "1px solid rgba(48,40,32,0.05)",
-    }}>
-      <button onClick={() => { onChange("Profile"); window.scrollTo({top:0,behavior:"smooth"}); }} style={{
-        background: "none", border: "none", cursor: "pointer", padding: 0,
-        fontFamily: "'Playfair Display', serif",
-        fontSize: "18px", fontWeight: 400, fontStyle: "italic",
-        letterSpacing: "1px", color: "#2c2622",
-      }}>Di Fiorini</button>
+    <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 56px", height: "72px", background: "rgba(250,248,245,0.88)", backdropFilter: "blur(16px) saturate(1.2)", borderBottom: "1px solid rgba(48,40,32,0.05)" }}>
+      <button onClick={() => { onChange("Profile"); window.scrollTo({top:0,behavior:"smooth"}); }} style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "'Playfair Display',serif", fontSize: "18px", fontWeight: 400, fontStyle: "italic", letterSpacing: "1px", color: "#2c2622" }}>Di Fiorini</button>
       <div style={{ display: "flex", gap: "40px" }}>
         {SECTIONS.map(s => (
-          <button key={s} onClick={() => { onChange(s); window.scrollTo({top:0,behavior:"smooth"}); }} style={{
-            background: "none", border: "none", cursor: "pointer",
-            fontFamily: "'Outfit', sans-serif",
-            fontSize: "10.5px", fontWeight: current === s ? 500 : 350,
-            letterSpacing: "3px", textTransform: "uppercase",
-            color: current === s ? "#2c2622" : "#9e948a",
-            padding: "6px 0", position: "relative",
-            transition: "color 0.4s ease",
-          }}>
+          <button key={s} onClick={() => { onChange(s); window.scrollTo({top:0,behavior:"smooth"}); }} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", fontWeight: current === s ? 500 : 350, letterSpacing: "3px", textTransform: "uppercase", color: current === s ? "#2c2622" : "#9e948a", padding: "6px 0", position: "relative", transition: "color 0.4s ease" }}>
             {s}
-            <span style={{
-              position: "absolute", bottom: 0, left: "50%",
-              transform: "translateX(-50%)",
-              width: current === s ? "100%" : "0%",
-              height: "1px", background: "#2c2622",
-              transition: "width 0.4s ease",
-            }} />
+            <span style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: current === s ? "100%" : "0%", height: "1px", background: "#2c2622", transition: "width 0.4s ease" }} />
           </button>
         ))}
       </div>
@@ -225,13 +80,7 @@ function Nav({ current, onChange }) {
 function Transition({ children, page }) {
   const [show, setShow] = useState(false);
   useEffect(() => { setShow(false); const t = setTimeout(() => setShow(true), 50); return () => clearTimeout(t); }, [page]);
-  return (
-    <div style={{
-      opacity: show ? 1 : 0,
-      transform: show ? "none" : "translateY(18px)",
-      transition: "opacity 0.7s cubic-bezier(.22,.68,0,1), transform 0.7s cubic-bezier(.22,.68,0,1)",
-    }}>{children}</div>
-  );
+  return <div style={{ opacity: show ? 1 : 0, transform: show ? "none" : "translateY(18px)", transition: "opacity 0.7s cubic-bezier(.22,.68,0,1), transform 0.7s cubic-bezier(.22,.68,0,1)" }}>{children}</div>;
 }
 
 function Profile() {
@@ -240,43 +89,31 @@ function Profile() {
     <div style={{ maxWidth: "960px", margin: "0 auto", padding: "160px 56px 120px" }}>
       <div style={{ display: "grid", gridTemplateColumns: "5fr 6fr", gap: "96px", alignItems: "start" }}>
         <div>
-          <div style={fa(r, 0)}>
-            <Lbl s={{ marginBottom: "28px" }}>Creative &amp; Strategic Director · Art &amp; Jewellery Historian · Writer &amp; Art Critic</Lbl>
-          </div>
+          <div style={fa(r, 0)}><Lbl s={{ marginBottom: "28px" }}>Creative &amp; Strategic Director · Art &amp; Jewellery Historian · Writer &amp; Art Critic</Lbl></div>
           <div style={fa(r, 1)}>
-            <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "54px", fontWeight: 400, lineHeight: 1.05, color: "#2c2622", margin: "0 0 6px" }}>Laura-Rachel</h1>
-            <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "54px", fontWeight: 400, fontStyle: "italic", lineHeight: 1.05, color: "#2c2622", margin: "0 0 48px" }}>Dubos di Fiorini</h1>
+            <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: "54px", fontWeight: 400, lineHeight: 1.05, color: "#2c2622", margin: "0 0 6px" }}>Laura-Rachel</h1>
+            <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: "54px", fontWeight: 400, fontStyle: "italic", lineHeight: 1.05, color: "#2c2622", margin: "0 0 48px" }}>Dubos di Fiorini</h1>
           </div>
           <div style={fa(r, 2)}>
             <Hr s={{ marginBottom: "36px" }} />
-            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "19px", lineHeight: 1.75, color: "#4a4238", fontStyle: "italic", margin: "0 0 28px" }}>
-              Bauhaus University<br />Sotheby's Institute of Art<br />Christie's Education
-            </p>
+            <p style={{ fontFamily: "'Playfair Display',serif", fontSize: "19px", lineHeight: 1.75, color: "#4a4238", fontStyle: "italic", margin: "0 0 28px" }}>Bauhaus University<br />Sotheby's Institute of Art<br />Christie's Education</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-              {["De Beers", "Cartier", "Chopard"].map(h => (
-                <span key={h} style={{ fontFamily: "'Outfit', sans-serif", fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", color: "#8a8078", border: "0.5px solid #d6cec6", padding: "7px 16px", borderRadius: "24px", fontWeight: 350 }}>{h}</span>
-              ))}
+              {["De Beers", "Cartier", "Chopard"].map(h => (<span key={h} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", color: "#8a8078", border: "0.5px solid #d6cec6", padding: "7px 16px", borderRadius: "24px", fontWeight: 350 }}>{h}</span>))}
             </div>
           </div>
         </div>
         <div>
           <div style={fa(r, 3)}>
-            {[
-              "An authorial, research-driven practice combining creative direction, filmmaking, narrative design, and art-historical thinking to develop luxury narratives at the intersection of art, heritage, innovation, and cultural foresight.",
+            {["An authorial, research-driven practice combining creative direction, filmmaking, narrative design, and art-historical thinking to develop luxury narratives at the intersection of art, heritage, innovation, and cultural foresight.",
               "French-Italian, Paris-based creative and strategic director, art historian, writer, art critic, and visual artist whose work operates at the intersection of art history, jewellery, gemmology, mythology, philosophy, and sociology.",
               "Her practice spans high-level creative direction, visual creation, writing, and narrative strategy. Working at the crossroads of art and luxury, she develops cultural and storytelling frameworks for major Maisons — approaching marketing as a cultural discipline that transmits heritage, meaning, and imagination at the highest level.",
               "A specialist in storytelling as a tool of projection and desire, she conceives narratives designed to make audiences dream while remaining anchored in intellectual rigour and historical depth. Through immersive experiences, films, open-world digital environments, and long-form narratives, she contributes to expanding how luxury articulates itself.",
               "Alongside this strategic dimension, she maintains an independent artistic practice as a visual artist and writer — exploring the tangible heritage of objects and the intangible heritage of narratives, engaging with themes of time, metamorphosis, cosmology, and the sublime.",
-            ].map((t, i) => (
-              <p key={i} style={{ fontFamily: "'Outfit', sans-serif", fontSize: "15px", lineHeight: 1.9, color: "#58504a", fontWeight: 300, marginBottom: i < 4 ? "18px" : "40px" }}>{t}</p>
-            ))}
+            ].map((t, i) => (<p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 1.9, color: "#58504a", fontWeight: 300, marginBottom: i < 4 ? "18px" : "40px" }}>{t}</p>))}
           </div>
           <div style={fa(r, 4)}>
             <Lbl s={{ marginBottom: "12px" }}>Currently writing</Lbl>
-            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "15.5px", fontStyle: "italic", color: "#4a4238", lineHeight: 1.7, margin: 0 }}>
-              The Sacred Art of Jewellery: An Odyssey through the Kosmos of Adornment
-              <br /><span style={{ fontStyle: "normal", fontSize: "13px", color: "#9e948a" }}>To be published by a leading European art publisher</span>
-            </p>
+            <p style={{ fontFamily: "'Playfair Display',serif", fontSize: "15.5px", fontStyle: "italic", color: "#4a4238", lineHeight: 1.7, margin: 0 }}>The Sacred Art of Jewellery: An Odyssey through the Kosmos of Adornment<br /><span style={{ fontStyle: "normal", fontSize: "13px", color: "#9e948a" }}>To be published by a leading European art publisher</span></p>
           </div>
         </div>
       </div>
@@ -289,38 +126,19 @@ function ProjectCard({ project, isCreative }) {
     <div style={{ borderTop: "0.5px solid #d6cec6", padding: "40px 0 48px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "8px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "16px", flexWrap: "wrap" }}>
-          <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "26px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: 0 }}>{project.title}</h3>
-          <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "14px", color: "#a69e94" }}>{isCreative ? project.house : project.publication}</span>
+          <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: "26px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: 0 }}>{project.title}</h3>
+          <span style={{ fontFamily: "'Playfair Display',serif", fontSize: "14px", color: "#a69e94" }}>{isCreative ? project.house : project.publication}</span>
         </div>
-        <span style={{ fontFamily: "'Outfit', sans-serif", fontSize: "11px", letterSpacing: "1px", color: "#a69e94", fontWeight: 400, flexShrink: 0 }}>{project.period}</span>
+        <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: "11px", letterSpacing: "1px", color: "#a69e94", fontWeight: 400, flexShrink: 0 }}>{project.period}</span>
       </div>
-      <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: "11px", letterSpacing: "2px", textTransform: "uppercase", color: "#b4aaa0", margin: "6px 0 0", fontWeight: 350 }}>{project.subtitle}</p>
-      {project.locations && (
-        <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: "11px", letterSpacing: "1px", color: "#c4bab0", margin: "4px 0 0", fontWeight: 300 }}>{project.locations}</p>
-      )}
+      <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "11px", letterSpacing: "2px", textTransform: "uppercase", color: "#b4aaa0", margin: "6px 0 0", fontWeight: 350 }}>{project.subtitle}</p>
+      {project.locations && <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "11px", letterSpacing: "1px", color: "#c4bab0", margin: "4px 0 0", fontWeight: 300 }}>{project.locations}</p>}
       <Lbl s={{ margin: "22px 0 10px" }}>{project.role}</Lbl>
-      <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: "14px", lineHeight: 1.85, color: "#58504a", fontWeight: 300, margin: "0 0 20px", maxWidth: "740px" }}>{project.text}</p>
-      {project.tags && (
-        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "18px" }}>
-          {project.tags.map(t => (
-            <span key={t} style={{ fontFamily: "'Outfit', sans-serif", fontSize: "9px", letterSpacing: "2px", textTransform: "uppercase", color: "#a69e94", background: "rgba(44,38,34,0.035)", padding: "5px 14px", borderRadius: "14px", fontWeight: 400 }}>{t}</span>
-          ))}
-        </div>
-      )}
+      <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.85, color: "#58504a", fontWeight: 300, margin: "0 0 20px", maxWidth: "740px" }}>{project.text}</p>
+      {project.tags && <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "18px" }}>{project.tags.map(t => (<span key={t} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "9px", letterSpacing: "2px", textTransform: "uppercase", color: "#a69e94", background: "rgba(44,38,34,0.035)", padding: "5px 14px", borderRadius: "14px", fontWeight: 400 }}>{t}</span>))}</div>}
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-        {project.video && (
-          <a href={project.video} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit', sans-serif", fontSize: "10.5px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#2c2622", textDecoration: "none", borderBottom: "1px solid #2c2622", paddingBottom: "3px", fontWeight: 450, display: "inline-block", alignSelf: "flex-start" }}>Watch Film →</a>
-        )}
-        {project.links && project.links.length > 0 && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: project.video ? "6px" : 0 }}>
-            {project.links.map((l, i) => (
-              <a key={i} href={l.url} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit', sans-serif", fontSize: "13px", color: "#2c2622", textDecoration: "none", borderBottom: "0.5px solid #d6cec6", paddingBottom: "3px", fontWeight: 350, transition: "border-color 0.3s", maxWidth: "600px" }}
-                onMouseEnter={e => e.target.style.borderColor = "#2c2622"}
-                onMouseLeave={e => e.target.style.borderColor = "#d6cec6"}
-              >{l.label} →</a>
-            ))}
-          </div>
-        )}
+        {project.video && <a href={project.video} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#2c2622", textDecoration: "none", borderBottom: "1px solid #2c2622", paddingBottom: "3px", fontWeight: 450, display: "inline-block", alignSelf: "flex-start" }}>Watch Film →</a>}
+        {project.links && project.links.length > 0 && <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: project.video ? "6px" : 0 }}>{project.links.map((l, i) => (<a key={i} href={l.url} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "13px", color: "#2c2622", textDecoration: "none", borderBottom: "0.5px solid #d6cec6", paddingBottom: "3px", fontWeight: 350, transition: "border-color 0.3s", maxWidth: "600px" }} onMouseEnter={e => e.target.style.borderColor = "#2c2622"} onMouseLeave={e => e.target.style.borderColor = "#d6cec6"}>{l.label} →</a>))}</div>}
       </div>
     </div>
   );
@@ -332,14 +150,10 @@ function CreativeDirection() {
     <div style={{ maxWidth: "960px", margin: "0 auto", padding: "160px 56px 120px" }}>
       <div style={fa(r, 0)}>
         <Lbl s={{ marginBottom: "20px" }}>I. Selected Works</Lbl>
-        <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>Creative Direction &amp; Visual Arts</h2>
-        <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: "14px", lineHeight: 1.8, color: "#8a8078", fontWeight: 300, margin: "0 0 48px", maxWidth: "660px" }}>
-          Immersive films, narrative worlds, and visual universes conceived for the great houses of luxury — each grounded in original art-historical and mythological research.
-        </p>
+        <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>Creative Direction &amp; Visual Arts</h2>
+        <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.8, color: "#8a8078", fontWeight: 300, margin: "0 0 48px", maxWidth: "660px" }}>Immersive films, narrative worlds, and visual universes conceived for the great houses of luxury — each grounded in original art-historical and mythological research.</p>
       </div>
-      {CREATIVE_WORKS.map((w, i) => (
-        <div key={i} style={fa(r, i + 1)}><ProjectCard project={w} isCreative /></div>
-      ))}
+      {CREATIVE_WORKS.map((w, i) => <div key={i} style={fa(r, i + 1)}><ProjectCard project={w} isCreative /></div>)}
       <div style={{ borderTop: "0.5px solid #d6cec6" }} />
     </div>
   );
@@ -351,14 +165,10 @@ function WritingResearch() {
     <div style={{ maxWidth: "960px", margin: "0 auto", padding: "160px 56px 120px" }}>
       <div style={fa(r, 0)}>
         <Lbl s={{ marginBottom: "20px" }}>II. Selected Writings</Lbl>
-        <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>Writing &amp; Research</h2>
-        <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: "14px", lineHeight: 1.8, color: "#8a8078", fontWeight: 300, margin: "0 0 48px", maxWidth: "660px" }}>
-          Art criticism, philosophical essays, conferences, and research-driven writing — approaching art as a mode of thought in its own right.
-        </p>
+        <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>Writing &amp; Research</h2>
+        <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.8, color: "#8a8078", fontWeight: 300, margin: "0 0 48px", maxWidth: "660px" }}>Art criticism, philosophical essays, conferences, and research-driven writing — approaching art as a mode of thought in its own right.</p>
       </div>
-      {WRITINGS.map((w, i) => (
-        <div key={i} style={fa(r, i + 1)}><ProjectCard project={w} isCreative={false} /></div>
-      ))}
+      {WRITINGS.map((w, i) => <div key={i} style={fa(r, i + 1)}><ProjectCard project={w} isCreative={false} /></div>)}
       <div style={{ borderTop: "0.5px solid #d6cec6" }} />
     </div>
   );
@@ -372,27 +182,20 @@ function Contact() {
         <div>
           <div style={fa(r, 0)}>
             <Lbl s={{ marginBottom: "20px" }}>Collaboration</Lbl>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 36px", lineHeight: 1.15 }}>Let's work<br /><span style={{ fontStyle: "italic" }}>together</span></h2>
+            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 36px", lineHeight: 1.15 }}>Let's work<br /><span style={{ fontStyle: "italic" }}>together</span></h2>
           </div>
           <div style={fa(r, 1)}>
             <Hr s={{ marginBottom: "32px" }} />
-            <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: "15px", lineHeight: 1.9, color: "#58504a", fontWeight: 300, marginBottom: "20px" }}>Available for creative direction, strategic consulting, filmmaking, editorial research, and lectures within the luxury, jewellery, and horology sectors.</p>
-            <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: "15px", lineHeight: 1.9, color: "#58504a", fontWeight: 300 }}>Based in Paris. Working across France and internationally.</p>
+            <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 1.9, color: "#58504a", fontWeight: 300, marginBottom: "20px" }}>Available for creative direction, strategic consulting, filmmaking, editorial research, and lectures within the luxury, jewellery, and horology sectors.</p>
+            <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 1.9, color: "#58504a", fontWeight: 300 }}>Based in Paris. Working across France and internationally.</p>
           </div>
         </div>
         <div style={{ paddingTop: "52px" }}>
           <div style={fa(r, 2)}>
-            {[
-              { label: "Email", value: "laurarachel.dubos@gmail.com", href: "mailto:laurarachel.dubos@gmail.com" },
-              { label: "Phone", value: "+33 6 08 27 72 27", href: "tel:+33608277227" },
-              { label: "Web", value: "voyagedanslecristal.com", href: "https://voyagedanslecristal.com" },
-            ].map((c, i) => (
+            {[{ label: "Email", value: "laurarachel.dubos@gmail.com", href: "mailto:laurarachel.dubos@gmail.com" },{ label: "Phone", value: "+33 6 08 27 72 27", href: "tel:+33608277227" },{ label: "Web", value: "voyagedanslecristal.com", href: "https://voyagedanslecristal.com" }].map((c, i) => (
               <div key={i} style={{ borderTop: "0.5px solid #d6cec6", padding: "26px 0" }}>
                 <Lbl s={{ marginBottom: "10px" }}>{c.label}</Lbl>
-                <a href={c.href} style={{ fontFamily: "'Playfair Display', serif", fontSize: "18px", color: "#2c2622", textDecoration: "none", transition: "opacity 0.3s" }}
-                  onMouseEnter={e => e.target.style.opacity = "0.55"}
-                  onMouseLeave={e => e.target.style.opacity = "1"}
-                >{c.value}</a>
+                <a href={c.href} style={{ fontFamily: "'Playfair Display',serif", fontSize: "18px", color: "#2c2622", textDecoration: "none", transition: "opacity 0.3s" }} onMouseEnter={e => e.target.style.opacity="0.55"} onMouseLeave={e => e.target.style.opacity="1"}>{c.value}</a>
               </div>
             ))}
             <div style={{ borderTop: "0.5px solid #d6cec6" }} />
@@ -400,12 +203,7 @@ function Contact() {
           <div style={fa(r, 3)}>
             <div style={{ marginTop: "52px" }}>
               <Lbl s={{ marginBottom: "14px" }}>Practice</Lbl>
-              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "15.5px", lineHeight: 2.1, color: "#4a4238", fontStyle: "italic", margin: 0 }}>
-                Creative Direction · Filmmaking<br />
-                Narrative Design · Strategic Counsel<br />
-                Editorial Research · Lectures<br />
-                Art Thinking · Jewellery Art History
-              </p>
+              <p style={{ fontFamily: "'Playfair Display',serif", fontSize: "15.5px", lineHeight: 2.1, color: "#4a4238", fontStyle: "italic", margin: 0 }}>Creative Direction · Filmmaking<br />Narrative Design · Strategic Counsel<br />Editorial Research · Lectures<br />Art Thinking · Jewellery Art History</p>
             </div>
           </div>
         </div>
@@ -426,13 +224,11 @@ function App() {
         {page === "Contact" && <Contact />}
       </Transition>
       <footer style={{ textAlign: "center", padding: "48px 56px", borderTop: "0.5px solid rgba(48,40,32,0.04)" }}>
-        <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: "10px", letterSpacing: "3px", color: "#b4aaa0", fontWeight: 350, textTransform: "uppercase", margin: 0 }}>© 2026 Di Fiorini · Selected Projects from 2020 to Now</p>
+        <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10px", letterSpacing: "3px", color: "#b4aaa0", fontWeight: 350, textTransform: "uppercase", margin: 0 }}>© 2026 Di Fiorini · Selected Projects from 2020 to Now</p>
       </footer>
     </div>
   );
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-  </script>
-</body>
-</html>
+</script></body></html>
