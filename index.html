@@ -237,7 +237,7 @@ function Contact() {
 function App() {
   const [page, setPage] = useState("Profile");
   return (
-    <div style={{ minHeight: "100vh", background: "#ede5d8" }}>
+    <div style={{ minHeight: "100vh" }}>
       <Nav current={page} onChange={setPage} />
       <Transition page={page}>
         {page === "Profile" && <Profile />}
