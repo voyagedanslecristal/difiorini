@@ -5,8 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Di Fiorini — Laura-Rachel Dubos di Fiorini</title>
   <meta name="description" content="Creative & Strategic Director · Art & Jewellery Historian · Writer & Art Critic. Selected works for De Beers, Cartier, and Chopard." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    @font-face { font-family: 'Mazarin'; src: url('fonts/A2-Mazarin.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'Mazarin'; src: url('fonts/A2-Mazarin-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; }
+    @font-face { font-family: 'Mazarin'; src: url('fonts/A2-Mazarin-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; }
+  </style>
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     body,html{background:#faf8f5;-webkit-font-smoothing:antialiased}*{cursor:none!important}
@@ -68,7 +72,7 @@ function Hr({ w = 44, s = {} }) { return <div style={{ width: w, height: "0.5px"
 function Nav({ current, onChange }) {
   return (
     <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 56px", height: "72px", background: "rgba(250,248,245,0.88)", backdropFilter: "blur(16px) saturate(1.2)", borderBottom: "1px solid rgba(48,40,32,0.05)" }}>
-      <button onClick={() => { onChange("Profile"); window.scrollTo({top:0,behavior:"smooth"}); }} style={{ background: "none", border: "none", padding: 0, fontFamily: "'Playfair Display',serif", fontSize: "26px", fontWeight: 400, fontStyle: "italic", letterSpacing: "1px", color: "#2c2622" }}>Di Fiorini</button>
+      <button onClick={() => { onChange("Profile"); window.scrollTo({top:0,behavior:"smooth"}); }} style={{ background: "none", border: "none", padding: 0, fontFamily: "'Mazarin',serif", fontSize: "26px", fontWeight: 400, fontStyle: "italic", letterSpacing: "1px", color: "#2c2622" }}>Di Fiorini</button>
       <div style={{ display: "flex", gap: "40px" }}>
         {SECTIONS.map(s => (
           <button key={s} onClick={() => { onChange(s); window.scrollTo({top:0,behavior:"smooth"}); }} style={{ background: "none", border: "none", fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", fontWeight: current === s ? 500 : 350, letterSpacing: "3px", textTransform: "uppercase", color: current === s ? "#2c2622" : "#9e948a", padding: "6px 0", position: "relative", transition: "color 0.4s ease" }}>
@@ -95,12 +99,12 @@ function Profile() {
         <div>
           <div style={fa(r, 0)}><Lbl s={{ marginBottom: "28px" }}>Creative &amp; Strategic Director · Art &amp; Jewellery Historian · Writer &amp; Art Critic</Lbl></div>
           <div style={fa(r, 1)}>
-            <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: "54px", fontWeight: 400, lineHeight: 1.05, color: "#2c2622", margin: "0 0 6px" }}>Laura-Rachel</h1>
-            <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: "54px", fontWeight: 400, fontStyle: "italic", lineHeight: 1.05, color: "#2c2622", margin: "0 0 48px" }}>Dubos di Fiorini</h1>
+            <h1 style={{ fontFamily: "'Mazarin',serif", fontSize: "54px", fontWeight: 400, lineHeight: 1.05, color: "#2c2622", margin: "0 0 6px" }}>Laura-Rachel</h1>
+            <h1 style={{ fontFamily: "'Mazarin',serif", fontSize: "54px", fontWeight: 400, fontStyle: "italic", lineHeight: 1.05, color: "#2c2622", margin: "0 0 48px" }}>Dubos di Fiorini</h1>
           </div>
           <div style={fa(r, 2)}>
             <Hr s={{ marginBottom: "36px" }} />
-            <p style={{ fontFamily: "'Playfair Display',serif", fontSize: "19px", lineHeight: 1.75, color: "#4a4238", fontStyle: "italic", margin: "0 0 28px" }}>Bauhaus University<br />Sotheby's Institute of Art<br />Christie's Education</p>
+            <p style={{ fontFamily: "'Mazarin',serif", fontSize: "19px", lineHeight: 1.75, color: "#4a4238", fontStyle: "italic", margin: "0 0 28px" }}>Bauhaus University<br />Sotheby's Institute of Art<br />Christie's Education</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
               {["De Beers", "Cartier", "Chopard"].map(h => (<span key={h} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", color: "#8a8078", border: "0.5px solid #d6cec6", padding: "7px 16px", borderRadius: "24px", fontWeight: 350 }}>{h}</span>))}
             </div>
@@ -117,7 +121,7 @@ function Profile() {
           </div>
           <div style={fa(r, 4)}>
             <Lbl s={{ marginBottom: "12px" }}>Currently writing</Lbl>
-            <p style={{ fontFamily: "'Playfair Display',serif", fontSize: "15.5px", fontStyle: "italic", color: "#4a4238", lineHeight: 1.7, margin: 0 }}>The Sacred Art of Jewellery: An Odyssey through the Kosmos of Adornment<br /><span style={{ fontStyle: "normal", fontSize: "13px", color: "#9e948a" }}>To be published by a leading European art publisher</span></p>
+            <p style={{ fontFamily: "'Mazarin',serif", fontSize: "15.5px", fontStyle: "italic", color: "#4a4238", lineHeight: 1.7, margin: 0 }}>The Sacred Art of Jewellery: An Odyssey through the Kosmos of Adornment<br /><span style={{ fontStyle: "normal", fontSize: "13px", color: "#9e948a" }}>To be published by a leading European art publisher</span></p>
           </div>
         </div>
       </div>
@@ -130,8 +134,8 @@ function ProjectCard({ project, isCreative }) {
     <div style={{ borderTop: "0.5px solid #d6cec6", padding: "40px 0 48px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "8px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "16px", flexWrap: "wrap" }}>
-          <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: "26px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: 0 }}>{project.title}</h3>
-          <span style={{ fontFamily: "'Playfair Display',serif", fontSize: "14px", color: "#a69e94" }}>{isCreative ? project.house : project.publication}</span>
+          <h3 style={{ fontFamily: "'Mazarin',serif", fontSize: "26px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: 0 }}>{project.title}</h3>
+          <span style={{ fontFamily: "'Mazarin',serif", fontSize: "14px", color: "#a69e94" }}>{isCreative ? project.house : project.publication}</span>
         </div>
         <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: "11px", letterSpacing: "1px", color: "#a69e94", fontWeight: 400, flexShrink: 0 }}>{project.period}</span>
       </div>
@@ -154,7 +158,7 @@ function CreativeDirection() {
     <div style={{ maxWidth: "960px", margin: "0 auto", padding: "160px 56px 120px" }}>
       <div style={fa(r, 0)}>
         <Lbl s={{ marginBottom: "20px" }}>I. Selected Works</Lbl>
-        <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>Creative & Strategic Direction</h2>
+        <h2 style={{ fontFamily: "'Mazarin',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>Creative & Strategic Direction</h2>
         <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.8, color: "#8a8078", fontWeight: 300, margin: "0 0 48px", maxWidth: "660px" }}>Immersive films, narrative worlds, and visual universes conceived for the great houses of luxury — each grounded in original art-historical and mythological research.</p>
       </div>
       {CREATIVE_WORKS.map((w, i) => <div key={i} style={fa(r, i + 1)}><ProjectCard project={w} isCreative /></div>)}
@@ -169,7 +173,7 @@ function WritingResearch() {
     <div style={{ maxWidth: "960px", margin: "0 auto", padding: "160px 56px 120px" }}>
       <div style={fa(r, 0)}>
         <Lbl s={{ marginBottom: "20px" }}>II. Selected Writings</Lbl>
-        <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>Art History, Writing & Criticism</h2>
+        <h2 style={{ fontFamily: "'Mazarin',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>Art History, Writing & Criticism</h2>
         <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.8, color: "#8a8078", fontWeight: 300, margin: "0 0 48px", maxWidth: "660px" }}>Art criticism, philosophical essays, conferences, and research-driven writing — approaching art as a mode of thought in its own right.</p>
       </div>
       {WRITINGS.map((w, i) => <div key={i} style={fa(r, i + 1)}><ProjectCard project={w} isCreative={false} /></div>)}
@@ -186,7 +190,7 @@ function Contact() {
         <div>
           <div style={fa(r, 0)}>
             <Lbl s={{ marginBottom: "20px" }}>Collaboration</Lbl>
-            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 36px", lineHeight: 1.15 }}>Let's work<br /><span style={{ fontStyle: "italic" }}>together</span></h2>
+            <h2 style={{ fontFamily: "'Mazarin',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 36px", lineHeight: 1.15 }}>Let's work<br /><span style={{ fontStyle: "italic" }}>together</span></h2>
           </div>
           <div style={fa(r, 1)}>
             <Hr s={{ marginBottom: "32px" }} />
@@ -199,7 +203,7 @@ function Contact() {
             {[{ label: "Email", value: "laurarachel.dubos@gmail.com", href: "mailto:laurarachel.dubos@gmail.com" },{ label: "Phone", value: "+33 6 08 27 72 27", href: "tel:+33608277227" },{ label: "Web", value: "voyagedanslecristal.com", href: "https://voyagedanslecristal.com" }].map((c, i) => (
               <div key={i} style={{ borderTop: "0.5px solid #d6cec6", padding: "26px 0" }}>
                 <Lbl s={{ marginBottom: "10px" }}>{c.label}</Lbl>
-                <a href={c.href} style={{ fontFamily: "'Playfair Display',serif", fontSize: "18px", color: "#2c2622", textDecoration: "none", transition: "opacity 0.3s" }} onMouseEnter={e => e.target.style.opacity="0.55"} onMouseLeave={e => e.target.style.opacity="1"}>{c.value}</a>
+                <a href={c.href} style={{ fontFamily: "'Mazarin',serif", fontSize: "18px", color: "#2c2622", textDecoration: "none", transition: "opacity 0.3s" }} onMouseEnter={e => e.target.style.opacity="0.55"} onMouseLeave={e => e.target.style.opacity="1"}>{c.value}</a>
               </div>
             ))}
             <div style={{ borderTop: "0.5px solid #d6cec6" }} />
@@ -207,7 +211,7 @@ function Contact() {
           <div style={fa(r, 3)}>
             <div style={{ marginTop: "52px" }}>
               <Lbl s={{ marginBottom: "14px" }}>Practice</Lbl>
-              <p style={{ fontFamily: "'Playfair Display',serif", fontSize: "15.5px", lineHeight: 2.1, color: "#4a4238", fontStyle: "italic", margin: 0 }}>Creative Direction · Filmmaking<br />Narrative Design · Strategic Counsel<br />Editorial Research · Lectures<br />Art Thinking · Jewellery Art History</p>
+              <p style={{ fontFamily: "'Mazarin',serif", fontSize: "15.5px", lineHeight: 2.1, color: "#4a4238", fontStyle: "italic", margin: 0 }}>Creative Direction · Filmmaking<br />Narrative Design · Strategic Counsel<br />Editorial Research · Lectures<br />Art Thinking · Jewellery Art History</p>
             </div>
           </div>
         </div>
