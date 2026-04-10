@@ -266,5 +266,80 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       });
     })();
   </script>
+
+  <script>
+  (function(){
+    function lerp(a, b, t) { return Math.round(a + (b - a) * t); }
+    function lerpColor(c1, c2, t) {
+      return 'rgb('+lerp(c1[0],c2[0],t)+','+lerp(c1[1],c2[1],t)+','+lerp(c1[2],c2[2],t)+')';
+    }
+    function lerpColorA(c1, c2, a1, a2, t) {
+      return 'rgba('+lerp(c1[0],c2[0],t)+','+lerp(c1[1],c2[1],t)+','+lerp(c1[2],c2[2],t)+','+(a1+(a2-a1)*t).toFixed(2)+')';
+    }
+
+    // Night → Day
+    const BG_NIGHT   = [4, 12, 26];
+    const BG_DAY     = [237, 229, 216];
+    const CARD_NIGHT = [8, 18, 40];
+    const CARD_DAY   = [250, 248, 245];
+    const TXT_NIGHT  = [200, 190, 170];
+    const TXT_DAY    = [44, 38, 34];
+    const NAV_NIGHT  = [4, 12, 26];
+    const NAV_DAY    = [237, 229, 216];
+
+    function applyTheme(t) {
+      // ease
+      const e = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+
+      document.body.style.background = lerpColor(BG_NIGHT, BG_DAY, e);
+
+      const card = document.querySelector('.content-card');
+      if (card) {
+        card.style.background = lerpColorA(CARD_NIGHT, CARD_DAY, 0.82, 0.72, e);
+        card.style.boxShadow = `0 24px 80px rgba(${lerp(0,120,e)},${lerp(0,100,e)},${lerp(0,80,e)},${lerp(50,15,e)/100})`;
+      }
+
+      const nav = document.querySelector('nav');
+      if (nav) nav.style.background = lerpColorA(NAV_NIGHT, NAV_DAY, 0.72, 0.72, e);
+
+      // Textes
+      document.querySelectorAll('h1,h2,h3').forEach(el => {
+        el.style.color = lerpColor([238,232,216], [44,38,34], e);
+      });
+      document.querySelectorAll('.content-card p').forEach(el => {
+        el.style.color = lerpColor(TXT_NIGHT, TXT_DAY, e);
+      });
+
+      // Nav buttons
+      document.querySelectorAll('nav button, nav span').forEach(el => {
+        el.style.color = lerpColor([210,200,180], [44,38,34], e);
+      });
+
+      // bg image opacity — plus visible la nuit
+      const bgStyle = document.querySelector('style[id="bg-style"]');
+      // handled via pseudo-element opacity in stylesheet
+
+      // Curseur — bleu la nuit, bleu nuit le jour
+      const cp = document.getElementById('cp');
+      if (cp) cp.setAttribute('stroke', lerpColor([80,120,220],[0,43,127],e));
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          const maxScroll = document.body.scrollHeight - window.innerHeight;
+          const t = maxScroll > 0 ? Math.min(window.scrollY / maxScroll, 1) : 0;
+          applyTheme(t);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, {passive:true});
+
+    // Init — nuit
+    applyTheme(0);
+  })();
+  </script>
 </body>
 </html>
