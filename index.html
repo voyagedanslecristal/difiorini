@@ -19,7 +19,7 @@
     *{cursor:none!important}
     #cur{position:fixed;top:0;left:0;pointer-events:none;z-index:2147483647;transform:translate(-50%,-50%)}
     .glass-nav{background:transparent!important;backdrop-filter:blur(20px)!important;-webkit-backdrop-filter:blur(20px)!important;border-bottom:1px solid rgba(255,255,255,0.04)!important;}
-    .content-card{background:rgba(250,248,245,0.68);border:none;backdrop-filter:blur(6px) saturate(1.1);-webkit-backdrop-filter:blur(6px) saturate(1.1);box-shadow:0 24px 80px rgba(120,100,80,0.15),0 2px 8px rgba(120,100,80,0.08);}
+    .content-card{background:rgba(7,12,26,0.82);border:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 24px 80px rgba(0,0,0,0.4);}
   </style>
 </head>
 <body>
@@ -329,10 +329,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       const dayZone = document.getElementById('day-zone');
       if (dayZone) dayZone.style.opacity = Math.max(0, (e - 0.4) / 0.6).toFixed(2);
 
-      // Toutes les cartes
+      // Toutes les cartes — couleur texte seulement, pas le fond
       document.querySelectorAll('.content-card').forEach(card => {
-        card.style.background = lerpColorA(CARD_NIGHT, CARD_DAY, 0.82, 0.72, e);
-        card.style.boxShadow = `0 24px 80px rgba(${lerp(0,120,e)},${lerp(0,100,e)},${lerp(0,80,e)},${lerp(50,15,e)/100})`;
+        card.style.removeProperty('background');
+        card.style.removeProperty('box-shadow');
       });
     }
 
