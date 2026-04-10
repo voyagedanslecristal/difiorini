@@ -259,25 +259,31 @@ function App() {
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
   </script>
 
-  <style>* { cursor: none !important; }</style>
-  <div id="cur" style="position:fixed;top:0;left:0;pointer-events:none;z-index:999999;">
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="14" viewBox="0 0 12 14">
-      <polygon id="cp" points="0,0 0,12 4,8 6.5,13.5 8,12.8 5.5,7.5 10,7.5" fill="none" stroke="#003366" stroke-width="0.9"/>
+  <style>*, *::before, *::after { cursor: none !important; }</style>
+  <div id="cur" style="position:fixed;top:-20px;left:-20px;pointer-events:none;z-index:2147483647;transform:translate(-50%,-50%);">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+      <polygon id="cp" points="8,1 15,8 8,15 1,8" fill="none" stroke="#006B8F" stroke-width="1.2"/>
     </svg>
   </div>
   <script>
-    const cur = document.getElementById('cur');
-    const cp = document.getElementById('cp');
-    document.addEventListener('mousemove', e => {
-      cur.style.left = e.clientX + 'px';
-      cur.style.top = e.clientY + 'px';
-    });
-    document.addEventListener('mouseover', e => {
-      if (e.target.closest('a,button,nav span,[onclick]')) cp.setAttribute('fill','#003366');
-    });
-    document.addEventListener('mouseout', e => {
-      if (e.target.closest('a,button,nav span,[onclick]')) cp.setAttribute('fill','none');
-    });
+    (function(){
+      const cur = document.getElementById('cur');
+      const cp = document.getElementById('cp');
+      document.addEventListener('mousemove', function(e){
+        cur.style.left = e.clientX + 'px';
+        cur.style.top = e.clientY + 'px';
+      }, {passive:true});
+      document.addEventListener('mouseover', function(e){
+        if(e.target.closest('a,button,nav span,[onclick]')){
+          cp.setAttribute('fill','#006B8F');
+        }
+      });
+      document.addEventListener('mouseout', function(e){
+        if(e.target.closest('a,button,nav span,[onclick]')){
+          cp.setAttribute('fill','none');
+        }
+      });
+    })();
   </script>
 </body>
 </html>
