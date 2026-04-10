@@ -92,14 +92,16 @@ function Profile() {
   const r = useReveal(6, 100);
   return (
     <div style={{ maxWidth: "960px", margin: "0 auto", padding: "160px 56px 120px" }}>
+      <div style={fa(r, 0)}>
+        <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(36px, 5.2vw, 72px)", fontWeight: 400, fontStyle: "normal", lineHeight: 1, color: "#2c2622", margin: "0 0 64px", whiteSpace: "nowrap", letterSpacing: "0.03em" }}>
+          Laura-Rachel <span style={{ fontStyle: "italic" }}>Dubos di Fiorini</span>
+        </h1>
+      </div>
       <div style={{ display: "grid", gridTemplateColumns: "5fr 6fr", gap: "96px", alignItems: "start" }}>
         <div>
-          <div style={fa(r, 0)}><Lbl s={{ marginBottom: "28px" }}>Creative &amp; Strategic Director · Art &amp; Jewellery Historian · Writer &amp; Art Critic</Lbl></div>
-          <div style={fa(r, 1)}>
-            <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "54px", fontWeight: 400, fontStyle: "normal", lineHeight: 1.05, color: "#2c2622", margin: "0 0 6px" }}>Laura-Rachel</h1>
-            <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "54px", fontWeight: 400, fontStyle: "italic", lineHeight: 1.05, color: "#2c2622", margin: "0 0 48px" }}>Dubos di Fiorini</h1>
-          </div>
+          <div style={fa(r, 1)}><Lbl s={{ marginBottom: "28px" }}>Creative &amp; Strategic Director · Art &amp; Jewellery Historian · Writer &amp; Art Critic</Lbl></div>
           <div style={fa(r, 2)}>
+          <div style={fa(r, 3)}>
             <Hr s={{ marginBottom: "36px" }} />
             <p style={{ fontFamily: "'EB Garamond',serif", fontSize: "19px", lineHeight: 1.75, color: "#4a4238", fontStyle: "italic", margin: "0 0 28px" }}>Bauhaus University<br />Sotheby's Institute of Art<br />Christie's Education</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
