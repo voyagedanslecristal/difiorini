@@ -12,34 +12,12 @@
     body,html{background:#faf8f5;-webkit-font-smoothing:antialiased}*{cursor:none!important}
     a,button{color:inherit}
     button{font:inherit}
-    #diamond{background:rgba(26,45,90,0.3);
-      position:fixed;top:0;left:0;width:20px;height:20px;
-      border:2px solid #1a2d5a;
-      transform:translate(-50%,-50%) rotate(45deg);
-      pointer-events:none;z-index:99999;
-      transition:width 0.3s,height 0.3s,background 0.3s,border-color 0.3s,opacity 0.3s;
-    }
-    #diamond.on-link{width:14px;height:14px;border-color:#b4aaa0;opacity:0.65}
-    #diamond.on-title{width:12px;height:12px;background:#1a2d5a;border-color:#1a2d5a;opacity:0.9}
+    *{cursor:none!important}
+    #cur{position:fixed;top:0;left:0;pointer-events:none;z-index:2147483647;transform:translate(-50%,-50%)}
   </style>
-  <script>
-    document.addEventListener("DOMContentLoaded",function(){
-      var d=document.getElementById("diamond");
-      if(!d)return;
-      document.addEventListener("mousemove",function(e){
-        d.style.left=e.clientX+"px";
-        d.style.top=e.clientY+"px";
-      });
-      document.addEventListener("mouseover",function(e){
-        if(e.target.closest&&e.target.closest("h1,h2,h3")){d.className="on-title";}
-        else if(e.target.closest&&e.target.closest("a,button")){d.className="on-link";}
-        else{d.className="";}
-      });
-    });
-  </script>
 </head>
 <body>
-  <div id="diamond"></div>
+  <div id="cur"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><polygon id="cp" points="7,0 14,7 7,14 0,7" fill="none" stroke="#006B8F" stroke-width="1.2"/></svg></div>
   <div id="root"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
@@ -259,12 +237,6 @@ function App() {
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
   </script>
 
-  <style>*, *::before, *::after { cursor: none !important; }</style>
-  <div id="cur" style="position:fixed;top:-20px;left:-20px;pointer-events:none;z-index:2147483647;transform:translate(-50%,-50%);">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-      <polygon id="cp" points="8,1 15,8 8,15 1,8" fill="none" stroke="#006B8F" stroke-width="1.2"/>
-    </svg>
-  </div>
   <script>
     (function(){
       const cur = document.getElementById('cur');
