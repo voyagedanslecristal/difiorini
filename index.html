@@ -304,15 +304,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       const nav = document.querySelector('nav');
       if (nav) nav.style.removeProperty('background');
 
-      // Textes
-      document.querySelectorAll('h1,h2,h3').forEach(el => {
-        el.style.color = lerpColor([238,232,216], [44,38,34], e);
-      });
-      document.querySelectorAll('.content-card p').forEach(el => {
-        el.style.color = lerpColor(TXT_NIGHT, TXT_DAY, e);
-      });
-
-      // Nav buttons
+      // Nav buttons seulement
       document.querySelectorAll('nav button, nav span').forEach(el => {
         el.style.color = lerpColor([210,200,180], [44,38,34], e);
       });
