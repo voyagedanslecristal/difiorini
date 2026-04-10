@@ -13,6 +13,7 @@
     body,html{background:#ede5d8;-webkit-font-smoothing:antialiased}
     body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:url('bg.jpg') center center/cover no-repeat;opacity:0.18;z-index:0;pointer-events:none;}
     #root{position:relative;z-index:1;}
+    #root > div{background:transparent!important;}
     a,button{color:inherit}
     button{font:inherit}
     *{cursor:none!important}
@@ -95,7 +96,7 @@ function Transition({ children, page }) {
 function Profile() {
   const r = useReveal(6, 100);
   return (
-    <div style={{ maxWidth: "560px", margin: "72px auto 0", padding: "80px 0 0" }}>
+    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}>
       <div className="content-card" style={{ padding: "48px 56px 120px" }}>
 
       <div style={fa(r, 0)} style={{ textAlign: "center" }}>
