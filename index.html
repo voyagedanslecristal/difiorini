@@ -11,6 +11,8 @@
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     body,html{background:#ede5d8;-webkit-font-smoothing:antialiased}
+    body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:url('bg.jpg') center center/cover no-repeat;opacity:0.18;z-index:0;pointer-events:none;}
+    #root{position:relative;z-index:1;}
     a,button{color:inherit}
     button{font:inherit}
     *{cursor:none!important}
