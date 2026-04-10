@@ -97,40 +97,48 @@ function Profile() {
   const r = useReveal(6, 100);
   return (
     <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}>
-      <div className="content-card" style={{ padding: "48px 56px 120px" }}>
 
-      <div style={{ ...fa(r, 0), textAlign: "center" }}>
-        <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(32px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "normal", lineHeight: 1.1, color: "#2c2622", margin: "0 0 12px", letterSpacing: "0.02em", textAlign: "center" }}>
-          Laura-Rachel
-        </h1>
-        <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(32px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "italic", lineHeight: 1.1, color: "#2c2622", margin: "0 0 12px", letterSpacing: "0.02em", textAlign: "center" }}>
-          Dubos di Fiorini
-        </h1>
+      {/* ZONE NUIT — nom, titre, intro */}
+      <div className="content-card" style={{ padding: "64px 56px 56px", marginBottom: "0" }}>
+        <div style={{ ...fa(r, 0), textAlign: "center" }}>
+          <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(32px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "normal", lineHeight: 1.1, margin: "0 0 12px", letterSpacing: "0.02em", textAlign: "center" }}>
+            Laura-Rachel
+          </h1>
+          <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(32px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "italic", lineHeight: 1.1, margin: "0 0 28px", letterSpacing: "0.02em", textAlign: "center" }}>
+            Dubos di Fiorini
+          </h1>
+        </div>
+        <div style={fa(r, 1)}>
+          <p style={{ fontFamily: "'EB Garamond',serif", fontStyle: "normal", fontSize: "22px", letterSpacing: "0.04em", lineHeight: "1.8", fontWeight: 400, margin: "0 0 48px", textAlign: "center" }}>Creative &amp; Strategic Director<br />Art &amp; Jewellery Historian</p>
+        </div>
+        <div style={fa(r, 2)}>
+          <p id="profile-intro" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", fontWeight: 300, lineHeight: 2, letterSpacing: "0.02em", margin: "0", textAlign: "center" }}>
+            French-Italian, based in Paris. Fifteen years of experience in luxury creative strategy for high jewellery, gemmology and watchmaking. Research in living heritage, history, myths and tales around the art of adornment. Fluent in French, Italian, English and German — proficient in Ancient Greek.
+          </p>
+        </div>
       </div>
 
-      <div style={fa(r, 1)}>
-        <p style={{ fontFamily: "'EB Garamond',serif", fontStyle: "normal", fontSize: "22px", color: "#2c2622", letterSpacing: "0.04em", lineHeight: "1.8", fontWeight: 400, margin: "0 0 80px", marginTop: "0px", textAlign: "center" }}>Creative &amp; Strategic Director<br />Art &amp; Jewellery Historian</p>
+      {/* ZONE JOUR — texte long, apparaît dans le beige */}
+      <div id="day-zone" className="content-card" style={{ padding: "56px 56px 120px", opacity: 0, transition: "opacity 0.8s ease" }}>
+        <div style={fa(r, 3)}>
+          {["An authorial, research-driven practice combining creative direction, filmmaking, narrative design, and art-historical thinking to develop luxury narratives at the intersection of art, heritage, innovation, and cultural foresight.",
+            "Her practice spans high-level creative direction, visual creation, writing, and narrative strategy. Working at the crossroads of art and luxury, she develops cultural and storytelling frameworks for major Maisons — approaching marketing as a cultural discipline that transmits heritage, meaning, and imagination at the highest level.",
+            "A specialist in storytelling as a tool of projection and desire, she conceives narratives designed to make audiences dream while remaining anchored in intellectual rigour and historical depth. Through immersive experiences, films, open-world digital environments, and long-form narratives, she contributes to expanding how luxury articulates itself.",
+            "Alongside this strategic dimension, she maintains an independent artistic practice as a visual artist and writer — exploring the tangible heritage of objects and the intangible heritage of narratives, engaging with themes of time, metamorphosis, cosmology, and the sublime.",
+          ].map((t, i) => (<p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 2, fontWeight: 300, margin: i < 3 ? "0 0 20px" : "0 0 64px", textAlign: "left" }}>{t}</p>))}
+        </div>
+        <div style={fa(r, 4)}>
+          <Hr s={{ marginBottom: "40px" }} />
+          <p style={{ fontFamily: "'EB Garamond',serif", fontSize: "15px", fontStyle: "italic", color: "#9e948a", lineHeight: 1.9, textAlign: "center", margin: "0 0 12px" }}>
+            De Beers · Cartier · Chopard
+          </p>
+          <p style={{ fontFamily: "'EB Garamond',serif", fontSize: "15px", fontStyle: "italic", color: "#b4aaa0", lineHeight: 1.9, textAlign: "center", margin: 0 }}>
+            The Sacred Art of Jewellery — forthcoming
+          </p>
+        </div>
       </div>
 
-      <div style={fa(r, 2)}>
-        {["An authorial, research-driven practice combining creative direction, filmmaking, narrative design, and art-historical thinking to develop luxury narratives at the intersection of art, heritage, innovation, and cultural foresight.",
-          "Her practice spans high-level creative direction, visual creation, writing, and narrative strategy. Working at the crossroads of art and luxury, she develops cultural and storytelling frameworks for major Maisons — approaching marketing as a cultural discipline that transmits heritage, meaning, and imagination at the highest level.",
-          "A specialist in storytelling as a tool of projection and desire, she conceives narratives designed to make audiences dream while remaining anchored in intellectual rigour and historical depth. Through immersive experiences, films, open-world digital environments, and long-form narratives, she contributes to expanding how luxury articulates itself.",
-          "Alongside this strategic dimension, she maintains an independent artistic practice as a visual artist and writer — exploring the tangible heritage of objects and the intangible heritage of narratives, engaging with themes of time, metamorphosis, cosmology, and the sublime.",
-        ].map((t, i) => (<p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 2, color: "#58504a", fontWeight: 300, margin: i < 3 ? "0 0 20px" : "0 0 64px", textAlign: "left" }}>{t}</p>))}
-      </div>
-
-      <div style={fa(r, 3)}>
-        <Hr s={{ marginBottom: "40px" }} />
-        <p style={{ fontFamily: "'EB Garamond',serif", fontSize: "15px", fontStyle: "italic", color: "#9e948a", lineHeight: 1.9, textAlign: "center", margin: "0 0 12px" }}>
-          De Beers · Cartier · Chopard
-        </p>
-        <p style={{ fontFamily: "'EB Garamond',serif", fontSize: "15px", fontStyle: "italic", color: "#b4aaa0", lineHeight: 1.9, textAlign: "center", margin: 0 }}>
-          The Sacred Art of Jewellery — forthcoming
-        </p>
-      </div>
-
-    </div></div>
+    </div>
   );
 }
 
@@ -293,12 +301,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 
       document.body.style.background = lerpColor(BG_NIGHT, BG_DAY, e);
 
-      const card = document.querySelector('.content-card');
-      if (card) {
-        card.style.background = lerpColorA(CARD_NIGHT, CARD_DAY, 0.82, 0.72, e);
-        card.style.boxShadow = `0 24px 80px rgba(${lerp(0,120,e)},${lerp(0,100,e)},${lerp(0,80,e)},${lerp(50,15,e)/100})`;
-      }
-
       const nav = document.querySelector('nav');
       if (nav) nav.style.background = lerpColorA(NAV_NIGHT, NAV_DAY, 0.72, 0.72, e);
 
@@ -322,6 +324,16 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       // Curseur — bleu la nuit, bleu nuit le jour
       const cp = document.getElementById('cp');
       if (cp) cp.setAttribute('stroke', lerpColor([80,120,220],[0,43,127],e));
+
+      // Zone jour — apparaît à partir de 40% du scroll
+      const dayZone = document.getElementById('day-zone');
+      if (dayZone) dayZone.style.opacity = Math.max(0, (e - 0.4) / 0.6).toFixed(2);
+
+      // Toutes les cartes
+      document.querySelectorAll('.content-card').forEach(card => {
+        card.style.background = lerpColorA(CARD_NIGHT, CARD_DAY, 0.82, 0.72, e);
+        card.style.boxShadow = `0 24px 80px rgba(${lerp(0,120,e)},${lerp(0,100,e)},${lerp(0,80,e)},${lerp(50,15,e)/100})`;
+      });
     }
 
     let ticking = false;
