@@ -10,11 +10,13 @@
   </style>
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-    body,html{background:#faf8f5;-webkit-font-smoothing:antialiased}*{cursor:none!important}
+    body,html{background:#e8e2d9;-webkit-font-smoothing:antialiased}
     a,button{color:inherit}
     button{font:inherit}
     *{cursor:none!important}
     #cur{position:fixed;top:0;left:0;pointer-events:none;z-index:2147483647;transform:translate(-50%,-50%)}
+    .glass-nav{background:rgba(250,248,245,0.55)!important;backdrop-filter:blur(20px) saturate(1.3)!important;-webkit-backdrop-filter:blur(20px) saturate(1.3)!important;border-bottom:1px solid rgba(255,255,255,0.4)!important;}
+    .content-card{background:rgba(250,248,245,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.7);box-shadow:0 2px 40px rgba(160,145,125,0.08);}
   </style>
 </head>
 <body>
@@ -68,7 +70,7 @@ function Hr({ w = 44, s = {} }) { return <div style={{ width: w, height: "0.5px"
 
 function Nav({ current, onChange }) {
   return (
-    <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 56px", height: "72px", background: "rgba(250,248,245,0.88)", backdropFilter: "blur(16px) saturate(1.2)", borderBottom: "1px solid rgba(48,40,32,0.05)" }}>
+    <nav className="glass-nav" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 56px", height: "72px" }}>
       <button onClick={() => { onChange("Profile"); window.scrollTo({top:0,behavior:"smooth"}); }} style={{ background: "none", border: "none", padding: 0, fontFamily: "'EB Garamond',serif", fontSize: "26px", fontWeight: 300, fontStyle: "italic", letterSpacing: "1px", color: "#2c2622" }}>Di Fiorini</button>
       <div style={{ display: "flex", gap: "40px" }}>
         {SECTIONS.map(s => (
@@ -91,7 +93,7 @@ function Transition({ children, page }) {
 function Profile() {
   const r = useReveal(6, 100);
   return (
-    <div style={{ maxWidth: "560px", margin: "0 auto", padding: "160px 32px 120px" }}>
+    <div className="content-card" style={{ maxWidth: "560px", margin: "72px auto 0", padding: "80px 56px 120px" }}>
 
       <div style={fa(r, 0)} style={{ textAlign: "center" }}>
         <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(32px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "normal", lineHeight: 1.1, color: "#2c2622", margin: "0 0 12px", letterSpacing: "0.02em", textAlign: "center" }}>
@@ -165,7 +167,7 @@ function ProjectCard({ project, isCreative }) {
 function CreativeDirection() {
   const r = useReveal(CREATIVE_WORKS.length + 1, 80);
   return (
-    <div style={{ maxWidth: "960px", margin: "0 auto", padding: "160px 56px 120px" }}>
+    <div className="content-card" style={{ maxWidth: "820px", margin: "72px auto 0", padding: "80px 72px 120px" }}>
       <div style={fa(r, 0)}>
         <Lbl s={{ marginBottom: "20px" }}>I. Selected Works</Lbl>
         <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>Creative & Strategic Direction</h2>
@@ -180,7 +182,7 @@ function CreativeDirection() {
 function WritingResearch() {
   const r = useReveal(WRITINGS.length + 1, 80);
   return (
-    <div style={{ maxWidth: "960px", margin: "0 auto", padding: "160px 56px 120px" }}>
+    <div className="content-card" style={{ maxWidth: "820px", margin: "72px auto 0", padding: "80px 72px 120px" }}>
       <div style={fa(r, 0)}>
         <Lbl s={{ marginBottom: "20px" }}>II. Selected Writings</Lbl>
         <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>Art History, Writing & Criticism</h2>
@@ -195,7 +197,7 @@ function WritingResearch() {
 function Contact() {
   const r = useReveal(4, 120);
   return (
-    <div style={{ maxWidth: "960px", margin: "0 auto", padding: "160px 56px 120px" }}>
+    <div className="content-card" style={{ maxWidth: "820px", margin: "72px auto 0", padding: "80px 72px 120px" }}>
       <div style={{ display: "grid", gridTemplateColumns: "5fr 6fr", gap: "96px", alignItems: "start" }}>
         <div>
           <div style={fa(r, 0)}>
