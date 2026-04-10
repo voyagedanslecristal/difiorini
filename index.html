@@ -17,7 +17,7 @@
   </style>
 </head>
 <body>
-  <div id="cur"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><polygon id="cp" points="7,0 14,7 7,14 0,7" fill="none" stroke="#004F9F" stroke-width="1.2" stroke-linejoin="miter"/></svg></div>
+  <div id="cur"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><polygon id="cp" points="7,0 14,7 7,14 0,7" fill="none" stroke="#002B7F" stroke-width="1.2" stroke-linejoin="miter" stroke-miterlimit="20"/></svg></div>
   <div id="root"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
@@ -247,7 +247,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       }, {passive:true});
       document.addEventListener('mouseover', function(e){
         if(e.target.closest('a,button,nav span,[onclick]')){
-          cp.setAttribute('fill','#004F9F');
+          cp.setAttribute('fill','#002B7F');
         }
       });
       document.addEventListener('mouseout', function(e){
