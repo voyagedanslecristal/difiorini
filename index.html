@@ -122,24 +122,13 @@ function Profile() {
       </div>
 
       <div style={fa(r, 3)}>
-        <Hr s={{ marginBottom: "48px" }} />
-        <div style={{ display: "flex", flexDirection: "column", gap: "36px", alignItems: "center" }}>
-          <div>
-            <Lbl s={{ marginBottom: "10px" }}>Formation</Lbl>
-            <p style={{ fontFamily: "'EB Garamond',serif", fontSize: "17px", lineHeight: 1.9, color: "#4a4238", fontStyle: "italic", margin: 0 }}>Bauhaus University · Sotheby's Institute of Art · Christie's Education</p>
-          </div>
-          <div>
-            <Lbl s={{ marginBottom: "10px" }}>Clients</Lbl>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", justifyContent: "center" }}>
-              {["De Beers", "Cartier", "Chopard"].map(h => (<span key={h} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", color: "#8a8078", border: "0.5px solid #d6cec6", padding: "7px 16px", borderRadius: "24px", fontWeight: 350 }}>{h}</span>))}
-            </div>
-          </div>
-          <div>
-            <Lbl s={{ marginBottom: "10px" }}>Currently writing</Lbl>
-            <p style={{ fontFamily: "'EB Garamond',serif", fontSize: "16px", fontStyle: "italic", color: "#4a4238", lineHeight: 1.7, margin: 0 }}>The Sacred Art of Jewellery<br /><span style={{ fontStyle: "normal", fontSize: "13px", color: "#9e948a" }}>To be published by a leading European art publisher</span></p>
-          </div>
-        </div>
-        </div>
+        <Hr s={{ marginBottom: "40px" }} />
+        <p style={{ fontFamily: "'EB Garamond',serif", fontSize: "15px", fontStyle: "italic", color: "#9e948a", lineHeight: 1.9, textAlign: "center", margin: "0 0 12px" }}>
+          De Beers · Cartier · Chopard
+        </p>
+        <p style={{ fontFamily: "'EB Garamond',serif", fontSize: "15px", fontStyle: "italic", color: "#b4aaa0", lineHeight: 1.9, textAlign: "center", margin: 0 }}>
+          The Sacred Art of Jewellery — forthcoming
+        </p>
       </div>
 
     </div>
