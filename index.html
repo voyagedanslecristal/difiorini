@@ -113,12 +113,18 @@ function Profile() {
       </div>
 
       <div style={fa(r, 2)}>
+        <p style={{ fontFamily: "'EB Garamond',serif", fontSize: "19px", fontStyle: "italic", color: "#2c2622", lineHeight: 2.1, margin: "0 0 48px", textAlign: "center", letterSpacing: "0.01em" }}>
+          A French-Italian creative and strategic mind<br />
+          based in Paris —<br />
+          working in four languages<br />
+          across fifteen years<br />
+          with the great Maisons.
+        </p>
         {["An authorial, research-driven practice combining creative direction, filmmaking, narrative design, and art-historical thinking to develop luxury narratives at the intersection of art, heritage, innovation, and cultural foresight.",
-          "French-Italian, Paris-based creative and strategic director, art historian, writer, art critic, and visual artist whose work operates at the intersection of art history, jewellery, gemmology, mythology, philosophy, and sociology.",
           "Her practice spans high-level creative direction, visual creation, writing, and narrative strategy. Working at the crossroads of art and luxury, she develops cultural and storytelling frameworks for major Maisons — approaching marketing as a cultural discipline that transmits heritage, meaning, and imagination at the highest level.",
           "A specialist in storytelling as a tool of projection and desire, she conceives narratives designed to make audiences dream while remaining anchored in intellectual rigour and historical depth. Through immersive experiences, films, open-world digital environments, and long-form narratives, she contributes to expanding how luxury articulates itself.",
           "Alongside this strategic dimension, she maintains an independent artistic practice as a visual artist and writer — exploring the tangible heritage of objects and the intangible heritage of narratives, engaging with themes of time, metamorphosis, cosmology, and the sublime.",
-        ].map((t, i) => (<p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 2, color: "#58504a", fontWeight: 300, margin: i < 4 ? "0 0 20px" : "0 0 64px", textAlign: "left" }}>{t}</p>))}
+        ].map((t, i) => (<p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 2, color: "#58504a", fontWeight: 300, margin: i < 3 ? "0 0 20px" : "0 0 64px", textAlign: "left" }}>{t}</p>))}
       </div>
 
       <div style={fa(r, 3)}>
