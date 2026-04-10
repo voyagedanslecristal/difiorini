@@ -91,16 +91,19 @@ function Transition({ children, page }) {
 function Profile() {
   const r = useReveal(6, 100);
   return (
-    <div style={{ maxWidth: "860px", margin: "0 auto", padding: "160px 56px 120px", textAlign: "center" }}>
+    <div style={{ maxWidth: "560px", margin: "0 auto", padding: "160px 32px 120px", textAlign: "center" }}>
 
       <div style={fa(r, 0)}>
-        <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(36px, 5.2vw, 72px)", fontWeight: 400, fontStyle: "normal", lineHeight: 1, color: "#2c2622", margin: "0 0 32px", whiteSpace: "nowrap", letterSpacing: "0.04em" }}>
-          Laura-Rachel <span style={{ fontStyle: "italic" }}>Dubos di Fiorini</span>
+        <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(32px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "normal", lineHeight: 1.1, color: "#2c2622", margin: "0 0 12px", letterSpacing: "0.02em" }}>
+          Laura-Rachel
+        </h1>
+        <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(32px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "italic", lineHeight: 1.1, color: "#2c2622", margin: "0 0 40px", letterSpacing: "0.02em" }}>
+          Dubos di Fiorini
         </h1>
       </div>
 
       <div style={fa(r, 1)}>
-        <Lbl s={{ marginBottom: "56px", textAlign: "center" }}>Creative &amp; Strategic Director · Art &amp; Jewellery Historian · Writer &amp; Art Critic</Lbl>
+        <Lbl s={{ marginBottom: "56px" }}>Creative &amp; Strategic Director · Art &amp; Jewellery Historian · Writer &amp; Art Critic</Lbl>
       </div>
 
       <div style={fa(r, 2)}>
@@ -109,25 +112,25 @@ function Profile() {
           "Her practice spans high-level creative direction, visual creation, writing, and narrative strategy. Working at the crossroads of art and luxury, she develops cultural and storytelling frameworks for major Maisons — approaching marketing as a cultural discipline that transmits heritage, meaning, and imagination at the highest level.",
           "A specialist in storytelling as a tool of projection and desire, she conceives narratives designed to make audiences dream while remaining anchored in intellectual rigour and historical depth. Through immersive experiences, films, open-world digital environments, and long-form narratives, she contributes to expanding how luxury articulates itself.",
           "Alongside this strategic dimension, she maintains an independent artistic practice as a visual artist and writer — exploring the tangible heritage of objects and the intangible heritage of narratives, engaging with themes of time, metamorphosis, cosmology, and the sublime.",
-        ].map((t, i) => (<p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 1.9, color: "#58504a", fontWeight: 300, marginBottom: i < 4 ? "18px" : "64px", maxWidth: "640px", margin: i < 4 ? "0 auto 18px" : "0 auto 64px" }}>{t}</p>))}
+        ].map((t, i) => (<p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 2, color: "#58504a", fontWeight: 300, margin: i < 4 ? "0 0 20px" : "0 0 64px", textAlign: "left" }}>{t}</p>))}
       </div>
 
       <div style={fa(r, 3)}>
         <Hr s={{ marginBottom: "48px" }} />
-        <div style={{ display: "flex", justifyContent: "center", gap: "64px", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "36px", alignItems: "center" }}>
           <div>
-            <Lbl s={{ marginBottom: "12px" }}>Formation</Lbl>
-            <p style={{ fontFamily: "'EB Garamond',serif", fontSize: "17px", lineHeight: 1.8, color: "#4a4238", fontStyle: "italic", margin: 0 }}>Bauhaus University<br />Sotheby's Institute of Art<br />Christie's Education</p>
+            <Lbl s={{ marginBottom: "10px" }}>Formation</Lbl>
+            <p style={{ fontFamily: "'EB Garamond',serif", fontSize: "17px", lineHeight: 1.9, color: "#4a4238", fontStyle: "italic", margin: 0 }}>Bauhaus University · Sotheby's Institute of Art · Christie's Education</p>
           </div>
           <div>
-            <Lbl s={{ marginBottom: "12px" }}>Clients</Lbl>
+            <Lbl s={{ marginBottom: "10px" }}>Clients</Lbl>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", justifyContent: "center" }}>
               {["De Beers", "Cartier", "Chopard"].map(h => (<span key={h} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", color: "#8a8078", border: "0.5px solid #d6cec6", padding: "7px 16px", borderRadius: "24px", fontWeight: 350 }}>{h}</span>))}
             </div>
           </div>
           <div>
-            <Lbl s={{ marginBottom: "12px" }}>Currently writing</Lbl>
-            <p style={{ fontFamily: "'EB Garamond',serif", fontSize: "15.5px", fontStyle: "italic", color: "#4a4238", lineHeight: 1.7, margin: 0 }}>The Sacred Art of Jewellery<br /><span style={{ fontStyle: "normal", fontSize: "13px", color: "#9e948a" }}>To be published by a leading European art publisher</span></p>
+            <Lbl s={{ marginBottom: "10px" }}>Currently writing</Lbl>
+            <p style={{ fontFamily: "'EB Garamond',serif", fontSize: "16px", fontStyle: "italic", color: "#4a4238", lineHeight: 1.7, margin: 0 }}>The Sacred Art of Jewellery<br /><span style={{ fontStyle: "normal", fontSize: "13px", color: "#9e948a" }}>To be published by a leading European art publisher</span></p>
           </div>
         </div>
       </div>
