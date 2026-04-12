@@ -367,7 +367,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
         night.style.opacity = String(1 - tNight);
         // Beige : apparaît très vite dès le début du scroll (en 80px)
         const scrollY = window.scrollY;
-        const tDay = Math.min(scrollY / 80, 1);
+        const tDay = Math.min(scrollY / 30, 1);
         day.style.opacity = String(tDay);
       }, {passive: true});
     }
