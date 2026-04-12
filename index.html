@@ -101,10 +101,23 @@ function Transition({ children, page }) {
 function Profile() {
   const r = useReveal(6, 100);
   return (
-    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "40px 0 0" }}>
+    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "40px 0 0", position: "relative" }}>
 
-      {/* ZONE NUIT — nom, titre, intro */}
-      <div className="content-card" style={{ padding: "48px 56px 40px", marginBottom: "32px" }}>
+      {/* ZONE JOUR — en dessous, toujours visible */}
+      <div id="day-zone" className="content-card light-card" style={{ padding: "56px 56px 120px" }}>
+        <div style={fa(r, 3)}>
+          <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: "0 0 48px", letterSpacing: "0.02em" }}>About</h2>
+          {[
+            "Laura-Rachel Dubos is a French-Italian, Paris-based creative and strategic director, art historian, writer, art critic, and visual artist whose work operates at the intersection of art history, jewellery, gemmology, mythology, philosophy, and sociology. At the core of her professional activity lies her work for the executive leadership of major luxury Maisons. She operates at the level of strategic direction, developing high-level marketing and communication frameworks grounded in historical depth, cultural legitimacy, and intellectual coherence. Her practice articulates heritage, material knowledge, and symbolic systems into long-term narratives that shape vision, meaning, and projection, positioning marketing as a central vector of cultural construction within the Maison.",
+            "Educated at the historically renowned Bauhaus University in art and design, she further specialised in the history and philosophy of art, as well as the history of jewellery and luxury markets, at Sotheby's Institute of Art and Christie's Education. She has published art critiques in the Swiss press, offering reflections on contemporary events through the lens of major artworks, material culture, and philosophical thought. Her practice spans high-level creative direction, visual creation, writing, and narrative strategy. Working at the crossroads of art and luxury, Laura-Rachel develops cultural and storytelling frameworks for major Maisons, including Cartier, Chopard, and De Beers. Her work is rooted in research-driven storytelling, where marketing is approached as a cultural discipline — one that transmits heritage, meaning, and imagination at the highest level of the luxury ecosystem.",
+            "A specialist in storytelling as a tool of projection and desire, she conceives narratives designed to make audiences dream while remaining anchored in intellectual rigour and historical depth. Through immersive experiences, films, open-world digital environments, and long-form narratives, she contributes to expanding how luxury articulates itself, extending the language of art into contemporary luxury culture.",
+            "Alongside this strategic dimension, Laura-Rachel maintains an independent artistic practice as a visual artist and writer. Her work explores the tangible heritage of objects and the intangible heritage of narratives, engaging with themes of time, metamorphosis, cosmology, and the sublime. Her interdisciplinary approach draws on ancient myths, symbolic systems, and material history, translating complex cultural structures into visual and textual forms.",
+          ].map((t, i) => (<p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 2, fontWeight: 300, margin: i < 3 ? "0 0 32px" : "0", textAlign: "left" }}>{t}</p>))}
+        </div>
+      </div>
+
+      {/* ZONE NUIT — par dessus, disparaît au scroll */}
+      <div className="content-card" id="night-panel" style={{ padding: "48px 56px 40px", position: "absolute", top: 0, left: 0, right: 0 }}>
         <div style={{ ...fa(r, 0), textAlign: "center" }}>
           <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(32px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "normal", lineHeight: 1.1, margin: "0 0 12px", letterSpacing: "0.02em", textAlign: "center" }}>
             Laura-Rachel
@@ -123,17 +136,6 @@ function Profile() {
         </div>
       </div>
 
-      {/* ZONE JOUR — texte long, apparaît dans le beige */}
-      <div id="day-zone" className="content-card light-card" style={{ padding: "56px 56px 120px" }}>
-        <div style={fa(r, 3)}>
-          <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: "0 0 48px", letterSpacing: "0.02em" }}>About</h2>
-          {[
-            "Laura-Rachel Dubos is a French-Italian, Paris-based creative and strategic director, art historian, writer, art critic, and visual artist whose work operates at the intersection of art history, jewellery, gemmology, mythology, philosophy, and sociology. At the core of her professional activity lies her work for the executive leadership of major luxury Maisons. She operates at the level of strategic direction, developing high-level marketing and communication frameworks grounded in historical depth, cultural legitimacy, and intellectual coherence. Her practice articulates heritage, material knowledge, and symbolic systems into long-term narratives that shape vision, meaning, and projection, positioning marketing as a central vector of cultural construction within the Maison.",
-            "Educated at the historically renowned Bauhaus University in art and design, she further specialised in the history and philosophy of art, as well as the history of jewellery and luxury markets, at Sotheby's Institute of Art and Christie's Education. She has published art critiques in the Swiss press, offering reflections on contemporary events through the lens of major artworks, material culture, and philosophical thought. Her practice spans high-level creative direction, visual creation, writing, and narrative strategy. Working at the crossroads of art and luxury, Laura-Rachel develops cultural and storytelling frameworks for major Maisons, including Cartier, Chopard, and De Beers. Her work is rooted in research-driven storytelling, where marketing is approached as a cultural discipline — one that transmits heritage, meaning, and imagination at the highest level of the luxury ecosystem.",
-            "A specialist in storytelling as a tool of projection and desire, she conceives narratives designed to make audiences dream while remaining anchored in intellectual rigour and historical depth. Through immersive experiences, films, open-world digital environments, and long-form narratives, she contributes to expanding how luxury articulates itself, extending the language of art into contemporary luxury culture.",
-            "Alongside this strategic dimension, Laura-Rachel maintains an independent artistic practice as a visual artist and writer. Her work explores the tangible heritage of objects and the intangible heritage of narratives, engaging with themes of time, metamorphosis, cosmology, and the sublime. Her interdisciplinary approach draws on ancient myths, symbolic systems, and material history, translating complex cultural structures into visual and textual forms.",
-          ].map((t, i) => (<p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 2, fontWeight: 300, margin: i < 3 ? "0 0 32px" : "0 0 0", textAlign: "left" }}>{t}</p>))}
-        </div>
       </div>
 
     </div>
@@ -347,28 +349,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
   <script>
   (function(){
     function init() {
-      const night = document.querySelector('.content-card:not(.light-card)');
-      const day = document.getElementById('day-zone');
-      if (!night || !day) { setTimeout(init, 100); return; }
-
-      night.id = 'night-panel';
-      night.style.setProperty('background','rgba(7,12,26,0.82)','important');
-      day.style.setProperty('background','rgba(250,248,245,0.72)','important');
-      document.getElementById('root').children[0].style.background = 'transparent';
+      const night = document.getElementById('night-panel');
+      if (!night) { setTimeout(init, 100); return; }
+      night.style.setProperty('background','rgba(7,12,26,0.92)','important');
       night.style.opacity = '1';
-      day.style.opacity = '0';
-      day.style.setProperty('background','rgba(250,248,245,0.95)','important');
+      document.getElementById('root').children[0].style.background = 'transparent';
 
       window.addEventListener('scroll', function() {
-        const rect = night.getBoundingClientRect();
-        // Bleu : fade entre -100px et -600px depuis le top
-        const fadeStart = -100, fadeEnd = -600;
-        const tNight = Math.min(Math.max((rect.top - fadeStart) / (fadeEnd - fadeStart), 0), 1);
-        night.style.opacity = String(1 - tNight);
-        // Beige : apparaît très vite dès le début du scroll (en 80px)
-        const scrollY = window.scrollY;
-        const tDay = Math.min(scrollY / 30, 1);
-        day.style.opacity = String(tDay);
+        const t = Math.min(window.scrollY / 300, 1);
+        night.style.opacity = String(1 - t);
       }, {passive: true});
     }
     if (document.readyState === 'complete') { setTimeout(init, 300); }
