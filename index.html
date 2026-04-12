@@ -190,14 +190,11 @@ function Gallery({ images, onClose }) {
   );
 }
 
-function ProjectCard({ project, isCreative }) {
+function ProjectCard({ project, isCreative, onPdf }) {
   const [showGallery, setShowGallery] = useState(false);
-  const [pdfUrl, setPdfUrl] = useState(null);
-  const [pdfLabel, setPdfLabel] = useState('');
   return (
     <div style={{ borderTop: "0.5px solid #d6cec6", padding: "40px 0 48px" }}>
       {showGallery && project.images && project.images.length > 0 && <Gallery images={project.images} onClose={() => setShowGallery(false)} />}
-      {pdfUrl && <PdfModal url={pdfUrl} label={pdfLabel} onClose={() => setPdfUrl(null)} />}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "8px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "16px", flexWrap: "wrap" }}>
           <h3 style={{ fontFamily: "'EB Garamond',serif", fontSize: "26px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: 0 }}>{project.title}</h3>
@@ -214,7 +211,7 @@ function ProjectCard({ project, isCreative }) {
         {project.video && <a href={project.video} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#2c2622", textDecoration: "none", borderBottom: "1px solid #2c2622", paddingBottom: "3px", fontWeight: 450, display: "inline-block", alignSelf: "flex-start" }}>Watch Film →</a>}
         {project.images && project.images.length > 0 && <button onClick={() => setShowGallery(true)} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#2c2622", background: "none", border: "none", borderBottom: "1px solid #2c2622", paddingBottom: "3px", fontWeight: 450, cursor: "pointer", alignSelf: "flex-start", padding: "0 0 3px 0" }}>View Gallery →</button>}
         {project.links && project.links.length > 0 && <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: project.video ? "6px" : 0 }}>{project.links.map((l, i) => l.pdf ? (
-          <button key={i} onClick={() => { setPdfUrl(l.url); setPdfLabel(l.label); }} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "13px", color: "#2c2622", background: "none", border: "none", borderBottom: "0.5px solid #d6cec6", paddingBottom: "3px", fontWeight: 350, cursor: "pointer", textAlign: "left", maxWidth: "600px", padding: "0 0 3px 0" }}>{l.label} →</button>
+          <button key={i} onClick={() => onPdf && onPdf(l.url, l.label)} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "13px", color: "#2c2622", background: "none", border: "none", borderBottom: "0.5px solid #d6cec6", paddingBottom: "3px", fontWeight: 350, cursor: "pointer", textAlign: "left", maxWidth: "600px", padding: "0 0 3px 0" }}>{l.label} →</button>
         ) : (
           <a key={i} href={l.url} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "13px", color: "#2c2622", textDecoration: "none", borderBottom: "0.5px solid #d6cec6", paddingBottom: "3px", fontWeight: 350, transition: "border-color 0.3s", maxWidth: "600px" }} onMouseEnter={e => e.target.style.borderColor = "#2c2622"} onMouseLeave={e => e.target.style.borderColor = "#d6cec6"}>{l.label} →</a>
         ))}</div>}
@@ -223,7 +220,7 @@ function ProjectCard({ project, isCreative }) {
   );
 }
 
-function CreativeDirection() {
+function CreativeDirection({ onPdf }) {
   const r = useReveal(CREATIVE_WORKS.length + 1, 80);
   return (
     <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}><div className="content-card light-card" style={{ padding: "48px 72px 120px" }}>
@@ -232,13 +229,13 @@ function CreativeDirection() {
         <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>Creative & Strategic Direction</h2>
         <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.8, color: "#8a8078", fontWeight: 300, margin: "0 0 48px", maxWidth: "660px" }}>Immersive films, narrative worlds, and visual universes conceived for the great houses of luxury — each grounded in original art-historical and mythological research.</p>
       </div>
-      {CREATIVE_WORKS.map((w, i) => <div key={i} style={fa(r, i + 1)}><ProjectCard project={w} isCreative /></div>)}
+      {CREATIVE_WORKS.map((w, i) => <div key={i} style={fa(r, i + 1)}><ProjectCard project={w} isCreative onPdf={onPdf} /></div>)}
       <div style={{ borderTop: "0.5px solid #d6cec6" }} />
     </div></div>
   );
 }
 
-function WritingResearch() {
+function WritingResearch({ onPdf }) {
   const r = useReveal(WRITINGS.length + 1, 80);
   return (
     <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}><div className="content-card light-card" style={{ padding: "48px 72px 120px" }}>
@@ -247,7 +244,7 @@ function WritingResearch() {
         <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>Art History, Writing & Criticism</h2>
         <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.8, color: "#8a8078", fontWeight: 300, margin: "0 0 48px", maxWidth: "660px" }}>Art criticism, philosophical essays, conferences, and research-driven writing — approaching art as a mode of thought in its own right.</p>
       </div>
-      {WRITINGS.map((w, i) => <div key={i} style={fa(r, i + 1)}><ProjectCard project={w} isCreative={false} /></div>)}
+      {WRITINGS.map((w, i) => <div key={i} style={fa(r, i + 1)}><ProjectCard project={w} isCreative={false} onPdf={onPdf} /></div>)}
       <div style={{ borderTop: "0.5px solid #d6cec6" }} />
     </div></div>
   );
@@ -293,13 +290,16 @@ function Contact() {
 
 function App() {
   const [page, setPage] = useState("Profile");
+  const [pdfUrl, setPdfUrl] = useState(null);
+  const [pdfLabel, setPdfLabel] = useState('');
   return (
     <div style={{ minHeight: "100vh" }}>
+      {pdfUrl && <PdfModal url={pdfUrl} label={pdfLabel} onClose={() => setPdfUrl(null)} />}
       <Nav current={page} onChange={setPage} />
       <Transition page={page}>
         {page === "Profile" && <Profile />}
-        {page === "Creative & Strategic Direction" && <CreativeDirection />}
-        {page === "Art History, Writing & Criticism" && <WritingResearch />}
+        {page === "Creative & Strategic Direction" && <CreativeDirection onPdf={(url, label) => { setPdfUrl(url); setPdfLabel(label); }} />}
+        {page === "Art History, Writing & Criticism" && <WritingResearch onPdf={(url, label) => { setPdfUrl(url); setPdfLabel(label); }} />}
         {page === "Contact" && <Contact />}
       </Transition>
       <footer style={{ textAlign: "center", padding: "48px 56px", borderTop: "0.5px solid rgba(48,40,32,0.04)" }}>
