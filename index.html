@@ -36,11 +36,6 @@
   <script type="text/babel">
 const { useState, useEffect } = React;
 
-const HOUSE_LOGOS = {
-  'De Beers':   'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/De_Beers.svg/320px-De_Beers.svg.png',
-  'Cartier':    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Cartier_logo.svg/320px-Cartier_logo.svg.png',
-  'Chopard':    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Chopard_logo.svg/320px-Chopard_logo.svg.png',
-};
 
 const CREATIVE_WORKS = [
   { title: "Voyage through the Diamond Realm", subtitle: "Film Installation", house: "De Beers", period: "2025–2026", locations: "Frieze Masters London · India Art Fair · Shanghai · Los Angeles · New York", role: "Concept, Research, Creative Direction & Film", text: "An immersive cinematic and spatial experience tracing the origins of natural diamonds through history, myth, and symbolic narratives. From their birth as stardust in the fiery hearts of stars to their discovery within rivers, deserts, and polar landscapes. An art book was conceived alongside the experience, translating the film's visual and intellectual universe into a printed object.", tags: ["Film", "Installation", "Art Book", "Scenography", "Press"], video: "https://www.youtube.com/watch?v=h8Md9xaytuQ", images: [] },
@@ -204,11 +199,7 @@ function ProjectCard({ project, isCreative, onPdf }) {
           <h3 style={{ fontFamily: "'EB Garamond',serif", fontSize: "26px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: 0 }}>{project.title}</h3>
           <span style={{ fontFamily: "'EB Garamond',serif", fontSize: "14px", color: "#a69e94" }}>{isCreative ? project.house : project.publication}</span>
         </div>
-        <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: "11px", letterSpacing: "1px", color: "#a69e94", fontWeight: 400, flexShrink: 0 }}>
-          {HOUSE_LOGOS[isCreative ? project.house : project.publication]
-            ? <img src={HOUSE_LOGOS[isCreative ? project.house : project.publication]} style={{ height: "16px", width: "auto", objectFit: "contain", opacity: 0.5, display: "block" }} />
-            : project.period}
-        </span>
+        <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: "11px", letterSpacing: "1px", color: "#a69e94", fontWeight: 400, flexShrink: 0 }}>{project.period}</span>
       </div>
       <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "11px", letterSpacing: "2px", textTransform: "uppercase", color: "#b4aaa0", margin: "6px 0 0", fontWeight: 350 }}>{project.subtitle}</p>
       {project.locations && <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "11px", letterSpacing: "1px", color: "#c4bab0", margin: "4px 0 0", fontWeight: 300 }}>{project.locations}</p>}
