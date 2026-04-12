@@ -367,6 +367,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
     // Init
     const day = document.getElementById('day-zone');
     if (day) day.style.opacity = 0;
+    const night = document.querySelector('.content-card:not(.light-card)');
+    if (night) night.style.opacity = 1;
 
     window.addEventListener('scroll', updatePanels, {passive: true});
     updatePanels();
