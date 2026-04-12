@@ -491,6 +491,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
     const NAV_DAY    = [237, 229, 216];
 
     function applyTheme(t) {
+      if (document.getElementById('paper-bg')) return; // Writing page — skip
       // ease
       const e = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
 
