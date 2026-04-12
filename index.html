@@ -396,14 +396,14 @@ function TextsEssays() {
       <div style={fa(r, 0)}>
         <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 48px", fontStyle: "italic" }}>Writing</h2>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "260px", borderTop: "1px solid rgba(44,38,34,0.3)", borderLeft: "1px solid rgba(44,38,34,0.3)", background: "rgba(237,229,214,0.95)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "260px", gap: "1px", background: "rgba(44,38,34,0.3)" }}>
         {TEXTS.map((article, i) => {
           const s = sizes[i] || {col:'span 1',row:'span 1'};
           return (
-            <div key={i} style={{ ...fa(r, i+1), gridColumn: s.col, gridRow: s.row, borderRight: "1px solid rgba(44,38,34,0.3)", borderBottom: "1px solid rgba(44,38,34,0.3)", display: "flex", flexDirection: "column", cursor: "pointer", overflow: "hidden", transition: "background 0.3s", background: "transparent" }}
+            <div key={i} style={{ ...fa(r, i+1), gridColumn: s.col, gridRow: s.row, background: "#ede5d6", display: "flex", flexDirection: "column", cursor: "pointer", overflow: "hidden", transition: "background 0.3s" }}
               onClick={() => setActive(article)}
-              onMouseEnter={e => e.currentTarget.style.background = "rgba(44,38,34,0.04)"}
-              onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+              onMouseEnter={e => e.currentTarget.style.background = "#e5dccf"}
+              onMouseLeave={e => e.currentTarget.style.background = "#ede5d6"}
             >
               <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "32px" }}>
                 {article.image
