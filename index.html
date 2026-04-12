@@ -36,7 +36,7 @@
   <script type="text/babel">
 const { useState, useEffect } = React;
 
-const SECTIONS = ["Profile", "Creative & Strategic Direction", "Art History, Writing & Criticism", "Texts & Essays", "Contact"];
+const SECTIONS = ["Profile", "Creative & Strategic Direction", "Art History, Writing & Criticism", "Writings", "Contact"];
 
 const TEXTS = [
   { title: "L'Expressionnisme Abstrait — Cheval de Troie de la CIA", category: "Art Criticism", publication: "Bilan", period: "2020", image: "", text: "" },
@@ -332,35 +332,33 @@ function TextsEssays() {
   const r = useReveal(TEXTS.length + 1, 60);
   const [active, setActive] = useState(null);
   return (
-    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}>
+    <div style={{ maxWidth: "1100px", margin: "72px auto 0", padding: "80px 40px 120px" }}>
       {active && <ArticleModal article={active} onClose={() => setActive(null)} />}
-      <div className="content-card light-card" style={{ padding: "48px 56px 80px" }}>
-        <div style={fa(r, 0)}>
-          <Lbl s={{ marginBottom: "20px" }}>III. Texts & Essays</Lbl>
-          <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>Texts & Essays</h2>
-          <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.8, color: "#8a8078", fontWeight: 300, margin: "0 0 48px" }}>Art criticism, philosophical essays, and research-driven writing published in the Swiss and international press.</p>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", background: "rgba(214,206,198,0.3)" }}>
-          {TEXTS.map((article, i) => (
-            <div key={i} style={{ ...fa(r, i + 1), background: "#faf8f4", cursor: "pointer", padding: "0", overflow: "hidden", transition: "opacity 0.3s" }}
-              onClick={() => setActive(article)}
-              onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
-              onMouseLeave={e => e.currentTarget.style.opacity = "1"}
-            >
-              {article.image
-                ? <img src={article.image} style={{ width: "100%", height: "180px", objectFit: "cover", display: "block" }} />
-                : <div style={{ width: "100%", height: "160px", background: `hsl(${30 + i * 12}, 15%, ${88 - i * 2}%)`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <span style={{ fontFamily: "'EB Garamond',serif", fontSize: "32px", color: "rgba(44,38,34,0.12)", fontStyle: "italic" }}>{i + 1}</span>
-                  </div>
-              }
-              <div style={{ padding: "20px 24px 24px" }}>
-                <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "9px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#a69e94", margin: "0 0 10px", fontWeight: 400 }}>{article.category}</p>
-                <h3 style={{ fontFamily: "'EB Garamond',serif", fontSize: "17px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px", lineHeight: 1.4 }}>{article.title}</h3>
-                <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10px", color: "#c4bab0", margin: 0, fontWeight: 300 }}>{article.publication} · {article.period}</p>
-              </div>
+      <div style={fa(r, 0)}>
+        <Lbl s={{ marginBottom: "20px" }}>III. Texts & Essays</Lbl>
+        <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#eee8d8", margin: "0 0 48px" }}>Writings</h2>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "24px" }}>
+        {TEXTS.map((article, i) => (
+          <div key={i} style={{ ...fa(r, i + 1), border: "1px solid #1a3a6e", background: "rgba(5,8,18,0.6)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", display: "flex", flexDirection: "column", cursor: "pointer", transition: "border-color 0.3s, background 0.3s" }}
+            onClick={() => setActive(article)}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = "#4a7abf"; e.currentTarget.style.background = "rgba(5,8,18,0.8)"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = "#1a3a6e"; e.currentTarget.style.background = "rgba(5,8,18,0.6)"; }}
+          >
+            {article.image
+              ? <img src={article.image} style={{ width: "100%", height: "200px", objectFit: "cover", display: "block" }} />
+              : <div style={{ width: "100%", height: "200px", background: `rgba(26,58,110,${0.15 + i * 0.03})`, display: "flex", alignItems: "center", justifyContent: "center", borderBottom: "1px solid #1a3a6e" }}>
+                  <span style={{ fontFamily: "'EB Garamond',serif", fontSize: "48px", color: "rgba(238,232,216,0.08)", fontStyle: "italic" }}>{i + 1}</span>
+                </div>
+            }
+            <div style={{ padding: "24px 28px 32px", flex: 1, display: "flex", flexDirection: "column" }}>
+              <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "9px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#4a7abf", margin: "0 0 12px", fontWeight: 400 }}>{article.category}</p>
+              <h3 style={{ fontFamily: "'EB Garamond',serif", fontSize: "18px", fontWeight: 400, color: "#eee8d8", margin: "0 0 16px", lineHeight: 1.45, flex: 1 }}>{article.title}</h3>
+              <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "9px", color: "#a69e94", margin: "0 0 20px", fontWeight: 300 }}>{article.publication} · {article.period}</p>
+              <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: "9px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#eee8d8", borderBottom: "0.5px solid #eee8d8", paddingBottom: "2px", display: "inline-block", alignSelf: "flex-start", fontWeight: 400 }}>Read →</span>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -378,7 +376,7 @@ function App() {
         {page === "Profile" && <Profile />}
         {page === "Creative & Strategic Direction" && <CreativeDirection onPdf={(url, label) => { setPdfUrl(url); setPdfLabel(label); }} />}
         {page === "Art History, Writing & Criticism" && <WritingResearch onPdf={(url, label) => { setPdfUrl(url); setPdfLabel(label); }} />}
-        {page === "Texts & Essays" && <TextsEssays />}
+        {page === "Writings" && <TextsEssays />}
         {page === "Contact" && <Contact />}
       </Transition>
       <footer style={{ textAlign: "center", padding: "48px 56px", borderTop: "0.5px solid rgba(48,40,32,0.04)" }}>
