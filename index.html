@@ -374,21 +374,21 @@ function TextsEssays() {
     };
   }, []);
   const sizes = [
-    {col:'span 2',row:'span 1'},
+    {col:'span 2',row:'span 2'},
     {col:'span 1',row:'span 1'},
     {col:'span 1',row:'span 1'},
     {col:'span 1',row:'span 1'},
-    {col:'span 2',row:'span 1'},
-    {col:'span 1',row:'span 1'},
-    {col:'span 1',row:'span 1'},
-    {col:'span 2',row:'span 1'},
-    {col:'span 1',row:'span 1'},
-    {col:'span 1',row:'span 1'},
-    {col:'span 1',row:'span 1'},
+    {col:'span 1',row:'span 2'},
     {col:'span 2',row:'span 1'},
     {col:'span 1',row:'span 1'},
     {col:'span 1',row:'span 1'},
     {col:'span 2',row:'span 1'},
+    {col:'span 1',row:'span 2'},
+    {col:'span 1',row:'span 1'},
+    {col:'span 1',row:'span 1'},
+    {col:'span 2',row:'span 2'},
+    {col:'span 1',row:'span 1'},
+    {col:'span 1',row:'span 1'},
   ];
   return (
     <div style={{ maxWidth: "1100px", margin: "72px auto 0", padding: "80px 40px 120px" }}>
@@ -396,13 +396,13 @@ function TextsEssays() {
       <div style={fa(r, 0)}>
         <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 48px", fontStyle: "italic" }}>Writing</h2>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "260px", gap: "0" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "260px", background: "#ede5d6", outline: "1px solid rgba(44,38,34,0.35)" }}>
         {TEXTS.map((article, i) => {
           const s = sizes[i] || {col:'span 1',row:'span 1'};
           return (
-            <div key={i} style={{ ...fa(r, i+1), gridColumn: s.col, gridRow: s.row, background: "#ede5d6", display: "flex", flexDirection: "column", cursor: "pointer", overflow: "hidden", transition: "background 0.3s", boxShadow: "inset 1px 0 0 rgba(44,38,34,0.4), inset 0 1px 0 rgba(44,38,34,0.4), 1px 0 0 rgba(44,38,34,0.4), 0 1px 0 rgba(44,38,34,0.4)" }}
+            <div key={i} style={{ ...fa(r, i+1), gridColumn: s.col, gridRow: s.row, boxShadow: "1px 0 0 rgba(44,38,34,0.35), 0 1px 0 rgba(44,38,34,0.35)", display: "flex", flexDirection: "column", cursor: "pointer", overflow: "hidden", transition: "background 0.3s", background: "#ede5d6" }}
               onClick={() => setActive(article)}
-              onMouseEnter={e => e.currentTarget.style.background = "#e5dccf"}
+              onMouseEnter={e => e.currentTarget.style.background = "#e4dacb"}
               onMouseLeave={e => e.currentTarget.style.background = "#ede5d6"}
             >
               <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "32px" }}>
@@ -494,6 +494,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
     const NAV_DAY    = [237, 229, 216];
 
     function applyTheme(t) {
+      if (document.getElementById('paper-bg')) return;
       if (document.getElementById('paper-bg')) return; // Writing page — skip
       // ease
       const e = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
