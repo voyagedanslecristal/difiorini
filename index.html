@@ -346,19 +346,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       const night = document.getElementById('night-panel');
       const day = document.getElementById('day-zone');
       if (!night || !day) { setTimeout(init, 100); return; }
-
-      // État initial : bleu visible, beige invisible
       night.style.setProperty('background','rgba(7,12,26,0.82)','important');
       night.style.opacity = '1';
       day.style.setProperty('background','rgba(250,248,245,0.95)','important');
-      day.style.opacity = '0';
+      day.style.opacity = '1';
       document.getElementById('root').children[0].style.background = 'transparent';
-
-      // Au scroll : bleu s'estompe, beige apparaît en même temps
       window.addEventListener('scroll', function() {
-        const t = Math.min(window.scrollY / 250, 1);
-        night.style.opacity = String(1 - t);
-        day.style.opacity = String(t);
+        night.style.opacity = String(Math.max(0, 1 - window.scrollY / 250));
       }, {passive: true});
     }
     if (document.readyState === 'complete') { setTimeout(init, 300); }
