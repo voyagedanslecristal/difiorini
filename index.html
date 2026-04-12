@@ -155,9 +155,9 @@ function PdfModal({ url, label, onClose }) {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
   return (
-    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(5,8,18,0.55)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(3px)' }}>
-      <div onClick={e => e.stopPropagation()} style={{ width: '82vw', maxWidth: '1080px', height: '85vh', background: 'rgba(250,248,245,0.96)', borderRadius: '1px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 40px 100px rgba(0,0,0,0.35)', border: '0.5px solid rgba(214,206,198,0.6)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px', borderBottom: '0.5px solid #d6cec6', flexShrink: 0 }}>
+    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(5,8,18,0.4)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
+      <div onClick={e => e.stopPropagation()} style={{ width: '90vw', maxWidth: '1200px', height: '88vh', background: 'rgba(250,248,245,0.78)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', borderRadius: '1px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 24px 80px rgba(0,0,0,0.2)', border: '0.5px solid rgba(255,255,255,0.4)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px', borderBottom: '0.5px solid rgba(214,206,198,0.5)', flexShrink: 0, background: 'rgba(250,248,245,0.5)' }}>
           <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#58504a', fontWeight: 400 }}>{label}</span>
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '15px', color: '#2c2622', padding: '0 0 0 28px', fontFamily: "'Outfit',sans-serif" }}>✕</button>
         </div>
