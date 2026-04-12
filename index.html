@@ -344,9 +344,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
   })();
   </script>
 
-  <style>
-    #night-panel { transition: opacity 0.3s linear; }
-  </style>
   <script>
   (function(){
     function init() {
@@ -359,15 +356,17 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       day.style.setProperty('background','rgba(250,248,245,0.72)','important');
       document.getElementById('root').children[0].style.background = 'transparent';
       night.style.opacity = '1';
+      day.style.opacity = '0';
 
       window.addEventListener('scroll', function() {
         const rect = night.getBoundingClientRect();
-        // Commence à disparaître quand le bas du panneau approche du haut de l'écran
-        // 0% visible = opacity 1, 100% sorti = opacity 0
-        const total = night.offsetHeight;
-        const visible = Math.min(Math.max(rect.bottom, 0), window.innerHeight);
-        const ratio = visible / total;
-        night.style.opacity = String(Math.min(ratio * 1.5, 1));
+        // Bleu : fade entre -100px et -600px depuis le top
+        const fadeStart = -100, fadeEnd = -600;
+        const tNight = Math.min(Math.max((rect.top - fadeStart) / (fadeEnd - fadeStart), 0), 1);
+        night.style.opacity = String(1 - tNight);
+        // Beige : apparaît dès que le bleu commence à disparaître (à partir de 20%)
+        const tDay = Math.min(Math.max((tNight - 0.2) / 0.6, 0), 1);
+        day.style.opacity = String(tDay);
       }, {passive: true});
     }
     if (document.readyState === 'complete') { setTimeout(init, 300); }
