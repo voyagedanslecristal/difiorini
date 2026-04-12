@@ -200,7 +200,9 @@ function ProjectCard({ project, isCreative, onPdf }) {
           <h3 style={{ fontFamily: "'EB Garamond',serif", fontSize: "26px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: 0 }}>{project.title}</h3>
           <span style={{ fontFamily: "'EB Garamond',serif", fontSize: "14px", color: "#a69e94" }}>{isCreative ? project.house : project.publication}</span>
         </div>
-        <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: "11px", letterSpacing: "1px", color: "#a69e94", fontWeight: 400, flexShrink: 0 }}>{project.period}</span>
+        <span style={{ fontFamily: "'EB Garamond',serif", fontSize: "13px", letterSpacing: "2px", color: "#a69e94", fontStyle: "italic", fontWeight: 400, flexShrink: 0 }}>
+          {isCreative ? project.house : project.period}
+        </span>
       </div>
       <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "11px", letterSpacing: "2px", textTransform: "uppercase", color: "#b4aaa0", margin: "6px 0 0", fontWeight: 350 }}>{project.subtitle}</p>
       {project.locations && <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "11px", letterSpacing: "1px", color: "#c4bab0", margin: "4px 0 0", fontWeight: 300 }}>{project.locations}</p>}
