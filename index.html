@@ -39,11 +39,11 @@ const { useState, useEffect } = React;
 const SECTIONS = ["Profile", "Creative & Strategic Direction", "Art History, Writing & Criticism", "Contact"];
 
 const CREATIVE_WORKS = [
-  { title: "Voyage through the Diamond Realm", subtitle: "Film Installation", house: "De Beers", period: "2025–2026", locations: "Frieze Masters London · India Art Fair · Shanghai · Los Angeles · New York", role: "Concept, Research, Creative Direction & Film", text: "An immersive cinematic and spatial experience tracing the origins of natural diamonds through history, myth, and symbolic narratives. From their birth as stardust in the fiery hearts of stars to their discovery within rivers, deserts, and polar landscapes. An art book was conceived alongside the experience, translating the film's visual and intellectual universe into a printed object.", tags: ["Film", "Installation", "Art Book", "Scenography", "Press"], video: "https://www.youtube.com/watch?v=h8Md9xaytuQ" },
-  { title: "The Mythological Labyrinth", subtitle: "Open-World Narrative", house: "Cartier", period: "2022", locations: "Paris · Geneva", role: "Concept, Research & Narrative Direction", text: "An original narrative universe structured around interconnected realms and gardens — spaces dedicated to love, beauty, fertility, metamorphosis, craftsmanship, and initiation. At its core, the Labyrinth mirrors the act of jewellery creation itself: an ordering of the primordial into form, light, and symbol.", tags: ["Narrative Design", "Mythology", "Immersive", "Creative Direction", "Moodboards"], video: "https://www.youtube.com/watch?v=dldoGX0GERg" },
-  { title: "The Panther Myth", subtitle: "Triptych Film", house: "Cartier", period: "2023", locations: "Marrakech", role: "Creative Direction, Research & Filmmaking", text: "A cinematic exploration of the panther as a mythological, cultural, and symbolic figure at the core of Cartier's imaginary. The film unfolds in three interrelated movements, tracing the panther across deep time and civilisations. The panther appears as goddess, predator, guide, alter ego, and creative force — never illustrated, always invoked.", tags: ["Film", "Performance Capture", "Mythology", "Triptych Installation"], video: "https://www.youtube.com/watch?v=j68485v3Y74" },
-  { title: "Living Heritage Tarot", subtitle: "Research & Card Game inspired by the Italian Renaissance Philosophical Tarot", house: "Cartier", period: "2023", locations: "Paris", role: "Research, Creative Direction & Illustration", text: "A research-driven visual project situating the tarot within the intellectual climate of nineteenth-century Paris. The project draws a parallel between the tarot as a composed system and jewellery as an object of transformation: both operate through precision, symbolism, and the controlled orchestration of material and meaning.", tags: ["Research", "Illustration", "Visual Art", "Heritage"] },
-  { title: "Living Heritage Cosmogony", subtitle: "Open-World Metaverse", house: "Cartier", period: "2023", locations: "Paris", role: "Creative Direction & Production", text: "An open-world digital universe structured around a constellation of islands, landscapes, and symbolic spaces, each connected to a facet of the Maison's history. The structure of interconnected islands — above and below the surface — serves as metaphor for the visible and invisible layers of a Maison's history.", tags: ["Metaverse", "3D", "Heritage", "Creative Direction"], video: "https://www.youtube.com/watch?v=whXwxdSS8gc" },
+  { title: "Voyage through the Diamond Realm", subtitle: "Film Installation", house: "De Beers", period: "2025–2026", locations: "Frieze Masters London · India Art Fair · Shanghai · Los Angeles · New York", role: "Concept, Research, Creative Direction & Film", text: "An immersive cinematic and spatial experience tracing the origins of natural diamonds through history, myth, and symbolic narratives. From their birth as stardust in the fiery hearts of stars to their discovery within rivers, deserts, and polar landscapes. An art book was conceived alongside the experience, translating the film's visual and intellectual universe into a printed object.", tags: ["Film", "Installation", "Art Book", "Scenography", "Press"], video: "https://www.youtube.com/watch?v=h8Md9xaytuQ", images: [] },
+  { title: "The Mythological Labyrinth", subtitle: "Open-World Narrative", house: "Cartier", period: "2022", locations: "Paris · Geneva", role: "Concept, Research & Narrative Direction", text: "An original narrative universe structured around interconnected realms and gardens — spaces dedicated to love, beauty, fertility, metamorphosis, craftsmanship, and initiation. At its core, the Labyrinth mirrors the act of jewellery creation itself: an ordering of the primordial into form, light, and symbol.", tags: ["Narrative Design", "Mythology", "Immersive", "Creative Direction", "Moodboards"], video: "https://www.youtube.com/watch?v=dldoGX0GERg", images: [] },
+  { title: "The Panther Myth", subtitle: "Triptych Film", house: "Cartier", period: "2023", locations: "Marrakech", role: "Creative Direction, Research & Filmmaking", text: "A cinematic exploration of the panther as a mythological, cultural, and symbolic figure at the core of Cartier's imaginary. The film unfolds in three interrelated movements, tracing the panther across deep time and civilisations. The panther appears as goddess, predator, guide, alter ego, and creative force — never illustrated, always invoked.", tags: ["Film", "Performance Capture", "Mythology", "Triptych Installation"], video: "https://www.youtube.com/watch?v=j68485v3Y74", images: [] },
+  { title: "Living Heritage Tarot", subtitle: "Research & Card Game inspired by the Italian Renaissance Philosophical Tarot", house: "Cartier", period: "2023", locations: "Paris", role: "Research, Creative Direction & Illustration", text: "A research-driven visual project situating the tarot within the intellectual climate of nineteenth-century Paris. The project draws a parallel between the tarot as a composed system and jewellery as an object of transformation: both operate through precision, symbolism, and the controlled orchestration of material and meaning.", tags: ["Research", "Illustration", "Visual Art", "Heritage"], images: [] },
+  { title: "Living Heritage Cosmogony", subtitle: "Open-World Metaverse", house: "Cartier", period: "2023", locations: "Paris", role: "Creative Direction & Production", text: "An open-world digital universe structured around a constellation of islands, landscapes, and symbolic spaces, each connected to a facet of the Maison's history. The structure of interconnected islands — above and below the surface — serves as metaphor for the visible and invisible layers of a Maison's history.", tags: ["Metaverse", "3D", "Heritage", "Creative Direction"], video: "https://www.youtube.com/watch?v=whXwxdSS8gc", images: [] },
 ];
 
 const WRITINGS = [
@@ -148,9 +148,33 @@ function Profile() {
   );
 }
 
+function Gallery({ images, onClose }) {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const onKey = e => { if (e.key === 'Escape') onClose(); if (e.key === 'ArrowRight') setIdx(i => (i+1) % images.length); if (e.key === 'ArrowLeft') setIdx(i => (i-1+images.length) % images.length); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [images.length]);
+  return (
+    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(5,8,18,0.96)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+      <div onClick={e => e.stopPropagation()} style={{ position: 'relative', maxWidth: '85vw', maxHeight: '78vh' }}>
+        <img src={images[idx]} style={{ maxWidth: '85vw', maxHeight: '78vh', objectFit: 'contain', display: 'block' }} />
+        {images.length > 1 && <>
+          <button onClick={() => setIdx(i => (i-1+images.length) % images.length)} style={{ position: 'absolute', left: '-56px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: '#eee8d8', fontSize: '24px', cursor: 'pointer', padding: '8px' }}>←</button>
+          <button onClick={() => setIdx(i => (i+1) % images.length)} style={{ position: 'absolute', right: '-56px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: '#eee8d8', fontSize: '24px', cursor: 'pointer', padding: '8px' }}>→</button>
+        </>}
+      </div>
+      <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: '11px', letterSpacing: '2px', color: '#a69e94', marginTop: '20px' }}>{idx+1} / {images.length}</p>
+      <button onClick={onClose} style={{ position: 'fixed', top: '24px', right: '32px', background: 'none', border: 'none', color: '#eee8d8', fontSize: '20px', cursor: 'pointer', fontFamily: "'Outfit',sans-serif", letterSpacing: '2px' }}>✕</button>
+    </div>
+  );
+}
+
 function ProjectCard({ project, isCreative }) {
+  const [showGallery, setShowGallery] = useState(false);
   return (
     <div style={{ borderTop: "0.5px solid #d6cec6", padding: "40px 0 48px" }}>
+      {showGallery && project.images && project.images.length > 0 && <Gallery images={project.images} onClose={() => setShowGallery(false)} />}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "8px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "16px", flexWrap: "wrap" }}>
           <h3 style={{ fontFamily: "'EB Garamond',serif", fontSize: "26px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: 0 }}>{project.title}</h3>
@@ -165,6 +189,7 @@ function ProjectCard({ project, isCreative }) {
       {project.tags && <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "18px" }}>{project.tags.map(t => (<span key={t} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "9px", letterSpacing: "2px", textTransform: "uppercase", color: "#a69e94", background: "rgba(44,38,34,0.035)", padding: "5px 14px", borderRadius: "14px", fontWeight: 400 }}>{t}</span>))}</div>}
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
         {project.video && <a href={project.video} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#2c2622", textDecoration: "none", borderBottom: "1px solid #2c2622", paddingBottom: "3px", fontWeight: 450, display: "inline-block", alignSelf: "flex-start" }}>Watch Film →</a>}
+        {project.images && project.images.length > 0 && <button onClick={() => setShowGallery(true)} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#2c2622", background: "none", border: "none", borderBottom: "1px solid #2c2622", paddingBottom: "3px", fontWeight: 450, cursor: "pointer", alignSelf: "flex-start", padding: "0 0 3px 0" }}>View Gallery →</button>}
         {project.links && project.links.length > 0 && <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: project.video ? "6px" : 0 }}>{project.links.map((l, i) => (<a key={i} href={l.url} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "13px", color: "#2c2622", textDecoration: "none", borderBottom: "0.5px solid #d6cec6", paddingBottom: "3px", fontWeight: 350, transition: "border-color 0.3s", maxWidth: "600px" }} onMouseEnter={e => e.target.style.borderColor = "#2c2622"} onMouseLeave={e => e.target.style.borderColor = "#d6cec6"}>{l.label} →</a>))}</div>}
       </div>
     </div>
