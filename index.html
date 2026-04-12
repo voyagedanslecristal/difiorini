@@ -361,34 +361,50 @@ function ArticleModal({ article, onClose }) {
 function TextsEssays() {
   const r = useReveal(TEXTS.length + 1, 60);
   const [active, setActive] = useState(null);
+  const sizes = [
+    {col:'span 2',row:'span 2'},
+    {col:'span 1',row:'span 1'},
+    {col:'span 1',row:'span 1'},
+    {col:'span 1',row:'span 1'},
+    {col:'span 1',row:'span 2'},
+    {col:'span 2',row:'span 1'},
+    {col:'span 1',row:'span 1'},
+    {col:'span 1',row:'span 1'},
+    {col:'span 2',row:'span 1'},
+    {col:'span 1',row:'span 2'},
+    {col:'span 1',row:'span 1'},
+    {col:'span 1',row:'span 1'},
+    {col:'span 2',row:'span 2'},
+    {col:'span 1',row:'span 1'},
+    {col:'span 1',row:'span 1'},
+  ];
   return (
     <div style={{ maxWidth: "1100px", margin: "72px auto 0", padding: "80px 40px 120px" }}>
       {active && <ArticleModal article={active} onClose={() => setActive(null)} />}
       <div style={fa(r, 0)}>
-        <Lbl s={{ marginBottom: "20px" }}>III. Texts & Essays</Lbl>
-        <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#eee8d8", margin: "0 0 48px" }}>Writings</h2>
+        <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#eee8d8", margin: "0 0 48px", fontStyle: "italic" }}>Writing</h2>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "260px", gap: "16px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "260px", borderTop: "0.5px solid rgba(238,232,216,0.2)", borderLeft: "0.5px solid rgba(238,232,216,0.2)" }}>
         {TEXTS.map((article, i) => {
-          const size = TEXT_SIZES[i] || { col: "span 1", row: "span 1" };
+          const s = sizes[i] || {col:'span 1',row:'span 1'};
           return (
-          <div key={i} style={{ ...fa(r, i + 1), gridColumn: size.col, gridRow: size.row, border: "1px solid #1a3a6e", background: "rgba(5,8,18,0.6)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", display: "flex", flexDirection: "column", cursor: "pointer", transition: "border-color 0.3s, background 0.3s", overflow: "hidden" }}
-            onClick={() => setActive(article)}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = "#4a7abf"; e.currentTarget.style.background = "rgba(5,8,18,0.8)"; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = "#1a3a6e"; e.currentTarget.style.background = "rgba(5,8,18,0.6)"; }}
-          >
-            {article.image
-              ? <img src={article.image} style={{ width: "100%", flex: 1, objectFit: "cover", display: "block" }} />
-              : <div style={{ width: "100%", flex: 1, background: `rgba(26,58,110,${0.12 + i * 0.025})`, display: "flex", alignItems: "center", justifyContent: "center", borderBottom: "1px solid rgba(26,58,110,0.3)" }}>
-                  <span style={{ fontFamily: "'EB Garamond',serif", fontSize: size.col === "span 2" ? "80px" : "48px", color: "rgba(238,232,216,0.05)", fontStyle: "italic" }}>{i + 1}</span>
-                </div>
-            }
-            <div style={{ padding: "20px 24px 24px", flexShrink: 0 }}>
-              <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "9px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#4a7abf", margin: "0 0 10px", fontWeight: 400 }}>{article.category}</p>
-              <h3 style={{ fontFamily: "'EB Garamond',serif", fontSize: size.col === "span 2" ? "22px" : "17px", fontWeight: 400, color: "#eee8d8", margin: "0 0 12px", lineHeight: 1.4 }}>{article.title}</h3>
-              <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: "9px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#eee8d8", borderBottom: "0.5px solid rgba(238,232,216,0.4)", paddingBottom: "2px", display: "inline-block", fontWeight: 400 }}>Read →</span>
+            <div key={i} style={{ ...fa(r, i+1), gridColumn: s.col, gridRow: s.row, borderRight: "0.5px solid rgba(238,232,216,0.2)", borderBottom: "0.5px solid rgba(238,232,216,0.2)", display: "flex", flexDirection: "column", cursor: "pointer", overflow: "hidden", transition: "background 0.3s", background: "transparent" }}
+              onClick={() => setActive(article)}
+              onMouseEnter={e => e.currentTarget.style.background = "rgba(238,232,216,0.04)"}
+              onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+            >
+              <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "32px" }}>
+                {article.image
+                  ? <img src={article.image} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
+                  : <span style={{ fontFamily: "'EB Garamond',serif", fontSize: s.col === "span 2" ? "72px" : "48px", color: "rgba(238,232,216,0.06)", fontStyle: "italic" }}>{i + 1}</span>
+                }
+              </div>
+              <div style={{ padding: "16px 24px 20px", borderTop: "0.5px solid rgba(238,232,216,0.12)" }}>
+                <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "8px", letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(238,232,216,0.35)", margin: "0 0 8px", fontWeight: 400 }}>{article.category}</p>
+                <p style={{ fontFamily: "'EB Garamond',serif", fontSize: s.col === "span 2" ? "19px" : "15px", fontStyle: "italic", color: "#eee8d8", margin: "0 0 12px", lineHeight: 1.35 }}>{article.title}</p>
+                <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: "8px", letterSpacing: "2px", textTransform: "uppercase", color: "rgba(238,232,216,0.4)", borderBottom: "0.5px solid rgba(238,232,216,0.3)", paddingBottom: "2px" }}>Read →</span>
+              </div>
             </div>
-          </div>
           );
         })}
       </div>
