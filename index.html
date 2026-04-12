@@ -358,8 +358,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       const t = Math.min(Math.max(-nightRect.bottom / vh + 1.2, 0), 1);
       const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
 
-      night.style.opacity = Math.max(0, 1 - ease * 3);
-      day.style.opacity = Math.min(ease * 3, 1);
+      night.style.opacity = Math.max(0, 1 - ease * 1.5);
+      day.style.opacity = Math.min(Math.max(ease - 0.3, 0) * 3, 1);
     }
 
     // Init
