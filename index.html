@@ -366,7 +366,7 @@ function TextsEssays() {
     document.body.style.background = '#ede5d6';
     const style = document.createElement('style');
     style.id = 'paper-bg';
-    style.textContent = 'body::before { opacity: 0 !important; } #root, #root > div { background: transparent !important; }';
+    style.textContent = 'body::before { opacity: 0 !important; } #root, #root > div { background: transparent !important; } .glass-nav { background: rgba(5,8,18,0.92) !important; }';
     document.head.appendChild(style);
     return () => {
       document.body.style.background = '';
