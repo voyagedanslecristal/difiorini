@@ -36,7 +36,7 @@
   <script type="text/babel">
 const { useState, useEffect } = React;
 
-const SECTIONS = ["Profile", "Creative & Strategic Direction", "Art History, Writing & Criticism", "Writings", "Contact"];
+const SECTIONS = ["Profile", "Direction", "Research", "Writing", "Contact"];
 
 const TEXTS = [
   { title: "L'Expressionnisme Abstrait — Cheval de Troie de la CIA", category: "Art Criticism", publication: "Bilan", period: "2020", image: "", text: "" },
@@ -374,9 +374,9 @@ function App() {
       <Nav current={page} onChange={setPage} />
       <Transition page={page}>
         {page === "Profile" && <Profile />}
-        {page === "Creative & Strategic Direction" && <CreativeDirection onPdf={(url, label) => { setPdfUrl(url); setPdfLabel(label); }} />}
-        {page === "Art History, Writing & Criticism" && <WritingResearch onPdf={(url, label) => { setPdfUrl(url); setPdfLabel(label); }} />}
-        {page === "Writings" && <TextsEssays />}
+        {page === "Direction" && <CreativeDirection onPdf={(url, label) => { setPdfUrl(url); setPdfLabel(label); }} />}
+        {page === "Research" && <WritingResearch onPdf={(url, label) => { setPdfUrl(url); setPdfLabel(label); }} />}
+        {page === "Writing" && <TextsEssays />}
         {page === "Contact" && <Contact />}
       </Transition>
       <footer style={{ textAlign: "center", padding: "48px 56px", borderTop: "0.5px solid rgba(48,40,32,0.04)" }}>
