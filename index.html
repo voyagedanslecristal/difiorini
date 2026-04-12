@@ -364,14 +364,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       day.style.opacity = Math.min(Math.max((ease - 0.5) * 4, 0), 1);
     }
 
-    // Init
+    // Init — panneau bleu visible, panneau beige caché
     const day = document.getElementById('day-zone');
     if (day) day.style.opacity = 0;
     const night = document.querySelector('.content-card:not(.light-card)');
     if (night) night.style.opacity = 1;
 
     window.addEventListener('scroll', updatePanels, {passive: true});
-    updatePanels();
   })();
   </script>
 </body>
