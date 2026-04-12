@@ -346,31 +346,30 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 
   <script>
   (function(){
-    function updatePanels() {
+    function init() {
       const night = document.querySelector('.content-card:not(.light-card)');
       const day = document.getElementById('day-zone');
-      if (!night || !day) return;
+      if (!night || !day) { setTimeout(init, 100); return; }
 
-      const nightRect = night.getBoundingClientRect();
-      const vh = window.innerHeight;
+      // État initial
+      night.style.opacity = '1';
+      day.style.opacity = '0';
+      night.style.setProperty('background','rgba(7,12,26,0.82)','important');
+      day.style.setProperty('background','rgba(250,248,245,0.72)','important');
+      document.getElementById('root').children[0].style.background = 'transparent';
 
-      // t = 0 quand night est pleinement visible, 1 quand il a disparu
-      const t = Math.min(Math.max(-nightRect.bottom / vh + 1.2, 0), 1);
-      const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
-
-      // Panneau bleu disparaît en premier (0→0.5 du scroll)
-      night.style.opacity = Math.max(0, 1 - ease * 2);
-      // Panneau beige apparaît ensuite (0.5→1 du scroll)
-      day.style.opacity = Math.min(Math.max((ease - 0.5) * 4, 0), 1);
+      window.addEventListener('scroll', function() {
+        const rect = night.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const t = Math.min(Math.max((-rect.bottom / vh) + 1.2, 0), 1);
+        const e = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+        night.style.opacity = String(Math.max(0, 1 - e * 2));
+        day.style.opacity = String(Math.min(Math.max((e - 0.5) * 4, 0), 1));
+      }, {passive: true});
     }
 
-    // Init — panneau bleu visible, panneau beige caché
-    const day = document.getElementById('day-zone');
-    if (day) day.style.opacity = 0;
-    const night = document.querySelector('.content-card:not(.light-card)');
-    if (night) night.style.opacity = 1;
-
-    window.addEventListener('scroll', updatePanels, {passive: true});
+    if (document.readyState === 'complete') { setTimeout(init, 300); }
+    else { window.addEventListener('load', function(){ setTimeout(init, 300); }); }
   })();
   </script>
 </body>
