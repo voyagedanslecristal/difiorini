@@ -135,7 +135,7 @@ function Profile() {
             ["An Independent Practice", "Alongside this strategic dimension, Laura-Rachel maintains an independent artistic practice as a visual artist and writer. Her work explores the tangible heritage of objects and the intangible heritage of narratives, engaging with themes of time, metamorphosis, cosmology, and the sublime. Her interdisciplinary approach draws on ancient myths, symbolic systems, and material history, translating complex cultural structures into visual and textual forms."],
           ].map(([title, text], i) => (
             <div key={i} style={{ margin: i < 3 ? "0 0 40px" : "0" }}>
-              <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10px", letterSpacing: "3px", textTransform: "uppercase", color: "#4a6fa5", margin: "0 0 14px", fontWeight: 500, background: "rgba(180,200,230,0.22)", padding: "5px 0", display: "block" }}>{title}</p>
+              <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10px", letterSpacing: "3px", textTransform: "uppercase", color: "#2e5a8e", margin: "0 0 14px", fontWeight: 500, background: "rgba(150,185,225,0.28)", padding: "5px 0", display: "block" }}>{title}</p>
               {text.split('\n\n').map((para, j) => (
                 <p key={j} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 2, fontWeight: 300, margin: j < text.split('\n\n').length - 1 ? "0 0 16px" : "0", textAlign: "left" }}>{para}</p>
               ))}
