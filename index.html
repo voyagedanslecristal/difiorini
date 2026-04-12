@@ -104,7 +104,7 @@ function Profile() {
     <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}>
 
       {/* ZONE NUIT — nom, titre, intro */}
-      <div className="content-card" style={{ padding: "64px 56px 56px", marginBottom: "32px" }}>
+      <div id="night-panel" className="content-card" style={{ padding: "64px 56px 56px", marginBottom: "32px" }}>
         <div style={{ ...fa(r, 0), textAlign: "center" }}>
           <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(32px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "normal", lineHeight: 1.1, margin: "0 0 12px", letterSpacing: "0.02em", textAlign: "center" }}>
             Laura-Rachel
@@ -347,14 +347,17 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
   <script>
   (function(){
     function init() {
-      const night = document.querySelector('.content-card:not(.light-card)');
+      const night = document.getElementById('night-panel');
       const day = document.getElementById('day-zone');
       if (!night || !day) { setTimeout(init, 100); return; }
-      night.style.opacity = '1';
-      day.style.opacity = '1';
       night.style.setProperty('background','rgba(7,12,26,0.82)','important');
-      day.style.setProperty('background','rgba(250,248,245,0.72)','important');
+      night.style.opacity = '1';
+      day.style.setProperty('background','rgba(250,248,245,0.95)','important');
+      day.style.opacity = '1';
       document.getElementById('root').children[0].style.background = 'transparent';
+      window.addEventListener('scroll', function() {
+        night.style.opacity = String(Math.max(0, 1 - window.scrollY / 300));
+      }, {passive: true});
     }
     if (document.readyState === 'complete') { setTimeout(init, 300); }
     else { window.addEventListener('load', function(){ setTimeout(init, 300); }); }
