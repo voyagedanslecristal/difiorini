@@ -356,7 +356,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       day.style.setProperty('background','rgba(250,248,245,0.72)','important');
       document.getElementById('root').children[0].style.background = 'transparent';
       night.style.opacity = '1';
-      day.style.opacity = '0';
+      day.style.opacity = '1';
+      day.style.setProperty('background','rgba(250,248,245,0.95)','important');
 
       window.addEventListener('scroll', function() {
         const rect = night.getBoundingClientRect();
@@ -364,9 +365,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
         const fadeStart = -100, fadeEnd = -600;
         const tNight = Math.min(Math.max((rect.top - fadeStart) / (fadeEnd - fadeStart), 0), 1);
         night.style.opacity = String(1 - tNight);
-        // Beige : apparaît dès que le bleu commence à disparaître, très rapidement
-        const tDay = Math.min(Math.max((tNight) / 0.3, 0), 1);
-        day.style.opacity = String(tDay);
+        // Beige : toujours pleinement visible
+        day.style.opacity = '1';
+        day.style.setProperty('background','rgba(250,248,245,0.95)','important');
       }, {passive: true});
     }
     if (document.readyState === 'complete') { setTimeout(init, 300); }
