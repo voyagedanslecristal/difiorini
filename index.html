@@ -344,17 +344,32 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
   })();
   </script>
 
+  <style>
+    .content-card:not(.light-card) { transition: opacity 1.2s ease; }
+  </style>
   <script>
   (function(){
     function init() {
       const night = document.querySelector('.content-card:not(.light-card)');
       const day = document.getElementById('day-zone');
       if (!night || !day) { setTimeout(init, 100); return; }
-      night.style.opacity = '1';
-      day.style.opacity = '1';
+
       night.style.setProperty('background','rgba(7,12,26,0.82)','important');
       day.style.setProperty('background','rgba(250,248,245,0.72)','important');
       document.getElementById('root').children[0].style.background = 'transparent';
+
+      // Quand le panneau bleu sort du viewport, il s'efface doucement
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) {
+            night.style.opacity = '0';
+          } else {
+            night.style.opacity = '1';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      observer.observe(night);
     }
     if (document.readyState === 'complete') { setTimeout(init, 300); }
     else { window.addEventListener('load', function(){ setTimeout(init, 300); }); }
