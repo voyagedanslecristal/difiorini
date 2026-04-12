@@ -57,12 +57,12 @@ const TEXT_SIZES = [
 const SECTIONS = ["Profile", "Direction", "Research", "Writing", "Contact"];
 
 const TEXTS = [
-  { title: "L'Expressionnisme Abstrait — Cheval de Troie de la CIA", category: "Art Criticism", publication: "Bilan", period: "2020", image: "", text: "" },
-  { title: "Le Radeau de la Méduse — Naufrage Théâtral d'un Monde en Déclin", category: "Art Criticism", publication: "Bilan", period: "2020", image: "", text: "" },
-  { title: "La Persistance de la Mémoire — L'Orfèvre et le Temps", category: "Art Criticism", publication: "Bilan", period: "2020", image: "", text: "" },
-  { title: "De Basquiat à Black Lives Matter — De la Rage Picturale à la Révolte Sociale", category: "Art Criticism", publication: "Bilan", period: "2020", image: "", text: "" },
-  { title: "Le Fléau Pandémique à Travers le Prisme de l'Art", category: "Art Criticism", publication: "Bilan", period: "2020", image: "", text: "" },
-  { title: "Naoshima & the Chichu Art Museum", category: "Essay", publication: "Independent Research", period: "2021–2024", image: "", text: "" },
+  { title: "L'Expressionnisme Abstrait — Cheval de Troie de la CIA", category: "Art Criticism", publication: "Bilan", period: "2020", image: "https://upload.wikimedia.org/wikipedia/en/3/3c/PollockNo5.jpg", text: "" },
+  { title: "Le Radeau de la Méduse — Naufrage Théâtral d'un Monde en Déclin", category: "Art Criticism", publication: "Bilan", period: "2020", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/JEAN_LOUIS_THÉODORE_GÉRICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg/640px-JEAN_LOUIS_THÉODORE_GÉRICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg", text: "" },
+  { title: "La Persistance de la Mémoire — L'Orfèvre et le Temps", category: "Art Criticism", publication: "Bilan", period: "2020", image: "https://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg", text: "" },
+  { title: "De Basquiat à Black Lives Matter — De la Rage Picturale à la Révolte Sociale", category: "Art Criticism", publication: "Bilan", period: "2020", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Jean-Michel_Basquiat%2C_Untitled%2C_1982.jpg/480px-Jean-Michel_Basquiat%2C_Untitled%2C_1982.jpg", text: "" },
+  { title: "Le Fléau Pandémique à Travers le Prisme de l'Art", category: "Art Criticism", publication: "Bilan", period: "2020", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Pieter_Bruegel_the_Elder_-_The_Triumph_of_Death_-_Prado.jpg/640px-Pieter_Bruegel_the_Elder_-_The_Triumph_of_Death_-_Prado.jpg", text: "" },
+  { title: "Naoshima & the Chichu Art Museum", category: "Essay", publication: "Independent Research", period: "2021–2024", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Naoshima_Island_Art_Museum.jpg/640px-Naoshima_Island_Art_Museum.jpg", text: "" },
   { title: "The Power of Myths", category: "Research", publication: "Cartier", period: "2022", image: "", text: "" },
   { title: "Ars Electronica", category: "Critical Research", publication: "Cartier Living Heritage", period: "2022", image: "", text: "" },
 ];
@@ -407,7 +407,8 @@ function TextsEssays() {
             >
               <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "32px" }}>
                 {article.image
-                  ? <img src={article.image} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
+                  ? <img src={article.image} style={{ maxWidth: "calc(100% - 48px)", maxHeight: "calc(100% - 48px)", objectFit: "contain", display: "block" }} 
+                      onError={e => e.target.style.display='none'} />
                   : <span style={{ fontFamily: "'EB Garamond',serif", fontSize: s.col === "span 2" ? "72px" : "48px", color: "rgba(44,38,34,0.06)", fontStyle: "italic" }}>{i + 1}</span>
                 }
               </div>
