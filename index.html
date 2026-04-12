@@ -37,19 +37,19 @@
 const { useState, useEffect } = React;
 
 const TEXT_SIZES = [
-  { col: "span 2", row: "span 2" },
-  { col: "span 1", row: "span 1" },
-  { col: "span 1", row: "span 1" },
-  { col: "span 1", row: "span 1" },
-  { col: "span 2", row: "span 1" },
   { col: "span 1", row: "span 2" },
   { col: "span 1", row: "span 1" },
   { col: "span 1", row: "span 1" },
-  { col: "span 2", row: "span 1" },
   { col: "span 1", row: "span 1" },
   { col: "span 1", row: "span 2" },
   { col: "span 1", row: "span 1" },
-  { col: "span 2", row: "span 2" },
+  { col: "span 1", row: "span 1" },
+  { col: "span 1", row: "span 2" },
+  { col: "span 1", row: "span 1" },
+  { col: "span 1", row: "span 1" },
+  { col: "span 1", row: "span 1" },
+  { col: "span 1", row: "span 2" },
+  { col: "span 1", row: "span 1" },
   { col: "span 1", row: "span 1" },
   { col: "span 1", row: "span 1" },
 ];
@@ -368,7 +368,7 @@ function TextsEssays() {
         <Lbl s={{ marginBottom: "20px" }}>III. Texts & Essays</Lbl>
         <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#eee8d8", margin: "0 0 48px" }}>Writings</h2>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "220px", gap: "20px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "260px", gap: "16px" }}>
         {TEXTS.map((article, i) => {
           const size = TEXT_SIZES[i] || { col: "span 1", row: "span 1" };
           return (
