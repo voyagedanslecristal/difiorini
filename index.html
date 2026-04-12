@@ -358,8 +358,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       const t = Math.min(Math.max(-nightRect.bottom / vh + 1.2, 0), 1);
       const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
 
-      night.style.opacity = Math.max(0, 1 - ease * 1.5);
-      day.style.opacity = Math.min(Math.max(ease - 0.3, 0) * 3, 1);
+      // Panneau bleu disparaît en premier (0→0.5 du scroll)
+      night.style.opacity = Math.max(0, 1 - ease * 2);
+      // Panneau beige apparaît ensuite (0.5→1 du scroll)
+      day.style.opacity = Math.min(Math.max((ease - 0.5) * 4, 0), 1);
     }
 
     // Init
