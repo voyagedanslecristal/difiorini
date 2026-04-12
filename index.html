@@ -18,7 +18,7 @@
     button{font:inherit}
     *{cursor:none!important}
     #cur{position:fixed;top:0;left:0;pointer-events:none;z-index:2147483647;transform:translate(-50%,-50%)}
-    .glass-nav{background:transparent!important;backdrop-filter:blur(20px)!important;-webkit-backdrop-filter:blur(20px)!important;border-bottom:1px solid rgba(255,255,255,0.04)!important;}
+    .glass-nav{background:rgba(5,8,18,0.22)!important;backdrop-filter:blur(20px)!important;-webkit-backdrop-filter:blur(20px)!important;border-bottom:1px solid rgba(255,255,255,0.04)!important;z-index:1000!important;}
     .content-card{background:rgba(7,12,26,0.82);border:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 24px 80px rgba(0,0,0,0.35);}
     .content-card h1,.content-card h2,.content-card h3{color:#eee8d8;}
     .content-card p{color:#c8bfaa;}
@@ -358,8 +358,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       const t = Math.min(Math.max(-nightRect.bottom / vh + 1.2, 0), 1);
       const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
 
-      night.style.opacity = 1 - ease;
-      day.style.opacity = Math.min(ease * 2, 1);
+      night.style.opacity = Math.max(0, 1 - ease * 3);
+      day.style.opacity = Math.min(ease * 3, 1);
     }
 
     // Init
