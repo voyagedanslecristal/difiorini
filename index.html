@@ -373,23 +373,7 @@ function TextsEssays() {
       document.getElementById('paper-bg')?.remove();
     };
   }, []);
-  const sizes = [
-    {col:'span 2',row:'span 1'},
-    {col:'span 1',row:'span 1'},
-    {col:'span 1',row:'span 1'},
-    {col:'span 1',row:'span 1'},
-    {col:'span 2',row:'span 1'},
-    {col:'span 1',row:'span 1'},
-    {col:'span 1',row:'span 1'},
-    {col:'span 2',row:'span 1'},
-    {col:'span 1',row:'span 1'},
-    {col:'span 1',row:'span 1'},
-    {col:'span 1',row:'span 1'},
-    {col:'span 2',row:'span 1'},
-    {col:'span 1',row:'span 1'},
-    {col:'span 1',row:'span 1'},
-    {col:'span 2',row:'span 1'},
-  ];
+  const sizes = TEXTS.map(() => ({col:'span 1', row:'span 1'}));
   return (
     <div style={{ maxWidth: "1100px", margin: "72px auto 0", padding: "80px 40px 120px" }}>
       {active && <ArticleModal article={active} onClose={() => setActive(null)} />}
