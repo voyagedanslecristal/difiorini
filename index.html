@@ -344,26 +344,32 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
   })();
   </script>
 
+  <style>
+    /* Scroll-driven animations — natif Chrome, zéro JS */
+    @keyframes night-fade { from { opacity: 1; } to { opacity: 0; } }
+    @keyframes day-fade   { from { opacity: 0; } to { opacity: 1; } }
+    #night-panel {
+      animation: night-fade linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0px 400px;
+    }
+    #day-zone {
+      animation: day-fade linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0px 100px;
+    }
+  </style>
   <script>
   (function(){
     function init() {
       const night = document.getElementById('night-panel');
       const day = document.getElementById('day-zone');
       if (!night || !day) { setTimeout(init, 100); return; }
+      night.style.setProperty('background','rgba(7,12,26,0.82)','important');
+      day.style.setProperty('background','rgba(250,248,245,0.95)','important');
+      document.getElementById('root').children[0].style.background = 'transparent';
       const tw = document.getElementById('root')?.children[0]?.children[0];
       if (tw) tw.style.setProperty('opacity','1','important');
-      night.style.setProperty('background','rgba(7,12,26,0.82)','important');
-      night.style.setProperty('opacity','1','important');
-      day.style.setProperty('background','rgba(250,248,245,0.95)','important');
-      day.style.setProperty('opacity','0','important');
-      document.getElementById('root').children[0].style.background = 'transparent';
-      window.addEventListener('scroll', function() {
-        const s = window.scrollY;
-        const n = document.getElementById('night-panel');
-        const d = document.getElementById('day-zone');
-        if (n) n.style.setProperty('opacity', String(Math.max(0, 1 - s/400)), 'important');
-        if (d) d.style.setProperty('opacity', String(Math.min(s/30, 1)), 'important');
-      }, {passive: true});
     }
     if (document.readyState === 'complete') { setTimeout(init, 300); }
     else { window.addEventListener('load', function(){ setTimeout(init, 300); }); }
