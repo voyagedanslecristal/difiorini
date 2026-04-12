@@ -103,24 +103,30 @@ function Profile() {
   return (
     <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "40px 0 0" }}>
 
-      {/* ZONE NUIT — compact, nom + titres uniquement */}
-      <div className="content-card" id="night-panel" style={{ padding: "56px 56px 56px", marginBottom: "24px" }}>
+      {/* ZONE NUIT */}
+      <div className="content-card" id="night-panel" style={{ padding: "48px 56px 40px", marginBottom: "32px" }}>
         <div style={{ ...fa(r, 0), textAlign: "center" }}>
           <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(32px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "normal", lineHeight: 1.1, margin: "0 0 12px", letterSpacing: "0.02em", textAlign: "center" }}>
             Laura-Rachel
           </h1>
-          <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(32px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "italic", lineHeight: 1.1, margin: "0 0 32px", letterSpacing: "0.02em", textAlign: "center" }}>
+          <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(32px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "italic", lineHeight: 1.1, margin: "0 0 28px", letterSpacing: "0.02em", textAlign: "center" }}>
             Dubos di Fiorini
           </h1>
-          <p style={{ fontFamily: "'EB Garamond',serif", fontStyle: "normal", fontSize: "22px", letterSpacing: "0.04em", lineHeight: "1.6", fontWeight: 400, margin: "0", textAlign: "center" }}>Creative &amp; Strategic Director<br />Art &amp; Jewellery Historian</p>
+        </div>
+        <div style={fa(r, 1)}>
+          <p style={{ fontFamily: "'EB Garamond',serif", fontStyle: "normal", fontSize: "22px", letterSpacing: "0.04em", lineHeight: "1.8", fontWeight: 400, margin: "0 0 32px", textAlign: "center" }}>Creative &amp; Strategic Director<br />Art &amp; Jewellery Historian</p>
+        </div>
+        <div style={fa(r, 2)}>
+          <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", fontWeight: 300, lineHeight: 2, letterSpacing: "0.02em", margin: "0", textAlign: "center" }}>
+            French-Italian, based in Paris ﹒ Fifteen years of experience in luxury creative strategy for high jewellery, gemmology and watchmaking ﹒ Senior expertise in living heritage, history, myths and tales around the art of adornment ﹒ Fluent in French, Italian, English and German — proficient in Ancient Greek.
+          </p>
         </div>
       </div>
 
       {/* ZONE JOUR — sticky, toujours dans le viewport */}
       <div id="day-zone" className="content-card light-card" style={{ padding: "56px 56px 120px", position: "sticky", top: "80px" }}>
         <div style={fa(r, 3)}>
-          <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: "0 0 32px", letterSpacing: "0.02em" }}>About</h2>
-          <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", fontWeight: 300, lineHeight: 2, letterSpacing: "0.02em", margin: "0 0 40px", color: "#4a4238" }}>French-Italian, based in Paris ﹒ Fifteen years of experience in luxury creative strategy for high jewellery, gemmology and watchmaking ﹒ Senior expertise in living heritage, history, myths and tales around the art of adornment ﹒ Fluent in French, Italian, English and German — proficient in Ancient Greek.</p>
+          <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: "0 0 48px", letterSpacing: "0.02em" }}>About</h2>
           {[
             "Laura-Rachel Dubos is a French-Italian, Paris-based creative and strategic director, art historian, writer, art critic, and visual artist whose work operates at the intersection of art history, jewellery, gemmology, mythology, philosophy, and sociology. At the core of her professional activity lies her work for the executive leadership of major luxury Maisons. She operates at the level of strategic direction, developing high-level marketing and communication frameworks grounded in historical depth, cultural legitimacy, and intellectual coherence. Her practice articulates heritage, material knowledge, and symbolic systems into long-term narratives that shape vision, meaning, and projection, positioning marketing as a central vector of cultural construction within the Maison.",
             "Educated at the historically renowned Bauhaus University in art and design, she further specialised in the history and philosophy of art, as well as the history of jewellery and luxury markets, at Sotheby's Institute of Art and Christie's Education. She has published art critiques in the Swiss press, offering reflections on contemporary events through the lens of major artworks, material culture, and philosophical thought. Her practice spans high-level creative direction, visual creation, writing, and narrative strategy. Working at the crossroads of art and luxury, Laura-Rachel develops cultural and storytelling frameworks for major Maisons, including Cartier, Chopard, and De Beers. Her work is rooted in research-driven storytelling, where marketing is approached as a cultural discipline — one that transmits heritage, meaning, and imagination at the highest level of the luxury ecosystem.",
