@@ -36,7 +36,18 @@
   <script type="text/babel">
 const { useState, useEffect } = React;
 
-const SECTIONS = ["Profile", "Creative & Strategic Direction", "Art History, Writing & Criticism", "Contact"];
+const SECTIONS = ["Profile", "Creative & Strategic Direction", "Art History, Writing & Criticism", "Texts & Essays", "Contact"];
+
+const TEXTS = [
+  { title: "L'Expressionnisme Abstrait — Cheval de Troie de la CIA", category: "Art Criticism", publication: "Bilan", period: "2020", image: "", text: "" },
+  { title: "Le Radeau de la Méduse — Naufrage Théâtral d'un Monde en Déclin", category: "Art Criticism", publication: "Bilan", period: "2020", image: "", text: "" },
+  { title: "La Persistance de la Mémoire — L'Orfèvre et le Temps", category: "Art Criticism", publication: "Bilan", period: "2020", image: "", text: "" },
+  { title: "De Basquiat à Black Lives Matter — De la Rage Picturale à la Révolte Sociale", category: "Art Criticism", publication: "Bilan", period: "2020", image: "", text: "" },
+  { title: "Le Fléau Pandémique à Travers le Prisme de l'Art", category: "Art Criticism", publication: "Bilan", period: "2020", image: "", text: "" },
+  { title: "Naoshima & the Chichu Art Museum", category: "Essay", publication: "Independent Research", period: "2021–2024", image: "", text: "" },
+  { title: "The Power of Myths", category: "Research", publication: "Cartier", period: "2022", image: "", text: "" },
+  { title: "Ars Electronica", category: "Critical Research", publication: "Cartier Living Heritage", period: "2022", image: "", text: "" },
+];
 
 const CREATIVE_WORKS = [
   { title: "Voyage through the Diamond Realm", subtitle: "Film Installation", house: "De Beers", period: "2025–2026", locations: "Frieze Masters London · India Art Fair · Shanghai · Los Angeles · New York", role: "Concept, Research, Creative Direction & Film", text: "An immersive cinematic and spatial experience tracing the origins of natural diamonds through history, myth, and symbolic narratives. From their birth as stardust in the fiery hearts of stars to their discovery within rivers, deserts, and polar landscapes. An art book was conceived alongside the experience, translating the film's visual and intellectual universe into a printed object.", tags: ["Film", "Installation", "Art Book", "Scenography", "Press"], video: "https://www.youtube.com/watch?v=h8Md9xaytuQ", images: [] },
@@ -290,6 +301,71 @@ function Contact() {
   );
 }
 
+function ArticleModal({ article, onClose }) {
+  useEffect(() => {
+    const onKey = e => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+  return ReactDOM.createPortal(
+    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(5,8,18,0.35)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
+      <div onClick={e => e.stopPropagation()} style={{ width: '72vw', maxWidth: '860px', height: '88vh', background: 'rgba(240,237,232,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 24px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)', border: '0.5px solid rgba(255,255,255,0.2)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px', borderBottom: '0.5px solid rgba(214,206,198,0.4)', flexShrink: 0, background: 'rgba(200,196,190,0.4)' }}>
+          <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#2c2622', fontWeight: 400 }}>{article.category} · {article.publication}</span>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '15px', color: '#2c2622', padding: '0 0 0 28px' }}>✕</button>
+        </div>
+        <div style={{ flex: 1, overflowY: 'auto', padding: '48px 56px' }}>
+          <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#a69e94', margin: '0 0 24px' }}>{article.period}</p>
+          <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: '34px', fontWeight: 400, color: '#2c2622', margin: '0 0 40px', lineHeight: 1.25 }}>{article.title}</h2>
+          {article.text
+            ? article.text.split('\n\n').map((p, i) => <p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: '15px', lineHeight: 2, fontWeight: 300, color: '#3a3430', margin: '0 0 24px' }}>{p}</p>)
+            : <p style={{ fontFamily: "'EB Garamond',serif", fontSize: '18px', color: '#a69e94', fontStyle: 'italic' }}>Text coming soon.</p>
+          }
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+}
+
+function TextsEssays() {
+  const r = useReveal(TEXTS.length + 1, 60);
+  const [active, setActive] = useState(null);
+  return (
+    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}>
+      {active && <ArticleModal article={active} onClose={() => setActive(null)} />}
+      <div className="content-card light-card" style={{ padding: "48px 56px 80px" }}>
+        <div style={fa(r, 0)}>
+          <Lbl s={{ marginBottom: "20px" }}>III. Texts & Essays</Lbl>
+          <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>Texts & Essays</h2>
+          <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.8, color: "#8a8078", fontWeight: 300, margin: "0 0 48px" }}>Art criticism, philosophical essays, and research-driven writing published in the Swiss and international press.</p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", background: "rgba(214,206,198,0.3)" }}>
+          {TEXTS.map((article, i) => (
+            <div key={i} style={{ ...fa(r, i + 1), background: "#faf8f4", cursor: "pointer", padding: "0", overflow: "hidden", transition: "opacity 0.3s" }}
+              onClick={() => setActive(article)}
+              onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
+              onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+            >
+              {article.image
+                ? <img src={article.image} style={{ width: "100%", height: "180px", objectFit: "cover", display: "block" }} />
+                : <div style={{ width: "100%", height: "160px", background: `hsl(${30 + i * 12}, 15%, ${88 - i * 2}%)`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <span style={{ fontFamily: "'EB Garamond',serif", fontSize: "32px", color: "rgba(44,38,34,0.12)", fontStyle: "italic" }}>{i + 1}</span>
+                  </div>
+              }
+              <div style={{ padding: "20px 24px 24px" }}>
+                <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "9px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#a69e94", margin: "0 0 10px", fontWeight: 400 }}>{article.category}</p>
+                <h3 style={{ fontFamily: "'EB Garamond',serif", fontSize: "17px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px", lineHeight: 1.4 }}>{article.title}</h3>
+                <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10px", color: "#c4bab0", margin: 0, fontWeight: 300 }}>{article.publication} · {article.period}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [page, setPage] = useState("Profile");
   const [pdfUrl, setPdfUrl] = useState(null);
@@ -302,6 +378,7 @@ function App() {
         {page === "Profile" && <Profile />}
         {page === "Creative & Strategic Direction" && <CreativeDirection onPdf={(url, label) => { setPdfUrl(url); setPdfLabel(label); }} />}
         {page === "Art History, Writing & Criticism" && <WritingResearch onPdf={(url, label) => { setPdfUrl(url); setPdfLabel(label); }} />}
+        {page === "Texts & Essays" && <TextsEssays />}
         {page === "Contact" && <Contact />}
       </Transition>
       <footer style={{ textAlign: "center", padding: "48px 56px", borderTop: "0.5px solid rgba(48,40,32,0.04)" }}>
