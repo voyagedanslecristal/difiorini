@@ -349,13 +349,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
     function init() {
       const night = document.getElementById('night-panel');
       if (!night) { setTimeout(init, 100); return; }
-      night.style.setProperty('background','rgba(7,12,26,0.92)','important');
+      night.style.setProperty('background','rgba(7,12,26,0.82)','important');
       night.style.opacity = '1';
       document.getElementById('root').children[0].style.background = 'transparent';
-
+      // Panneau beige : toujours visible, pas d'animation
+      const day = document.getElementById('day-zone');
+      if (day) { day.style.setProperty('background','rgba(250,248,245,0.95)','important'); day.style.opacity = '1'; }
+      // Seul le panneau bleu disparaît au scroll
       window.addEventListener('scroll', function() {
-        const t = Math.min(window.scrollY / 300, 1);
-        night.style.opacity = String(1 - t);
+        night.style.opacity = String(Math.max(0, 1 - window.scrollY / 300));
       }, {passive: true});
     }
     if (document.readyState === 'complete') { setTimeout(init, 300); }
