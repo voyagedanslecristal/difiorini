@@ -341,5 +341,32 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
     applyTheme(0);
   })();
   </script>
+
+  <script>
+  (function(){
+    function updatePanels() {
+      const night = document.querySelector('.content-card:not(.light-card)');
+      const day = document.getElementById('day-zone');
+      if (!night || !day) return;
+
+      const nightRect = night.getBoundingClientRect();
+      const vh = window.innerHeight;
+
+      // t = 0 quand night est pleinement visible, 1 quand il a disparu
+      const t = Math.min(Math.max(-nightRect.bottom / vh + 1.2, 0), 1);
+      const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+
+      night.style.opacity = 1 - ease;
+      day.style.opacity = ease;
+    }
+
+    // Init
+    const day = document.getElementById('day-zone');
+    if (day) day.style.opacity = 0;
+
+    window.addEventListener('scroll', updatePanels, {passive: true});
+    updatePanels();
+  })();
+  </script>
 </body>
 </html>
