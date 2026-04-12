@@ -37,9 +37,15 @@
 const { useState, useEffect } = React;
 
 const HOUSE_LOGOS = {
-  'De Beers':   'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/De_Beers.svg/320px-De_Beers.svg.png',
-  'Cartier':    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Cartier_logo.svg/320px-Cartier_logo.svg.png',
-  'Chopard':    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Chopard_logo.svg/320px-Chopard_logo.svg.png',
+  'De Beers':   null,
+  'Cartier':    null,
+  'Chopard':    null,
+};
+
+const HOUSE_LOGO_TEXT = {
+  'De Beers':  'DE BEERS',
+  'Cartier':   'CARTIER',
+  'Chopard':   'CHOPARD',
 };
 
 const CREATIVE_WORKS = [
@@ -205,8 +211,8 @@ function ProjectCard({ project, isCreative, onPdf }) {
           <span style={{ fontFamily: "'EB Garamond',serif", fontSize: "14px", color: "#a69e94" }}>{isCreative ? project.house : project.publication}</span>
         </div>
         <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: "11px", letterSpacing: "1px", color: "#a69e94", fontWeight: 400, flexShrink: 0 }}>
-          {HOUSE_LOGOS[isCreative ? project.house : project.publication]
-            ? <img src={HOUSE_LOGOS[isCreative ? project.house : project.publication]} style={{ height: "16px", width: "auto", objectFit: "contain", opacity: 0.5, display: "block" }} />
+          {HOUSE_LOGO_TEXT[isCreative ? project.house : project.publication]
+            ? <span style={{ fontFamily: "'EB Garamond',serif", fontSize: "13px", letterSpacing: "3px", color: "#a69e94", fontStyle: "italic", fontWeight: 400 }}>{HOUSE_LOGO_TEXT[isCreative ? project.house : project.publication]}</span>
             : project.period}
         </span>
       </div>
