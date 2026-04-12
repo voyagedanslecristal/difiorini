@@ -54,15 +54,15 @@ const WRITINGS = [
     { label: "Basquiat — From Pictorial Rage to Social Revolt", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/de-basquiat-a-black-lives-matter-de-la-rage-picturale-a-la-revolte-sociale" },
     { label: "Brueghel — The Pandemic through the Prism of Art", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/le-fleau-pandemique-a-travers-le-prisme-de-lart" },
   ]},
-  { title: "Naoshima & the Chichu Art Museum", subtitle: "Art Criticism on Key Masterpieces", publication: "Independent Research", period: "2021–2024", role: "Research & Writing", text: "Works by Claude Monet, James Turrell, and Walter De Maria examined as threshold experiences — sites where art ceases to be an object of contemplation and becomes an instrument of transformation.", links: [{ label: "Read the manuscript", url: "http://e.pc.cd/Oiny6alK" }] },
-  { title: "The Power of Myths", subtitle: "Research-Driven Authorial Writing on History, Myths & Tales", publication: "Cartier", period: "2022", role: "Research, Writing & Curation", text: "Love, beauty, fertility, metamorphosis, magic, and the figure of the panther articulated as active symbolic forces — jewellery appearing as a medium of transformation and meaning.", links: [{ label: "Read", url: "http://e.pc.cd/dJxy6alK" }] },
+  { title: "Naoshima & the Chichu Art Museum", subtitle: "Art Criticism on Key Masterpieces", publication: "Independent Research", period: "2021–2024", role: "Research & Writing", text: "Works by Claude Monet, James Turrell, and Walter De Maria examined as threshold experiences — sites where art ceases to be an object of contemplation and becomes an instrument of transformation.", links: [{ label: "Read the manuscript", url: "http://e.pc.cd/Oiny6alK", pdf: true }] },
+  { title: "The Power of Myths", subtitle: "Research-Driven Authorial Writing on History, Myths & Tales", publication: "Cartier", period: "2022", role: "Research, Writing & Curation", text: "Love, beauty, fertility, metamorphosis, magic, and the figure of the panther articulated as active symbolic forces — jewellery appearing as a medium of transformation and meaning.", links: [{ label: "Read", url: "http://e.pc.cd/dJxy6alK", pdf: true }] },
   { title: "Living Heritage Conferences", subtitle: "Research into Cultural Heritage, Mythological Systems & Femininity", publication: "Cartier Hong Kong", period: "2022", role: "Research & Conferences", text: "A research and conference programme engaging with Chinese cosmogonies, Taoist and Confucian philosophies, calligraphic space, the logic of ornament, and the relationship between nature, circulation, and transformation.", links: [
     { label: "Conference 1 — Hong Kong City, Centre and Circle", url: "https://youtu.be/pIFQgZ2AE1g" },
     { label: "Conference 2 — Hidden Light of the Feminine", url: "https://youtu.be/vDfBO_kukb8" },
     { label: "Conference 3 — Building Bridges over Blurred Borders", url: "https://youtu.be/pD7R7GJmcF4" },
     { label: "Conference 4 — Like the Sun, Like the Moon, Like Water, Like Gold", url: "https://youtu.be/C7pl6-ag4Ik" },
   ]},
-  { title: "Ars Electronica", subtitle: "Critical Research on Art, Technology & Society", publication: "Cartier Living Heritage", period: "2022", role: "Research, Critical Analysis & Dialogues", text: "A critical cartography where artificial intelligence, ecological urgency, post-human imaginaries, and technological acceleration are approached as interconnected expressions of a broader cultural shift — technological futures understood as cultural and ethical landscapes shaped as much by imagination and myth as by code and computation.", links: [{ label: "Read more", url: "http://e.pc.cd/L5xy6alK" }] },
+  { title: "Ars Electronica", subtitle: "Critical Research on Art, Technology & Society", publication: "Cartier Living Heritage", period: "2022", role: "Research, Critical Analysis & Dialogues", text: "A critical cartography where artificial intelligence, ecological urgency, post-human imaginaries, and technological acceleration are approached as interconnected expressions of a broader cultural shift — technological futures understood as cultural and ethical landscapes shaped as much by imagination and myth as by code and computation.", links: [{ label: "Read more", url: "http://e.pc.cd/L5xy6alK", pdf: true }] },
   { title: "Ukiyo-e: Art & Philosophy Conference", subtitle: "Japonism Event with Cartier & Sorbonne University", publication: "Cartier & Sorbonne University", period: "2021", role: "Strategy, Creative Direction & Event Management", text: "A site-specific conference held in a historic Parisian printing manufactory. The programme included a keynote by Cyrille Vigneron alongside an intervention by Sophie Basch, Sorbonne professor and Proust specialist, establishing bridges between Japanese art, French literature, and Western visual thought.", links: [] },
 ];
 
@@ -148,6 +148,25 @@ function Profile() {
   );
 }
 
+function PdfModal({ url, label, onClose }) {
+  useEffect(() => {
+    const onKey = e => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+  return (
+    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(5,8,18,0.92)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div onClick={e => e.stopPropagation()} style={{ width: '80vw', height: '88vh', background: '#faf8f5', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 32px 80px rgba(0,0,0,0.5)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 24px', borderBottom: '0.5px solid #d6cec6', flexShrink: 0 }}>
+          <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: '#58504a', fontWeight: 400 }}>{label}</span>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'Outfit',sans-serif", fontSize: '18px', color: '#2c2622', lineHeight: 1, padding: '0 0 0 24px' }}>✕</button>
+        </div>
+        <iframe src={url} style={{ flex: 1, border: 'none', width: '100%' }} />
+      </div>
+    </div>
+  );
+}
+
 function Gallery({ images, onClose }) {
   const [idx, setIdx] = useState(0);
   useEffect(() => {
@@ -172,9 +191,12 @@ function Gallery({ images, onClose }) {
 
 function ProjectCard({ project, isCreative }) {
   const [showGallery, setShowGallery] = useState(false);
+  const [pdfUrl, setPdfUrl] = useState(null);
+  const [pdfLabel, setPdfLabel] = useState('');
   return (
     <div style={{ borderTop: "0.5px solid #d6cec6", padding: "40px 0 48px" }}>
       {showGallery && project.images && project.images.length > 0 && <Gallery images={project.images} onClose={() => setShowGallery(false)} />}
+      {pdfUrl && <PdfModal url={pdfUrl} label={pdfLabel} onClose={() => setPdfUrl(null)} />}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "8px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "16px", flexWrap: "wrap" }}>
           <h3 style={{ fontFamily: "'EB Garamond',serif", fontSize: "26px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: 0 }}>{project.title}</h3>
@@ -190,7 +212,11 @@ function ProjectCard({ project, isCreative }) {
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
         {project.video && <a href={project.video} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#2c2622", textDecoration: "none", borderBottom: "1px solid #2c2622", paddingBottom: "3px", fontWeight: 450, display: "inline-block", alignSelf: "flex-start" }}>Watch Film →</a>}
         {project.images && project.images.length > 0 && <button onClick={() => setShowGallery(true)} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#2c2622", background: "none", border: "none", borderBottom: "1px solid #2c2622", paddingBottom: "3px", fontWeight: 450, cursor: "pointer", alignSelf: "flex-start", padding: "0 0 3px 0" }}>View Gallery →</button>}
-        {project.links && project.links.length > 0 && <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: project.video ? "6px" : 0 }}>{project.links.map((l, i) => (<a key={i} href={l.url} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "13px", color: "#2c2622", textDecoration: "none", borderBottom: "0.5px solid #d6cec6", paddingBottom: "3px", fontWeight: 350, transition: "border-color 0.3s", maxWidth: "600px" }} onMouseEnter={e => e.target.style.borderColor = "#2c2622"} onMouseLeave={e => e.target.style.borderColor = "#d6cec6"}>{l.label} →</a>))}</div>}
+        {project.links && project.links.length > 0 && <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: project.video ? "6px" : 0 }}>{project.links.map((l, i) => l.pdf ? (
+          <button key={i} onClick={() => { setPdfUrl(l.url); setPdfLabel(l.label); }} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "13px", color: "#2c2622", background: "none", border: "none", borderBottom: "0.5px solid #d6cec6", paddingBottom: "3px", fontWeight: 350, cursor: "pointer", textAlign: "left", maxWidth: "600px", padding: "0 0 3px 0" }}>{l.label} →</button>
+        ) : (
+          <a key={i} href={l.url} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "13px", color: "#2c2622", textDecoration: "none", borderBottom: "0.5px solid #d6cec6", paddingBottom: "3px", fontWeight: 350, transition: "border-color 0.3s", maxWidth: "600px" }} onMouseEnter={e => e.target.style.borderColor = "#2c2622"} onMouseLeave={e => e.target.style.borderColor = "#d6cec6"}>{l.label} →</a>
+        ))}</div>}
       </div>
     </div>
   );
