@@ -25,7 +25,6 @@
     .light-card{background:rgba(250,248,245,0.72)!important;box-shadow:0 24px 80px rgba(120,100,80,0.15)!important;}
     .light-card h2,.light-card h3{color:#2c2622!important;}
     .light-card p,.light-card span,.light-card a{color:#58504a!important;}
-    #day-zone{opacity:1!important;background:rgba(250,248,245,0.95)!important;}
   </style>
 </head>
 <body>
@@ -102,11 +101,30 @@ function Transition({ children, page }) {
 function Profile() {
   const r = useReveal(6, 100);
   return (
-    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "40px 0 80px" }}>
-      <div style={{ position: "relative" }}>
+    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}>
 
-        {/* ZONE JOUR — en dessous, détermine la hauteur */}
-        <div id="day-zone" className="content-card light-card" style={{ padding: "56px 56px 80px" }}>
+      {/* ZONE NUIT — nom, titre, intro */}
+      <div className="content-card" style={{ padding: "64px 56px 56px", marginBottom: "32px" }}>
+        <div style={{ ...fa(r, 0), textAlign: "center" }}>
+          <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(32px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "normal", lineHeight: 1.1, margin: "0 0 12px", letterSpacing: "0.02em", textAlign: "center" }}>
+            Laura-Rachel
+          </h1>
+          <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(32px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "italic", lineHeight: 1.1, margin: "0 0 28px", letterSpacing: "0.02em", textAlign: "center" }}>
+            Dubos di Fiorini
+          </h1>
+        </div>
+        <div style={fa(r, 1)}>
+          <p style={{ fontFamily: "'EB Garamond',serif", fontStyle: "normal", fontSize: "22px", letterSpacing: "0.04em", lineHeight: "1.8", fontWeight: 400, margin: "0 0 48px", textAlign: "center" }}>Creative &amp; Strategic Director<br />Art &amp; Jewellery Historian</p>
+        </div>
+        <div style={fa(r, 2)}>
+          <p id="profile-intro" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", fontWeight: 300, lineHeight: 2, letterSpacing: "0.02em", margin: "0", textAlign: "center" }}>
+            French-Italian, based in Paris ﹒ Fifteen years of experience in luxury creative strategy for high jewellery, gemmology and watchmaking ﹒ Senior expertise in living heritage, history, myths and tales around the art of adornment ﹒ Fluent in French, Italian, English and German — proficient in Ancient Greek.
+          </p>
+        </div>
+      </div>
+
+      {/* ZONE JOUR — texte long, apparaît dans le beige */}
+      <div id="day-zone" className="content-card light-card" style={{ padding: "56px 56px 120px" }}>
         <div style={fa(r, 3)}>
           <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: "0 0 48px", letterSpacing: "0.02em" }}>About</h2>
           {[
@@ -114,25 +132,10 @@ function Profile() {
             "Educated at the historically renowned Bauhaus University in art and design, she further specialised in the history and philosophy of art, as well as the history of jewellery and luxury markets, at Sotheby's Institute of Art and Christie's Education. She has published art critiques in the Swiss press, offering reflections on contemporary events through the lens of major artworks, material culture, and philosophical thought. Her practice spans high-level creative direction, visual creation, writing, and narrative strategy. Working at the crossroads of art and luxury, Laura-Rachel develops cultural and storytelling frameworks for major Maisons, including Cartier, Chopard, and De Beers. Her work is rooted in research-driven storytelling, where marketing is approached as a cultural discipline — one that transmits heritage, meaning, and imagination at the highest level of the luxury ecosystem.",
             "A specialist in storytelling as a tool of projection and desire, she conceives narratives designed to make audiences dream while remaining anchored in intellectual rigour and historical depth. Through immersive experiences, films, open-world digital environments, and long-form narratives, she contributes to expanding how luxury articulates itself, extending the language of art into contemporary luxury culture.",
             "Alongside this strategic dimension, Laura-Rachel maintains an independent artistic practice as a visual artist and writer. Her work explores the tangible heritage of objects and the intangible heritage of narratives, engaging with themes of time, metamorphosis, cosmology, and the sublime. Her interdisciplinary approach draws on ancient myths, symbolic systems, and material history, translating complex cultural structures into visual and textual forms.",
-          ].map((t, i) => (<p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 2, fontWeight: 300, margin: i < 3 ? "0 0 32px" : "0", textAlign: "left" }}>{t}</p>))}
+          ].map((t, i) => (<p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 2, fontWeight: 300, margin: i < 3 ? "0 0 32px" : "0 0 0", textAlign: "left" }}>{t}</p>))}
         </div>
       </div>
 
-        {/* ZONE NUIT — par-dessus, couvre tout */}
-        <div className="content-card" id="night-panel" style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, padding: "56px 56px 56px", zIndex: 2, overflowY: "hidden" }}>
-          <div style={{ ...fa(r, 0), textAlign: "center" }}>
-            <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(32px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "normal", lineHeight: 1.1, margin: "0 0 12px", letterSpacing: "0.02em", textAlign: "center" }}>Laura-Rachel</h1>
-            <h1 style={{ fontFamily: "'EB Garamond',serif", fontSize: "clamp(32px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "italic", lineHeight: 1.1, margin: "0 0 28px", letterSpacing: "0.02em", textAlign: "center" }}>Dubos di Fiorini</h1>
-          </div>
-          <div style={fa(r, 1)}>
-            <p style={{ fontFamily: "'EB Garamond',serif", fontStyle: "normal", fontSize: "22px", letterSpacing: "0.04em", lineHeight: "1.8", fontWeight: 400, margin: "0 0 28px", textAlign: "center" }}>Creative &amp; Strategic Director<br />Art &amp; Jewellery Historian</p>
-          </div>
-          <div style={fa(r, 2)}>
-            <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", fontWeight: 300, lineHeight: 2, letterSpacing: "0.02em", margin: "0", textAlign: "center" }}>French-Italian, based in Paris ﹒ Fifteen years of experience in luxury creative strategy for high jewellery, gemmology and watchmaking ﹒ Senior expertise in living heritage, history, myths and tales around the art of adornment ﹒ Fluent in French, Italian, English and German — proficient in Ancient Greek.</p>
-          </div>
-        </div>
-
-      </div>
     </div>
   );
 }
@@ -344,17 +347,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
   <script>
   (function(){
     function init() {
-      const night = document.getElementById('night-panel');
+      const night = document.querySelector('.content-card:not(.light-card)');
       const day = document.getElementById('day-zone');
       if (!night || !day) { setTimeout(init, 100); return; }
-      night.style.setProperty('background','rgba(7,12,26,0.82)','important');
       night.style.opacity = '1';
-      day.style.setProperty('background','rgba(250,248,245,0.95)','important');
       day.style.opacity = '1';
+      night.style.setProperty('background','rgba(7,12,26,0.82)','important');
+      day.style.setProperty('background','rgba(250,248,245,0.72)','important');
       document.getElementById('root').children[0].style.background = 'transparent';
-      window.addEventListener('scroll', function() {
-        night.style.opacity = String(Math.max(0, 1 - window.scrollY / 250));
-      }, {passive: true});
     }
     if (document.readyState === 'complete') { setTimeout(init, 300); }
     else { window.addEventListener('load', function(){ setTimeout(init, 300); }); }
