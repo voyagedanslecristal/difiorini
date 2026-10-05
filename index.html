@@ -209,6 +209,30 @@ function PdfModal({ url, label, onClose }) {
   );
 }
 
+function VideoModal({ url, label, onClose }) {
+  useEffect(() => {
+    const onKey = e => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+  const m = url.match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/);
+  const src = m ? 'https://www.youtube.com/embed/' + m[1] + '?autoplay=1&rel=0&modestbranding=1' : url;
+  return ReactDOM.createPortal(
+    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(5,8,18,0.35)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
+      <div onClick={e => e.stopPropagation()} style={{ width: 'min(86vw, 1200px, calc((88vh - 52px) * 16 / 9))', background: 'rgba(240,237,232,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 24px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)', border: '0.5px solid rgba(255,255,255,0.2)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px', borderBottom: '0.5px solid rgba(214,206,198,0.4)', flexShrink: 0, background: 'rgba(200,196,190,0.4)' }}>
+          <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#2c2622', fontWeight: 400 }}>{label}</span>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '15px', color: '#2c2622', padding: '0 0 0 28px', fontFamily: "'Outfit',sans-serif" }}>✕</button>
+        </div>
+        <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9', background: '#000' }}>
+          <iframe src={src} title={label} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }} />
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+}
+
 function Gallery({ images, onClose }) {
   const [idx, setIdx] = useState(0);
   useEffect(() => {
@@ -233,8 +257,10 @@ function Gallery({ images, onClose }) {
 
 function ProjectCard({ project, isCreative, onPdf }) {
   const [showGallery, setShowGallery] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
   return (
     <div style={{ borderTop: "0.5px solid #d6cec6", padding: "40px 0 48px" }}>
+      {showVideo && project.video && <VideoModal url={project.video} label={project.title + (project.house ? ' · ' + project.house : '')} onClose={() => setShowVideo(false)} />}
       {showGallery && project.images && project.images.length > 0 && <Gallery images={project.images} onClose={() => setShowGallery(false)} />}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "8px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "16px", flexWrap: "wrap" }}>
@@ -251,7 +277,7 @@ function ProjectCard({ project, isCreative, onPdf }) {
       <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.85, color: "#58504a", fontWeight: 300, margin: "0 0 20px", maxWidth: "740px" }}>{project.text}</p>
       {project.tags && <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "18px" }}>{project.tags.map(t => (<span key={t} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "9px", letterSpacing: "2px", textTransform: "uppercase", color: "#a69e94", background: "rgba(44,38,34,0.035)", padding: "5px 14px", borderRadius: "14px", fontWeight: 400 }}>{t}</span>))}</div>}
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-        {project.video && <a href={project.video} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#2c2622", textDecoration: "none", borderBottom: "1px solid #2c2622", paddingBottom: "3px", fontWeight: 450, display: "inline-block", alignSelf: "flex-start" }}>Watch Film →</a>}
+        {project.video && <a href={project.video} onClick={e => { e.preventDefault(); setShowVideo(true); }} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#2c2622", textDecoration: "none", borderBottom: "1px solid #2c2622", paddingBottom: "3px", fontWeight: 450, display: "inline-block", alignSelf: "flex-start" }}>Watch Film →</a>}
         {project.images && project.images.length > 0 && <button onClick={() => setShowGallery(true)} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#2c2622", background: "none", border: "none", borderBottom: "1px solid #2c2622", paddingBottom: "3px", fontWeight: 450, cursor: "pointer", alignSelf: "flex-start", padding: "0 0 3px 0" }}>View Gallery →</button>}
         {project.links && project.links.length > 0 && <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: project.video ? "6px" : 0 }}>{project.links.map((l, i) => l.pdf ? (
           <button key={i} onClick={() => onPdf && onPdf(l.url, l.label)} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "13px", color: "#2c2622", background: "none", border: "none", borderBottom: "0.5px solid #d6cec6", paddingBottom: "3px", fontWeight: 350, cursor: "pointer", textAlign: "left", maxWidth: "600px", padding: "0 0 3px 0" }}>{l.label} →</button>
