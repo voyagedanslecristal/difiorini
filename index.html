@@ -76,14 +76,14 @@ const CREATIVE_WORKS = [
 ];
 
 const WRITINGS = [
-  { title: "Art Criticism", subtitle: "Critical Essays for Bilan Magazine", publication: "Bilan, Switzerland", period: "2020", role: "Research & Writing", text: "A body of critical texts positioning artworks as intellectual structures through which the world may be read, questioned, and reconfigured. Art emerges as a site where history condenses and abstract forces — time, power, violence, belief — become perceptible.", links: [
+  { title: "Art Criticism", subtitle: "Critical Essays for Bilan Magazine", publication: "Bilan", period: "2020", role: "Research & Writing", text: "A body of critical texts positioning artworks as intellectual structures through which the world may be read, questioned, and reconfigured. Art emerges as a site where history condenses and abstract forces — time, power, violence, belief — become perceptible.", links: [
     { label: "Jackson Pollock — Abstract Expressionism as CIA Trojan Horse", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/lexpressionnisme-abstrait-cheval-de-troie-de-la-cia" },
     { label: "Géricault — Le Radeau de la Méduse", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/le-radeau-de-la-meduse-naufrage-theatral-dun-monde-en-declin" },
     { label: "Dalí — La Persistance de la Mémoire", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/la-persistance-de-la-memoire-lorfevre-et-le-temps" },
     { label: "Basquiat — From Pictorial Rage to Social Revolt", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/de-basquiat-a-black-lives-matter-de-la-rage-picturale-a-la-revolte-sociale" },
     { label: "Brueghel — The Pandemic through the Prism of Art", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/le-fleau-pandemique-a-travers-le-prisme-de-lart" },
   ]},
-  { title: "Naoshima & the Chichu Art Museum", subtitle: "Art Criticism on Key Masterpieces", publication: "Independent Research", period: "2021–2024", role: "Research & Writing", text: "Works by Claude Monet, James Turrell, and Walter De Maria examined as threshold experiences — sites where art ceases to be an object of contemplation and becomes an instrument of transformation.", links: [{ label: "Read the manuscript", url: "http://e.pc.cd/Oiny6alK", pdf: true }] },
+  { title: "The Art Island", subtitle: "Art Criticism on Key Masterpieces", publication: "Independent", period: "2021–2024", role: "Research & Writing", text: "Works by Claude Monet, James Turrell, and Walter De Maria examined as threshold experiences — sites where art ceases to be an object of contemplation and becomes an instrument of transformation.", links: [{ label: "Read the manuscript", url: "http://e.pc.cd/Oiny6alK", pdf: true }] },
   { title: "The Power of Myths", subtitle: "Research-Driven Authorial Writing on History, Myths & Tales", publication: "Cartier", period: "2022", role: "Research, Writing & Curation", text: "Love, beauty, fertility, metamorphosis, magic, and the figure of the panther articulated as active symbolic forces — jewellery appearing as a medium of transformation and meaning.", links: [{ label: "Read", url: "http://e.pc.cd/dJxy6alK", pdf: true }] },
   { title: "Living Heritage Conferences", subtitle: "Research into Cultural Heritage, Mythological Systems & Femininity", publication: "Cartier Hong Kong", period: "2022", role: "Research & Conferences", text: "A research and conference programme engaging with Chinese cosmogonies, Taoist and Confucian philosophies, calligraphic space, the logic of ornament, and the relationship between nature, circulation, and transformation.", links: [
     { label: "Conference 1 — Hong Kong City, Centre and Circle", url: "https://youtu.be/pIFQgZ2AE1g" },
@@ -272,10 +272,9 @@ function ProjectCard({ project, isCreative, onPdf }) {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "8px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "16px", flexWrap: "wrap" }}>
           <h3 style={{ fontFamily: "'EB Garamond',serif", fontSize: "26px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: 0 }}>{project.title}</h3>
-          {!isCreative && <span style={{ fontFamily: "'EB Garamond',serif", fontSize: "14px", color: "#a69e94" }}>{project.publication}</span>}
         </div>
-        <span style={{ fontFamily: "'EB Garamond',serif", fontSize: isCreative ? "17px" : "13px", letterSpacing: "2px", color: "#a69e94", fontStyle: "italic", fontWeight: 400, flexShrink: 0 }}>
-          {isCreative ? project.house : project.period}
+        <span style={{ fontFamily: "'EB Garamond',serif", fontSize: "17px", letterSpacing: "2px", color: "#a69e94", fontStyle: "italic", fontWeight: 400, flexShrink: 0 }}>
+          {isCreative ? project.house : project.publication}
         </span>
       </div>
       <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "11px", letterSpacing: "2px", textTransform: "uppercase", color: "#b4aaa0", margin: "6px 0 0", fontWeight: 350 }}>{project.subtitle}</p>
