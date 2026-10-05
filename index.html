@@ -430,16 +430,14 @@ function ArticleModal({ article, onClose }) {
         <div style={{ flex: 1, overflowY: 'auto', padding: '48px 56px' }}>
           <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#a69e94', margin: '0 0 24px' }}>{article.period}</p>
           <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: '34px', fontWeight: 400, color: '#2c2622', margin: '0 0 40px', lineHeight: 1.25 }}>{article.title}</h2>
+          {article.image && <img src={article.image} style={{ display: 'block', width: '100%', height: 'auto', margin: '0 0 40px' }} />}
           {article.text
             ? article.text.split('\n\n').map((p, i) => <p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: '15px', lineHeight: 2, fontWeight: 300, color: '#3a3430', margin: '0 0 24px' }}>{p}</p>)
             : article.url
-              ? <div>
-                  {article.image && <img src={article.image} style={{ display: 'block', maxWidth: '100%', maxHeight: '46vh', objectFit: 'contain', margin: '0 auto 32px' }} />}
-                  <p style={{ fontFamily: "'EB Garamond',serif", fontSize: '18px', color: '#58504a', fontStyle: 'italic', margin: '0 0 24px' }}>Published in {article.publication}, {article.period}.</p>
-                  <a href={article.url} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10.5px', letterSpacing: '2.5px', textTransform: 'uppercase', color: '#2c2622', textDecoration: 'none', borderBottom: '1px solid #2c2622', paddingBottom: '3px', fontWeight: 450 }}>Read the article on {article.publication} →</a>
-                </div>
+              ? <p style={{ fontFamily: "'EB Garamond',serif", fontSize: '18px', color: '#58504a', fontStyle: 'italic', margin: '0 0 24px' }}>Published in {article.publication}, {article.period}.</p>
               : <p style={{ fontFamily: "'EB Garamond',serif", fontSize: '18px', color: '#a69e94', fontStyle: 'italic' }}>Text coming soon.</p>
           }
+          {article.url && <a href={article.url} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: '16px', fontFamily: "'Outfit',sans-serif", fontSize: '10.5px', letterSpacing: '2.5px', textTransform: 'uppercase', color: '#2c2622', textDecoration: 'none', borderBottom: '1px solid #2c2622', paddingBottom: '3px', fontWeight: 450 }}>Read the article on {article.publication} →</a>}
         </div>}
       </div>
     </div>,
