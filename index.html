@@ -438,7 +438,7 @@ function TextsEssays() {
             >
               <div style={{ flex: 1, minHeight: 0, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 {article.image
-                  ? <img src={article.image} style={{ position: "absolute", top: "24px", left: "24px", width: "calc(100% - 48px)", height: "calc(100% - 48px)", objectFit: "contain", display: "block", filter: "grayscale(100%)", transition: "filter 0.5s ease" }}
+                  ? <img src={article.image} style={{ position: "absolute", top: "24px", left: "24px", width: "calc(100% - 48px)", height: "calc(100% - 48px)", objectFit: "cover", display: "block", filter: "grayscale(100%)", transition: "filter 0.5s ease" }}
                       onMouseEnter={e => e.target.style.filter = "grayscale(0%)"}
                       onMouseLeave={e => e.target.style.filter = "grayscale(100%)"}
                       onError={e => e.target.style.display='none'} />
