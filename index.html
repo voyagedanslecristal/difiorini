@@ -58,11 +58,11 @@ const TEXT_SIZES = [
 const SECTIONS = ["Profile", "Direction", "Research", "Writing", "Contact"];
 
 const TEXTS = [
-  { title: "L'Expressionnisme Abstrait — Cheval de Troie de la CIA", category: "Art Criticism", publication: "Bilan Magazine", period: "2020", image: "pollock.jpg", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/lexpressionnisme-abstrait-cheval-de-troie-de-la-cia", text: "" },
-  { title: "Le Radeau de la Méduse — Naufrage Théâtral d'un Monde en Déclin", category: "Art Criticism", publication: "Bilan Magazine", period: "2020", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg/960px-JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/le-radeau-de-la-meduse-naufrage-theatral-dun-monde-en-declin", text: "" },
-  { title: "La Persistance de la Mémoire — L'Orfèvre et le Temps", category: "Art Criticism", publication: "Bilan Magazine", period: "2020", image: "https://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/la-persistance-de-la-memoire-lorfevre-et-le-temps", text: "" },
-  { title: "De Basquiat à Black Lives Matter — De la Rage Picturale à la Révolte Sociale", category: "Art Criticism", publication: "Bilan Magazine", period: "2020", image: "", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/de-basquiat-a-black-lives-matter-de-la-rage-picturale-a-la-revolte-sociale", text: "" },
-  { title: "Le Fléau Pandémique à Travers le Prisme de l'Art", category: "Art Criticism", publication: "Bilan Magazine", period: "2020", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/The_Triumph_of_Death_by_Pieter_Bruegel_the_Elder.jpg/960px-The_Triumph_of_Death_by_Pieter_Bruegel_the_Elder.jpg", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/le-fleau-pandemique-a-travers-le-prisme-de-lart", text: "" },
+  { title: "L'Expressionnisme Abstrait — Cheval de Troie de la CIA", category: "Art Criticism", publication: "Bilan Magazine", period: "2020", image: "pollock.jpg", textFile: "critique-pollock.txt", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/lexpressionnisme-abstrait-cheval-de-troie-de-la-cia", text: "" },
+  { title: "Le Radeau de la Méduse — Naufrage Théâtral d'un Monde en Déclin", category: "Art Criticism", publication: "Bilan Magazine", period: "2020", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg/960px-JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg", textFile: "critique-radeau.txt", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/le-radeau-de-la-meduse-naufrage-theatral-dun-monde-en-declin", text: "" },
+  { title: "La Persistance de la Mémoire — L'Orfèvre et le Temps", category: "Art Criticism", publication: "Bilan Magazine", period: "2020", image: "writing-dali.jpg", textFile: "critique-persistance.txt", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/la-persistance-de-la-memoire-lorfevre-et-le-temps", text: "" },
+  { title: "De Basquiat à Black Lives Matter — De la Rage Picturale à la Révolte Sociale", category: "Art Criticism", publication: "Bilan Magazine", period: "2020", image: "writing-basquiat.jpg", textFile: "critique-basquiat.txt", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/de-basquiat-a-black-lives-matter-de-la-rage-picturale-a-la-revolte-sociale", text: "" },
+  { title: "Le Fléau Pandémique à Travers le Prisme de l'Art", category: "Art Criticism", publication: "Bilan Magazine", period: "2020", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/The_Triumph_of_Death_by_Pieter_Bruegel_the_Elder.jpg/960px-The_Triumph_of_Death_by_Pieter_Bruegel_the_Elder.jpg", textFile: "critique-fleau.txt", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/le-fleau-pandemique-a-travers-le-prisme-de-lart", text: "" },
   { title: "Naoshima & the Chichu Art Museum", category: "Essay", publication: "Independent", period: "2021–2024", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Chichu_art_museum01s2560.jpg/960px-Chichu_art_museum01s2560.jpg", pdf: "lile-de-lart.pdf", text: "" },
   { title: "The Power of Myths", category: "Research", publication: "Cartier", period: "2022", image: "writing-power-of-myths.jpg", pdf: "cartier-myths-2023.pdf", text: "" },
 ];
@@ -413,12 +413,30 @@ function Contact() {
   );
 }
 
+function Inline({ text }) {
+  const parts = text.split(/(<\/?i>)/);
+  let it = false; const out = [];
+  parts.forEach((t, k) => { if (t === '<i>') it = true; else if (t === '</i>') it = false; else if (t) out.push(it ? <em key={k}>{t}</em> : <React.Fragment key={k}>{t}</React.Fragment>); });
+  return out;
+}
+
+function RichText({ text }) {
+  return text.split('\n\n').map((p, i) => {
+    if (p.startsWith('## ')) return <h3 key={i} style={{ fontFamily: "'EB Garamond',serif", fontSize: '24px', fontWeight: 400, fontStyle: 'italic', color: '#2c2622', margin: '48px 0 20px', lineHeight: 1.3 }}><Inline text={p.slice(3)} /></h3>;
+    if (p.startsWith('**')) return <p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: '15px', lineHeight: 1.9, fontWeight: 500, color: '#2c2622', margin: '32px 0 16px' }}><Inline text={p.slice(2)} /></p>;
+    return <p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: '15px', lineHeight: 2, fontWeight: 300, color: '#3a3430', margin: '0 0 24px', textAlign: 'justify', hyphens: 'auto' }}><Inline text={p} /></p>;
+  });
+}
+
 function ArticleModal({ article, onClose }) {
   useEffect(() => {
     const onKey = e => { if (e.key === 'Escape') onClose(); };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
+  const [loaded, setLoaded] = useState(null);
+  useEffect(() => { if (article.textFile) fetch(article.textFile).then(r => r.text()).then(setLoaded).catch(() => {}); }, [article.textFile]);
+  const body = article.text || loaded;
   return ReactDOM.createPortal(
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(5,8,18,0.35)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
       <div onClick={e => e.stopPropagation()} style={{ width: article.pdf ? '86vw' : '72vw', maxWidth: article.pdf ? '1300px' : '860px', height: '88vh', background: 'rgba(240,237,232,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 24px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)', border: '0.5px solid rgba(255,255,255,0.2)' }}>
@@ -431,8 +449,10 @@ function ArticleModal({ article, onClose }) {
           <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#a69e94', margin: '0 0 24px' }}>{article.period}</p>
           <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: '34px', fontWeight: 400, color: '#2c2622', margin: '0 0 40px', lineHeight: 1.25 }}>{article.title}</h2>
           {article.image && <img src={article.image} style={{ display: 'block', width: '100%', height: 'auto', margin: '0 0 40px' }} />}
-          {article.text
-            ? article.text.split('\n\n').map((p, i) => <p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: '15px', lineHeight: 2, fontWeight: 300, color: '#3a3430', margin: '0 0 24px' }}>{p}</p>)
+          {body
+            ? <RichText text={body} />
+            : article.textFile
+              ? <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#8a8078' }}>Loading…</p>
             : article.url
               ? <p style={{ fontFamily: "'EB Garamond',serif", fontSize: '18px', color: '#58504a', fontStyle: 'italic', margin: '0 0 24px' }}>Published in {article.publication}, {article.period}.</p>
               : <p style={{ fontFamily: "'EB Garamond',serif", fontSize: '18px', color: '#a69e94', fontStyle: 'italic' }}>Text coming soon.</p>
