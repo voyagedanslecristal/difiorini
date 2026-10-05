@@ -30,6 +30,7 @@
 <body>
   <div id="cur"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><polygon id="cp" points="7,1.5 12.5,7 7,12.5 1.5,7" fill="none" stroke="#002B7F" stroke-width="1.2" stroke-linejoin="miter" stroke-miterlimit="50"/></svg></div>
   <div id="root"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
@@ -64,7 +65,6 @@ const TEXTS = [
   { title: "Le Fléau Pandémique à Travers le Prisme de l'Art", category: "Art Criticism", publication: "Bilan Magazine", period: "2020", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/The_Triumph_of_Death_by_Pieter_Bruegel_the_Elder.jpg/960px-The_Triumph_of_Death_by_Pieter_Bruegel_the_Elder.jpg", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/le-fleau-pandemique-a-travers-le-prisme-de-lart", text: "" },
   { title: "Naoshima & the Chichu Art Museum", category: "Essay", publication: "Independent", period: "2021–2024", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Chichu_art_museum01s2560.jpg/960px-Chichu_art_museum01s2560.jpg", pdf: "lile-de-lart.pdf", text: "" },
   { title: "The Power of Myths", category: "Research", publication: "Cartier", period: "2022", image: "writing-power-of-myths.jpg", pdf: "cartier-myths-2023.pdf", text: "" },
-  { title: "Ars Electronica", category: "Critical Research", publication: "Cartier", period: "2022", image: "writing-ars-electronica.jpg", pdf: "ars-electronica-trend-report.pdf", text: "" },
 ];
 
 const CREATIVE_WORKS = [
@@ -189,6 +189,58 @@ function Profile() {
   );
 }
 
+function PdfViewer({ url }) {
+  const boxRef = React.useRef(null);
+  const [pages, setPages] = useState(null);
+  const [failed, setFailed] = useState(false);
+  const docRef = React.useRef(null);
+  useEffect(() => {
+    let cancelled = false;
+    const lib = window.pdfjsLib;
+    if (!lib) { setFailed(true); return; }
+    lib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    lib.getDocument(url).promise.then(async doc => {
+      if (cancelled) return;
+      docRef.current = doc;
+      const first = await doc.getPage(1);
+      const vp = first.getViewport({ scale: 1 });
+      const box = boxRef.current;
+      const portrait = vp.height > vp.width;
+      const w = Math.min((box ? box.clientWidth : 900) - 96, portrait ? 760 : 1100);
+      setPages({ n: doc.numPages, w, ratio: vp.height / vp.width });
+    }).catch(() => setFailed(true));
+    return () => { cancelled = true; if (docRef.current) docRef.current.destroy(); };
+  }, [url]);
+  useEffect(() => {
+    if (!pages || !boxRef.current) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const obs = new IntersectionObserver(entries => entries.forEach(en => {
+      const el = en.target;
+      if (!en.isIntersecting || el.dataset.done) return;
+      el.dataset.done = '1';
+      docRef.current.getPage(+el.dataset.p).then(page => {
+        const base = page.getViewport({ scale: 1 });
+        const vp = page.getViewport({ scale: pages.w / base.width * dpr });
+        const c = document.createElement('canvas');
+        c.width = vp.width; c.height = vp.height;
+        c.style.cssText = 'width:100%;height:auto;display:block';
+        page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise.then(() => { el.style.height = 'auto'; el.innerHTML = ''; el.appendChild(c); });
+      });
+    }), { root: boxRef.current, rootMargin: '1200px 0px' });
+    boxRef.current.querySelectorAll('[data-p]').forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  }, [pages]);
+  return (
+    <div ref={boxRef} style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '40px 48px 56px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '28px' }}>
+      {failed && <a href={url} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10.5px', letterSpacing: '2.5px', textTransform: 'uppercase', color: '#2c2622', borderBottom: '1px solid #2c2622', paddingBottom: '3px', textDecoration: 'none', marginTop: '40px' }}>Open the document →</a>}
+      {!pages && !failed && <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#8a8078', marginTop: '40px' }}>Loading…</p>}
+      {pages && Array.from({ length: pages.n }, (_, i) => (
+        <div key={i} data-p={i + 1} style={{ width: pages.w + 'px', maxWidth: '100%', height: Math.round(pages.w * pages.ratio) + 'px', background: '#fff', boxShadow: '0 10px 36px rgba(44,38,34,0.16)', flexShrink: 0 }} />
+      ))}
+    </div>
+  );
+}
+
 function PdfModal({ url, label, onClose }) {
   useEffect(() => {
     const onKey = e => { if (e.key === 'Escape') onClose(); };
@@ -202,7 +254,7 @@ function PdfModal({ url, label, onClose }) {
           <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#2c2622', fontWeight: 400 }}>{label}</span>
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '15px', color: '#2c2622', padding: '0 0 0 28px', fontFamily: "'Outfit',sans-serif" }}>✕</button>
         </div>
-        <iframe src={url} style={{ flex: 1, border: 'none', width: '100%' }} />
+        <PdfViewer url={url} />
       </div>
     </div>,
     document.body
@@ -374,7 +426,7 @@ function ArticleModal({ article, onClose }) {
           <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#2c2622', fontWeight: 400 }}>{article.category} · {article.publication}</span>
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '15px', color: '#2c2622', padding: '0 0 0 28px' }}>✕</button>
         </div>
-        {article.pdf ? <iframe src={article.pdf} title={article.title} style={{ flex: 1, border: 'none', width: '100%' }} /> :
+        {article.pdf ? <PdfViewer url={article.pdf} /> :
         <div style={{ flex: 1, overflowY: 'auto', padding: '48px 56px' }}>
           <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#a69e94', margin: '0 0 24px' }}>{article.period}</p>
           <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: '34px', fontWeight: 400, color: '#2c2622', margin: '0 0 40px', lineHeight: 1.25 }}>{article.title}</h2>
@@ -382,7 +434,7 @@ function ArticleModal({ article, onClose }) {
             ? article.text.split('\n\n').map((p, i) => <p key={i} style={{ fontFamily: "'Outfit',sans-serif", fontSize: '15px', lineHeight: 2, fontWeight: 300, color: '#3a3430', margin: '0 0 24px' }}>{p}</p>)
             : article.url
               ? <div>
-                  {article.image && <img src={article.image} style={{ display: 'block', maxWidth: '100%', maxHeight: '46vh', objectFit: 'contain', margin: '0 0 32px' }} />}
+                  {article.image && <img src={article.image} style={{ display: 'block', maxWidth: '100%', maxHeight: '46vh', objectFit: 'contain', margin: '0 auto 32px' }} />}
                   <p style={{ fontFamily: "'EB Garamond',serif", fontSize: '18px', color: '#58504a', fontStyle: 'italic', margin: '0 0 24px' }}>Published in {article.publication}, {article.period}.</p>
                   <a href={article.url} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10.5px', letterSpacing: '2.5px', textTransform: 'uppercase', color: '#2c2622', textDecoration: 'none', borderBottom: '1px solid #2c2622', paddingBottom: '3px', fontWeight: 450 }}>Read the article on {article.publication} →</a>
                 </div>
@@ -418,8 +470,7 @@ function TextsEssays() {
     {col:'span 1',row:'span 1'},
     {col:'span 2',row:'span 1'},
     {col:'span 1',row:'span 1'},
-    {col:'span 1',row:'span 1'},
-    {col:'span 1',row:'span 1'},
+    {col:'span 2',row:'span 1'},
   ];
   return (
     <div style={{ maxWidth: "1100px", margin: "72px auto 0", padding: "80px 40px 120px" }}>
