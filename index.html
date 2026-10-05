@@ -71,7 +71,7 @@ const CREATIVE_WORKS = [
   { title: "Voyage through the Diamond Realm", subtitle: "Film Installation", house: "De Beers", period: "2025–2026", locations: "Frieze Masters London · India Art Fair · Shanghai · Los Angeles · New York", role: "Concept, Research, Creative Direction & Film", text: "An immersive cinematic and spatial experience tracing the origins of natural diamonds through history, myth, and symbolic narratives. From their birth as stardust in the fiery hearts of stars to their discovery within rivers, deserts, and polar landscapes. An art book was conceived alongside the experience, translating the film's visual and intellectual universe into a printed object.", tags: ["Film", "Installation", "Art Book", "Scenography", "Press"], video: "https://www.youtube.com/watch?v=h8Md9xaytuQ", images: [] },
   { title: "The Mythological Labyrinth", subtitle: "Open-World Narrative", house: "Cartier", period: "2022", locations: "Paris · Geneva", role: "Concept, Research & Narrative Direction", text: "An original narrative universe structured around interconnected realms and gardens — spaces dedicated to love, beauty, fertility, metamorphosis, craftsmanship, and initiation. At its core, the Labyrinth mirrors the act of jewellery creation itself: an ordering of the primordial into form, light, and symbol.", tags: ["Narrative Design", "Mythology", "Immersive", "Creative Direction", "Moodboards"], video: "https://www.youtube.com/watch?v=dldoGX0GERg", images: [] },
   { title: "The Panther Myth", subtitle: "Triptych Film", house: "Cartier", period: "2023", locations: "Marrakech", role: "Creative Direction, Research & Filmmaking", text: "A cinematic exploration of the panther as a mythological, cultural, and symbolic figure at the core of Cartier's imaginary. The film unfolds in three interrelated movements, tracing the panther across deep time and civilisations. The panther appears as goddess, predator, guide, alter ego, and creative force — never illustrated, always invoked.", tags: ["Film", "Performance Capture", "Mythology", "Triptych Installation"], video: "https://www.youtube.com/watch?v=j68485v3Y74", images: [] },
-  { title: "Living Heritage Tarot", subtitle: "Research & Card Game inspired by the Italian Renaissance Philosophical Tarot", house: "Cartier", period: "2023", locations: "Paris", role: "Research, Creative Direction & Illustration", text: "A research-driven visual project situating the tarot within the intellectual climate of nineteenth-century Paris. The project draws a parallel between the tarot as a composed system and jewellery as an object of transformation: both operate through precision, symbolism, and the controlled orchestration of material and meaning.", tags: ["Research", "Illustration", "Visual Art", "Heritage"], images: [] },
+  { title: "Living Heritage Tarot", subtitle: "Research & Card Game inspired by the Italian Renaissance Philosophical Tarot", house: "Cartier", period: "2023", locations: "Paris", role: "Research, Creative Direction & Illustration", text: "A research-driven visual project situating the tarot within the intellectual climate of nineteenth-century Paris. The project draws a parallel between the tarot as a composed system and jewellery as an object of transformation: both operate through precision, symbolism, and the controlled orchestration of material and meaning.", tags: ["Research", "Illustration", "Visual Art", "Heritage"], images: ["tarot-00-mat.jpg", "tarot-01-artisan.jpg"], galleryLabel: "View Cards" },
   { title: "Living Heritage Cosmogony", subtitle: "Open-World Metaverse", house: "Cartier", period: "2023", locations: "Paris", role: "Creative Direction & Production", text: "An open-world digital universe structured around a constellation of islands, landscapes, and symbolic spaces, each connected to a facet of the Maison's history. The structure of interconnected islands — above and below the surface — serves as metaphor for the visible and invisible layers of a Maison's history.", tags: ["Metaverse", "3D", "Heritage", "Creative Direction"], video: "https://www.youtube.com/watch?v=whXwxdSS8gc", images: [] },
 ];
 
@@ -233,25 +233,32 @@ function VideoModal({ url, label, onClose }) {
   );
 }
 
-function Gallery({ images, onClose }) {
+function Gallery({ images, label, onClose }) {
   const [idx, setIdx] = useState(0);
+  const prev = () => setIdx(i => (i-1+images.length) % images.length);
+  const next = () => setIdx(i => (i+1) % images.length);
   useEffect(() => {
-    const onKey = e => { if (e.key === 'Escape') onClose(); if (e.key === 'ArrowRight') setIdx(i => (i+1) % images.length); if (e.key === 'ArrowLeft') setIdx(i => (i-1+images.length) % images.length); };
+    const onKey = e => { if (e.key === 'Escape') onClose(); if (e.key === 'ArrowRight') next(); if (e.key === 'ArrowLeft') prev(); };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [images.length]);
-  return (
-    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(5,8,18,0.96)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-      <div onClick={e => e.stopPropagation()} style={{ position: 'relative', maxWidth: '85vw', maxHeight: '78vh' }}>
-        <img src={images[idx]} style={{ maxWidth: '85vw', maxHeight: '78vh', objectFit: 'contain', display: 'block' }} />
-        {images.length > 1 && <>
-          <button onClick={() => setIdx(i => (i-1+images.length) % images.length)} style={{ position: 'absolute', left: '-56px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: '#eee8d8', fontSize: '24px', cursor: 'pointer', padding: '8px' }}>←</button>
-          <button onClick={() => setIdx(i => (i+1) % images.length)} style={{ position: 'absolute', right: '-56px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: '#eee8d8', fontSize: '24px', cursor: 'pointer', padding: '8px' }}>→</button>
-        </>}
+  const arrow = { background: 'none', border: 'none', cursor: 'pointer', fontSize: '22px', color: '#2c2622', padding: '12px 18px', fontFamily: "'Outfit',sans-serif", flexShrink: 0 };
+  return ReactDOM.createPortal(
+    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(5,8,18,0.35)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
+      <div onClick={e => e.stopPropagation()} style={{ width: 'min(86vw, 760px)', height: '88vh', background: 'rgba(240,237,232,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 24px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)', border: '0.5px solid rgba(255,255,255,0.2)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px', borderBottom: '0.5px solid rgba(214,206,198,0.4)', flexShrink: 0, background: 'rgba(200,196,190,0.4)' }}>
+          <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#2c2622', fontWeight: 400 }}>{label}</span>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '15px', color: '#2c2622', padding: '0 0 0 28px', fontFamily: "'Outfit',sans-serif" }}>✕</button>
+        </div>
+        <div style={{ flex: 1, minHeight: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '28px 8px 8px' }}>
+          {images.length > 1 && <button onClick={prev} aria-label="Previous" style={arrow}>←</button>}
+          <img src={images[idx]} style={{ maxWidth: '100%', maxHeight: '100%', minWidth: 0, objectFit: 'contain', display: 'block', boxShadow: '0 12px 40px rgba(44,38,34,0.18)' }} />
+          {images.length > 1 && <button onClick={next} aria-label="Next" style={arrow}>→</button>}
+        </div>
+        <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', color: '#58504a', margin: 0, padding: '10px 0 18px', textAlign: 'center', flexShrink: 0 }}>{idx+1} / {images.length}</p>
       </div>
-      <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: '11px', letterSpacing: '2px', color: '#a69e94', marginTop: '20px' }}>{idx+1} / {images.length}</p>
-      <button onClick={onClose} style={{ position: 'fixed', top: '24px', right: '32px', background: 'none', border: 'none', color: '#eee8d8', fontSize: '20px', cursor: 'pointer', fontFamily: "'Outfit',sans-serif", letterSpacing: '2px' }}>✕</button>
-    </div>
+    </div>,
+    document.body
   );
 }
 
@@ -261,7 +268,7 @@ function ProjectCard({ project, isCreative, onPdf }) {
   return (
     <div style={{ borderTop: "0.5px solid #d6cec6", padding: "40px 0 48px" }}>
       {showVideo && project.video && <VideoModal url={project.video} label={project.title + (project.house ? ' · ' + project.house : '')} onClose={() => setShowVideo(false)} />}
-      {showGallery && project.images && project.images.length > 0 && <Gallery images={project.images} onClose={() => setShowGallery(false)} />}
+      {showGallery && project.images && project.images.length > 0 && <Gallery images={project.images} label={project.title + (project.house ? ' · ' + project.house : '')} onClose={() => setShowGallery(false)} />}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "8px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "16px", flexWrap: "wrap" }}>
           <h3 style={{ fontFamily: "'EB Garamond',serif", fontSize: "26px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: 0 }}>{project.title}</h3>
@@ -278,7 +285,7 @@ function ProjectCard({ project, isCreative, onPdf }) {
       {project.tags && <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "18px" }}>{project.tags.map(t => (<span key={t} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "9px", letterSpacing: "2px", textTransform: "uppercase", color: "#a69e94", background: "rgba(44,38,34,0.035)", padding: "5px 14px", borderRadius: "14px", fontWeight: 400 }}>{t}</span>))}</div>}
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
         {project.video && <a href={project.video} onClick={e => { e.preventDefault(); setShowVideo(true); }} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#2c2622", textDecoration: "none", borderBottom: "1px solid #2c2622", paddingBottom: "3px", fontWeight: 450, display: "inline-block", alignSelf: "flex-start" }}>Watch Film →</a>}
-        {project.images && project.images.length > 0 && <button onClick={() => setShowGallery(true)} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#2c2622", background: "none", border: "none", borderBottom: "1px solid #2c2622", paddingBottom: "3px", fontWeight: 450, cursor: "pointer", alignSelf: "flex-start", padding: "0 0 3px 0" }}>View Gallery →</button>}
+        {project.images && project.images.length > 0 && <button onClick={() => setShowGallery(true)} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#2c2622", background: "none", border: "none", borderBottom: "1px solid #2c2622", paddingBottom: "3px", fontWeight: 450, cursor: "pointer", alignSelf: "flex-start", padding: "0 0 3px 0" }}>{project.galleryLabel || "View Gallery"} →</button>}
         {project.links && project.links.length > 0 && <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: project.video ? "6px" : 0 }}>{project.links.map((l, i) => l.pdf ? (
           <button key={i} onClick={() => onPdf && onPdf(l.url, l.label)} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "13px", color: "#2c2622", background: "none", border: "none", borderBottom: "0.5px solid #d6cec6", paddingBottom: "3px", fontWeight: 350, cursor: "pointer", textAlign: "left", maxWidth: "600px", padding: "0 0 3px 0" }}>{l.label} →</button>
         ) : (
