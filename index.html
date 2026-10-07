@@ -90,10 +90,10 @@ const WRITINGS = [
   { title: "The Art Island", subtitle: "Art Criticism on Key Masterpieces", publication: "Independent", period: "2021–2024", role: "Research & Writing", text: "Works by Claude Monet, James Turrell, and Walter De Maria examined as threshold experiences — sites where art ceases to be an object of contemplation and becomes an instrument of transformation.", links: [{ label: "Read the manuscript", url: "lile-de-lart.pdf", pdf: true }] },
   { title: "The Power of Myths", subtitle: "Research-Driven Authorial Writing on History, Myths & Tales", publication: "Cartier", period: "2022", role: "Research, Writing & Curation", text: "Love, beauty, fertility, metamorphosis, magic, and the figure of the panther articulated as active symbolic forces — jewellery appearing as a medium of transformation and meaning.", links: [{ label: "Read", url: "cartier-myths-2023.pdf", pdf: true }] },
   { title: "Living Heritage Conferences", subtitle: "Research into Cultural Heritage, Mythological Systems & Femininity", publication: "Cartier", period: "2022", role: "Research & Conferences", text: "A research and conference programme engaging with Chinese cosmogonies, Taoist and Confucian philosophies, calligraphic space, the logic of ornament, and the relationship between nature, circulation, and transformation.", links: [
-    { label: "Conference 1 — Hong Kong City, Centre and Circle", url: "https://youtu.be/pIFQgZ2AE1g" },
-    { label: "Conference 2 — Hidden Light of the Feminine", url: "https://youtu.be/vDfBO_kukb8" },
-    { label: "Conference 3 — Building Bridges over Blurred Borders", url: "https://youtu.be/pD7R7GJmcF4" },
-    { label: "Conference 4 — Like the Sun, Like the Moon, Like Water, Like Gold", url: "https://youtu.be/C7pl6-ag4Ik" },
+    { label: "Conference 1 — Hong Kong City, Centre and Circle", url: "https://youtu.be/qjkWUEZJTXM" },
+    { label: "Conference 2 — Hidden Light of the Feminine", url: "https://youtu.be/I0Z8Prd59AI" },
+    { label: "Conference 3 — Building Bridges over Blurred Borders", url: "https://youtu.be/EgT5mH1BftA" },
+    { label: "Conference 4 — Like the Sun, Like the Moon, Like Water, Like Gold", url: "https://youtu.be/E_N3N_p1xOU" },
   ]},
   { title: "Ars Electronica", subtitle: "Critical Research on Art, Technology & Society", publication: "Cartier", period: "2022", role: "Research, Critical Analysis & Dialogues", text: "A critical cartography where artificial intelligence, ecological urgency, post-human imaginaries, and technological acceleration are approached as interconnected expressions of a broader cultural shift — technological futures understood as cultural and ethical landscapes shaped as much by imagination and myth as by code and computation.", links: [{ label: "Read more", url: "ars-electronica-trend-report.pdf", pdf: true }] },
   { title: "Ukiyo-e: Art & Philosophy Conference", subtitle: "Japonism Event with Cartier & Sorbonne University", publication: "Imprimerie du Marais", period: "2021", role: "Strategy, Creative Direction & Event Management", text: "A site-specific conference held in a historic Parisian printing manufactory. The programme included a keynote by Cyrille Vigneron alongside an intervention by Sophie Basch, Sorbonne professor and Proust specialist, establishing bridges between Japanese art, French literature, and Western visual thought.", links: [] },
@@ -321,9 +321,11 @@ function Gallery({ images, label, onClose }) {
 function ProjectCard({ project, isCreative, onPdf }) {
   const [showGallery, setShowGallery] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
+  const [linkVideo, setLinkVideo] = useState(null);
   return (
     <div style={{ borderTop: "0.5px solid #d6cec6", padding: "40px 0 48px" }}>
       {showVideo && project.video && <VideoModal url={project.video} label={project.title + (project.house ? ' · ' + project.house : '')} onClose={() => setShowVideo(false)} />}
+      {linkVideo && <VideoModal url={linkVideo.url} label={linkVideo.label} onClose={() => setLinkVideo(null)} />}
       {showGallery && project.images && project.images.length > 0 && <Gallery images={project.images} label={project.title + (project.house ? ' · ' + project.house : '')} onClose={() => setShowGallery(false)} />}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "8px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "16px", flexWrap: "wrap" }}>
@@ -343,6 +345,8 @@ function ProjectCard({ project, isCreative, onPdf }) {
         {project.images && project.images.length > 0 && <button onClick={() => setShowGallery(true)} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#2c2622", background: "none", border: "none", borderBottom: "1px solid #2c2622", paddingBottom: "3px", fontWeight: 450, cursor: "pointer", alignSelf: "flex-start", padding: "0 0 3px 0" }}>{project.galleryLabel || "View Gallery"} →</button>}
         {project.links && project.links.length > 0 && <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: project.video ? "6px" : 0 }}>{project.links.map((l, i) => l.pdf ? (
           <button key={i} onClick={() => onPdf && onPdf(l.url, l.label)} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "13px", color: "#2c2622", background: "none", border: "none", borderBottom: "0.5px solid #d6cec6", paddingBottom: "3px", fontWeight: 350, cursor: "pointer", textAlign: "left", maxWidth: "600px", padding: "0 0 3px 0" }}>{l.label} →</button>
+        ) : /youtu\.be\/|youtube\.com\//.test(l.url) ? (
+          <button key={i} onClick={() => setLinkVideo({ url: l.url, label: project.title + ' · ' + l.label })} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "13px", color: "#2c2622", background: "none", border: "none", borderBottom: "0.5px solid #d6cec6", paddingBottom: "3px", fontWeight: 350, cursor: "pointer", textAlign: "left", maxWidth: "600px", padding: "0 0 3px 0", transition: "border-color 0.3s" }} onMouseEnter={e => e.target.style.borderColor = "#2c2622"} onMouseLeave={e => e.target.style.borderColor = "#d6cec6"}>{l.label} →</button>
         ) : (
           <a key={i} href={l.url} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "13px", color: "#2c2622", textDecoration: "none", borderBottom: "0.5px solid #d6cec6", paddingBottom: "3px", fontWeight: 350, transition: "border-color 0.3s", maxWidth: "600px" }} onMouseEnter={e => e.target.style.borderColor = "#2c2622"} onMouseLeave={e => e.target.style.borderColor = "#d6cec6"}>{l.label} →</a>
         ))}</div>}
