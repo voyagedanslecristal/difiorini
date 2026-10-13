@@ -368,7 +368,7 @@ const WRITINGS = [
     { label: "Conference 4 — Like the Sun, Like the Moon, Like Water, Like Gold · Read Excerpts", url: "lhc-conference-4-excerpts.pdf", pdf: true },
   ]},
   { title: "Ars Electronica", subtitle: "Critical Research on Art, Technology & Society", publication: "Cartier", period: "2022", role: "Research, Critical Analysis & Dialogues", text: "A critical cartography where artificial intelligence, ecological urgency, post-human imaginaries, and technological acceleration are approached as interconnected expressions of a broader cultural shift — technological futures understood as cultural and ethical landscapes shaped as much by imagination and myth as by code and computation.", links: [{ label: "Read more", url: "ars-electronica-trend-report.pdf", pdf: true }] },
-  { title: "Ukiyo-e: Art & Philosophy Conference", subtitle: "Japonism Event with Cartier & Sorbonne University", publication: "Imprimerie du Marais", period: "2021", role: "Strategy, Creative Direction & Event Management", text: "A site-specific conference held in a historic Parisian printing manufactory. The programme included a keynote by Cyrille Vigneron alongside an intervention by Sophie Basch, Sorbonne professor and Proust specialist, establishing bridges between Japanese art, French literature, and Western visual thought.", links: [], mosaics: [{ label: "View the Invitation", title: "Invitation", cols: 5, items: [{ src: "ukiyo-04-invitation.jpg", c: 2, r: 4, pos: "top", fit: "contain" }, { src: "ukiyo-01-programme.jpg", c: 1, r: 4, pos: "top", fit: "contain" }, { src: "ukiyo-02-conferenciers.jpg", c: 1, r: 4, pos: "top", fit: "contain" }, { src: "ukiyo-03-origata.jpg", c: 1, r: 4, pos: "top", fit: "contain" }] }] },
+  { title: "Ukiyo-e: Art & Philosophy Conference", subtitle: "Japonism Event with Cartier & Sorbonne University", publication: "Imprimerie du Marais", period: "2021", role: "Strategy, Creative Direction & Event Management", text: "A site-specific conference held in a historic Parisian printing manufactory. The programme included a keynote by Cyrille Vigneron alongside an intervention by Sophie Basch, Sorbonne professor and Proust specialist, establishing bridges between Japanese art, French literature, and Western visual thought.", links: [], mosaics: [{ label: "View the Invitation", title: "Invitation", strips: true, items: [{ src: "ukiyo-04-invitation.jpg", c: 1111 }, { src: "ukiyo-01-programme.jpg", c: 429 }, { src: "ukiyo-02-conferenciers.jpg", c: 700 }, { src: "ukiyo-03-origata.jpg", c: 386 }] }] },
 ];
 
 function useReveal(count, delay = 80) {
@@ -595,7 +595,7 @@ function Gallery({ images, label, onClose, start }) {
   );
 }
 
-function Mosaic({ items, label, cols, onClose }) {
+function Mosaic({ items, label, cols, strips, onClose }) {
   const [zoom, setZoom] = useState(null);
   useEffect(() => {
     const onKey = e => { if (e.key === 'Escape' && zoom === null) onClose(); };
@@ -610,13 +610,19 @@ function Mosaic({ items, label, cols, onClose }) {
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '15px', color: '#2c2622', padding: '0 0 0 28px', fontFamily: "'Outfit',sans-serif" }}>✕</button>
         </div>
         <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '28px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(' + (cols || 4) + ', 1fr)', gridAutoRows: 'minmax(150px, 22vh)', gridAutoFlow: 'row dense', gap: '10px' }}>
+          {strips ? <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+            {items.map((it, i) => (
+              <div key={i} onClick={() => setZoom(i)} style={{ flex: (it.c || 1) + ' 1 0', minWidth: 0, cursor: 'pointer' }}>
+                <img src={it.src} loading="lazy" style={{ width: '100%', height: 'auto', display: 'block' }} />
+              </div>
+            ))}
+          </div> : <div style={{ display: 'grid', gridTemplateColumns: 'repeat(' + (cols || 4) + ', 1fr)', gridAutoRows: 'minmax(150px, 22vh)', gridAutoFlow: 'row dense', gap: '10px' }}>
             {items.map((it, i) => (
               <div key={i} onClick={() => setZoom(i)} style={{ gridColumn: 'span ' + (it.c || 1), gridRow: 'span ' + (it.r || 1), overflow: 'hidden', cursor: 'pointer', background: 'rgba(214,206,198,0.3)' }}>
                 <img src={it.src} loading="lazy" style={{ width: '100%', height: '100%', objectFit: it.fit || 'cover', objectPosition: it.pos || 'center', display: 'block', transition: 'transform 0.8s cubic-bezier(0.2,0.6,0.2,1)' }} onMouseEnter={e => e.target.style.transform = 'scale(1.035)'} onMouseLeave={e => e.target.style.transform = 'scale(1)'} />
               </div>
             ))}
-          </div>
+          </div>}
         </div>
       </div>
       {zoom !== null && <Gallery images={items.map(it => it.full || it.src)} label={label} start={zoom} onClose={() => setZoom(null)} />}
@@ -636,7 +642,7 @@ function ProjectCard({ project, isCreative, onPdf }) {
     <div style={{ borderTop: "0.5px solid #d6cec6", padding: "40px 0 48px" }}>
       {showVideo && <VideoModal url={showVideo.url} label={tr(project.title) + ' · ' + tr(showVideo.label)} onClose={() => setShowVideo(null)} />}
       {linkVideo && <VideoModal url={linkVideo.url} label={linkVideo.label} onClose={() => setLinkVideo(null)} />}
-      {mosaic !== null && project.mosaics && <Mosaic items={project.mosaics[mosaic].items} cols={project.mosaics[mosaic].cols} label={tr(project.title) + ' · ' + tr(project.mosaics[mosaic].title)} onClose={() => setMosaic(null)} />}
+      {mosaic !== null && project.mosaics && <Mosaic items={project.mosaics[mosaic].items} cols={project.mosaics[mosaic].cols} strips={project.mosaics[mosaic].strips} label={tr(project.title) + ' · ' + tr(project.mosaics[mosaic].title)} onClose={() => setMosaic(null)} />}
       {showGallery && project.images && project.images.length > 0 && <Gallery images={project.images} label={tr(project.title) + (project.house ? ' · ' + project.house : '')} onClose={() => setShowGallery(false)} />}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "8px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "16px", flexWrap: "wrap" }}>
