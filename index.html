@@ -26,84 +26,6 @@
     .light-card h2,.light-card h3{color:#2c2622!important;}
     .light-card p,.light-card span,.light-card a{color:#58504a!important;}
   </style>
-
-  <style>
-    /* ---------- Menu burger & responsive ---------- */
-    .nav-burger{display:none;grid-column:3;grid-row:1;justify-self:end;width:44px;height:44px;margin-right:-10px;padding:0;background:none;border:none;flex-direction:column;align-items:flex-end;justify-content:center;gap:7px;color:#9e948a;-webkit-tap-highlight-color:transparent}
-    .nb-line{display:block;width:24px;height:1px;background:currentColor;transform-origin:center;transition:transform .5s cubic-bezier(.22,.68,0,1),width .5s cubic-bezier(.22,.68,0,1)}
-    .nb-2{width:15px}
-    .glass-nav.menu-open{background:transparent!important;border-bottom-color:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
-    .glass-nav.menu-open .nav-burger,.glass-nav.menu-open .nav-burger .nb-line,.glass-nav.menu-open .nav-logo{color:#e9e2d2!important}
-    .glass-nav.menu-open .nb-1{transform:translateY(4px) rotate(45deg)}
-    .glass-nav.menu-open .nb-2{width:24px;transform:translateY(-4px) rotate(-45deg)}
-    .mobile-menu{position:fixed;inset:0;z-index:990;display:flex;align-items:center;justify-content:center;background:rgba(5,8,18,0.88);backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);opacity:0;visibility:hidden;transition:opacity .55s cubic-bezier(.22,.68,0,1),visibility 0s linear .55s}
-    #root > .mobile-menu{background:rgba(5,8,18,0.88)!important}
-    .mobile-menu.is-open{opacity:1;visibility:visible;transition:opacity .55s cubic-bezier(.22,.68,0,1),visibility 0s}
-    .mobile-menu-inner{display:flex;flex-direction:column;align-items:center;gap:40px;padding:88px 24px 48px}
-    .mm-list{list-style:none;display:flex;flex-direction:column;align-items:center;gap:20px}
-    .mm-list li,.mm-fade{opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.68,0,1)}
-    .mobile-menu.is-open .mm-list li,.mobile-menu.is-open .mm-fade{opacity:1;transform:none}
-    .mm-link{background:none;border:none;font-family:'EB Garamond',serif;font-style:italic;font-weight:400;font-size:34px;line-height:1.2;letter-spacing:.02em;color:#e9e2d2;padding:4px 2px 6px;position:relative}
-    .mm-link::after{content:'';position:absolute;left:50%;bottom:0;width:0;height:.5px;background:currentColor;transform:translateX(-50%);transition:width .45s ease}
-    .mm-link.is-current::after{width:100%}
-    .mm-rule{width:44px;height:.5px;background:rgba(233,226,210,.35)}
-    .mm-meta{display:flex;align-items:center;gap:28px;color:#bdb3a2}
-    .mm-meta a{display:flex;color:#bdb3a2;padding:6px}
-    .mm-langs{display:flex;gap:16px}
-    .mm-langs button{background:none;border:none;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#bdb3a2;opacity:.5;padding:8px 0;font-weight:300}
-    .mm-langs button.is-current{opacity:1;font-weight:500}
-    @media (hover:none),(pointer:coarse){ #cur{display:none!important} *{cursor:auto!important} a,button,[role=button]{cursor:pointer!important} }
-    @media (max-width:1180px){
-      .glass-nav{padding:0 28px!important}
-      .nav-left{visibility:hidden}
-      .nav-right{display:none!important}
-      .nav-burger{display:flex}
-      .nav-logo{padding:0 12px!important}
-    }
-    @media (min-width:721px) and (max-width:960px){
-      .texts-grid{grid-template-columns:repeat(2,1fr)!important}
-      .contact-grid{gap:48px!important}
-      .mosaic-grid{grid-template-columns:repeat(3,1fr)!important}
-    }
-    @media (max-width:720px){
-      body{overflow-x:hidden}
-      .glass-nav{height:60px!important;padding:0 20px!important}
-      .nav-logo{font-size:23px!important}
-      .mobile-menu-inner{padding-top:76px}
-      .page-wrap{margin-top:60px!important;padding:20px 10px 0!important}
-      .page-card{padding:38px 22px 72px!important}
-      .page-title{font-size:32px!important;line-height:1.15!important}
-      .page-lede{margin-bottom:32px!important}
-      #night-panel{padding:46px 24px 42px!important;margin-bottom:20px!important}
-      .profile-roles{font-size:19px!important;margin-bottom:32px!important}
-      #day-zone{padding:40px 22px 72px!important}
-      .about-text{font-size:14.5px!important;line-height:1.9!important}
-      .pc{padding:32px 0 40px!important}
-      .pc-title{font-size:23px!important}
-      .pc-house{font-size:15px!important;letter-spacing:1.5px!important}
-      .tag-row{flex-wrap:wrap!important}
-      .contact-grid{grid-template-columns:1fr!important;gap:8px!important}
-      .contact-right{padding-top:0!important}
-      .texts-wrap{margin-top:60px!important;padding:28px 10px 72px!important}
-      .texts-grid{grid-template-columns:1fr!important;grid-auto-rows:300px!important}
-      .texts-grid > .text-tile{grid-column:span 1!important;grid-row:span 1!important}
-      .modal-box{width:100vw!important;max-width:100vw!important;border-radius:0!important;border:none!important}
-      .modal-full{height:100%!important;max-height:100%!important}
-      .modal-head{padding:14px 18px!important}
-      .pdf-box{padding:14px 10px 32px!important;gap:14px!important}
-      .mosaic-body{padding:10px!important}
-      .mosaic-grid{grid-template-columns:repeat(2,1fr)!important;grid-auto-rows:minmax(110px,30vw)!important;gap:6px!important}
-      .mosaic-strips{flex-direction:column!important}
-      .mosaic-strips > div{flex:none!important;width:100%!important}
-      .mosaic-free{gap:28px!important}
-      .mosaic-free-row{flex-direction:column!important;gap:20px!important}
-      .mosaic-free-row > div{width:100%!important}
-      .gallery-arrow{padding:10px 8px!important}
-      .article-body{padding:28px 20px 40px!important}
-      .article-title{font-size:26px!important;margin-bottom:28px!important}
-      .site-footer{padding:36px 20px!important}
-    }
-  </style>
 </head>
 <body>
   <div id="cur"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><polygon id="cp" points="7,1.5 12.5,7 7,12.5 1.5,7" fill="none" stroke="#002B7F" stroke-width="1.2" stroke-linejoin="miter" stroke-miterlimit="50"/></svg></div>
@@ -149,7 +71,6 @@ const I18N = { fr: {
 "An expert in storytelling as a tool of projection and desire, she conceives narratives designed to make audiences dream while remaining anchored in intellectual rigour and historical depth.\n\nThrough immersive experiences, films, open-world digital environments, and long-form narratives, she contributes to expanding how luxury articulates itself, extending the language of art into contemporary luxury culture.": "Experte du récit comme outil de projection et de désir, elle conçoit des narrations destinées à faire rêver les publics tout en demeurant ancrées dans la rigueur intellectuelle et la profondeur historique.\n\nPar des expériences immersives, des films, des environnements numériques en monde ouvert et des récits de longue haleine, elle contribue à élargir la manière dont le luxe s'énonce, en étendant le langage de l'art à la culture contemporaine du luxe.",
 "An Independent Practice": "Une pratique indépendante",
 "Alongside this strategic dimension, Laura-Rachel maintains an independent artistic practice as a writer and visual artist.\n\nHer work explores the tangible heritage of objects and the intangible heritage of narratives, engaging with themes of time, metamorphosis, cosmology, and the sublime.\n\nHer interdisciplinary approach draws on ancient myths, symbolic systems, and material history, translating complex cultural structures into visual and textual forms.": "Parallèlement à cette dimension stratégique, Laura-Rachel mène une pratique artistique indépendante, comme écrivaine et artiste visuelle.\n\nSon travail explore le patrimoine tangible des objets et le patrimoine intangible des récits, autour des thèmes du temps, de la métamorphose, de la cosmologie et du sublime.\n\nSon approche interdisciplinaire puise dans les mythes anciens, les systèmes symboliques et l'histoire matérielle, pour traduire des structures culturelles complexes en formes visuelles et textuelles.",
-"Creative & Strategic Direction": "Direction créative et stratégique",
 "Immersive films, narrative worlds, and visual universes conceived for the great houses of luxury — each grounded in original art-historical and mythological research.": "Films immersifs, mondes narratifs et univers visuels conçus pour les grandes Maisons du luxe, chacun fondé sur une recherche originale en histoire de l'art et en mythologie.",
 "Research drawing on art history, mythology, philosophy, anthropology and the sociology of luxury, applied to adornment and cultural heritage — establishing the foundations of a brand, a collection or a work.": "Une recherche qui puise dans l'histoire de l'art, la mythologie, la philosophie, l'anthropologie et la sociologie du luxe, appliquée à la parure et au patrimoine culturel, pour poser les fondations d'une marque, d'une collection ou d'une œuvre.",
 "Film Installation": "Installation filmique",
@@ -314,7 +235,6 @@ const I18N = { fr: {
 "An expert in storytelling as a tool of projection and desire, she conceives narratives designed to make audiences dream while remaining anchored in intellectual rigour and historical depth.\n\nThrough immersive experiences, films, open-world digital environments, and long-form narratives, she contributes to expanding how luxury articulates itself, extending the language of art into contemporary luxury culture.": "Esperta di storytelling come strumento di proiezione e di desiderio, concepisce narrazioni destinate a far sognare il pubblico, restando ancorate al rigore intellettuale e alla profondità storica.\n\nAttraverso esperienze immersive, film, ambienti digitali open-world e narrazioni di ampio respiro, contribuisce ad ampliare il modo in cui il lusso si esprime, estendendo il linguaggio dell'arte alla cultura contemporanea del lusso.",
 "An Independent Practice": "Una pratica indipendente",
 "Alongside this strategic dimension, Laura-Rachel maintains an independent artistic practice as a writer and visual artist.\n\nHer work explores the tangible heritage of objects and the intangible heritage of narratives, engaging with themes of time, metamorphosis, cosmology, and the sublime.\n\nHer interdisciplinary approach draws on ancient myths, symbolic systems, and material history, translating complex cultural structures into visual and textual forms.": "Accanto a questa dimensione strategica, Laura-Rachel coltiva una pratica artistica indipendente come scrittrice e artista visiva.\n\nIl suo lavoro esplora il patrimonio tangibile degli oggetti e quello intangibile dei racconti, confrontandosi con i temi del tempo, della metamorfosi, della cosmologia e del sublime.\n\nIl suo approccio interdisciplinare attinge ai miti antichi, ai sistemi simbolici e alla storia materiale, traducendo strutture culturali complesse in forme visive e testuali.",
-"Creative & Strategic Direction": "Direzione creativa e strategica",
 "Immersive films, narrative worlds, and visual universes conceived for the great houses of luxury — each grounded in original art-historical and mythological research.": "Film immersivi, mondi narrativi e universi visivi concepiti per le grandi Maison del lusso, ciascuno fondato su una ricerca originale di storia dell'arte e di mitologia.",
 "Research drawing on art history, mythology, philosophy, anthropology and the sociology of luxury, applied to adornment and cultural heritage — establishing the foundations of a brand, a collection or a work.": "Una ricerca che attinge alla storia dell'arte, alla mitologia, alla filosofia, all'antropologia e alla sociologia del lusso, applicata all'ornamento e al patrimonio culturale, per porre le fondamenta di un marchio, di una collezione o di un'opera.",
 "Film Installation": "Installazione filmica",
@@ -469,22 +389,6 @@ const LangContext = React.createContext('en');
 function useT() { const lang = React.useContext(LangContext); return s => (lang !== 'en' && I18N[lang] && I18N[lang][s]) || s; }
 
 const SECTIONS = ["Profile", "Direction", "Research", "Writing", "Contact"];
-const LINKEDIN_URL = "https://www.linkedin.com/in/difiorini";
-const EMAIL_URL = "mailto:laurarachel.dubos@gmail.com";
-
-function useMedia(query) {
-  const get = () => !!(window.matchMedia && window.matchMedia(query).matches);
-  const [match, setMatch] = useState(get);
-  useEffect(() => {
-    if (!window.matchMedia) return;
-    const mq = window.matchMedia(query);
-    const h = () => setMatch(mq.matches);
-    h();
-    if (mq.addEventListener) mq.addEventListener('change', h); else mq.addListener(h);
-    return () => { if (mq.removeEventListener) mq.removeEventListener('change', h); else mq.removeListener(h); };
-  }, [query]);
-  return match;
-}
 
 const TEXTS = [
   { title: "L'Expressionnisme Abstrait — Cheval de Troie de la CIA", category: "Art Criticism", publication: "Bilan Magazine", period: "2020", image: "pollock.jpg", textFile: "critique-pollock.txt", url: "https://www.bilan.ch/opinions/laura-rachel-dubos/lexpressionnisme-abstrait-cheval-de-troie-de-la-cia", text: "" },
@@ -534,80 +438,33 @@ const fa = (r, i) => ({ opacity: r.includes(i) ? 1 : 0, transform: r.includes(i)
 function Lbl({ children, s = {} }) { return <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10px", letterSpacing: "3.5px", textTransform: "uppercase", color: "#a69e94", margin: 0, fontWeight: 400, ...s }}>{children}</p>; }
 function Hr({ w = 44, s = {} }) { return <div style={{ width: w, height: "0.5px", background: "#c8bfb4", ...s }} />; }
 
-const LinkedInIcon = ({ size = 15 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>;
-const MailIcon = ({ size = 15 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>;
-
-function MobileMenu({ open, current, go, lang, setLang, onClose }) {
-  const tr = useT();
-  useEffect(() => {
-    if (!open) return;
-    const onKey = e => { if (e.key === 'Escape') onClose(); };
-    window.addEventListener('keydown', onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = prev; };
-  }, [open]);
-  const items = [["Profile", "About"], ["Direction", "Direction"], ["Research", "Research"], ["Writing", "Writing"]];
-  return ReactDOM.createPortal(
-    <div className={"mobile-menu" + (open ? " is-open" : "")} aria-hidden={!open} onClick={onClose}>
-      <div className="mobile-menu-inner" onClick={e => e.stopPropagation()}>
-        <ul className="mm-list">
-          {items.map(([key, label], i) => (
-            <li key={key} style={{ transitionDelay: open ? (0.1 + i * 0.07) + 's' : '0s' }}>
-              <button className={"mm-link" + (current === key ? " is-current" : "")} tabIndex={open ? 0 : -1} onClick={() => go(key)}>{tr(label)}</button>
-            </li>
-          ))}
-        </ul>
-        <div className="mm-rule mm-fade" style={{ transitionDelay: open ? '0.4s' : '0s' }} />
-        <div className="mm-meta mm-fade" style={{ transitionDelay: open ? '0.46s' : '0s' }}>
-          <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" tabIndex={open ? 0 : -1}><LinkedInIcon size={16} /></a>
-          <a href={EMAIL_URL} aria-label="Email" tabIndex={open ? 0 : -1}><MailIcon size={17} /></a>
-          <span className="mm-langs">{['en', 'fr', 'it'].map(l => <button key={l} className={lang === l ? 'is-current' : ''} tabIndex={open ? 0 : -1} onClick={() => setLang(l)}>{l}</button>)}</span>
-        </div>
-      </div>
-    </div>,
-    document.getElementById('root') || document.body
-  );
-}
-
 function Nav({ current, onChange, lang, setLang }) {
   const tr = useT();
-  const [open, setOpen] = useState(false);
-  const wide = useMedia('(min-width: 1181px)');
-  useEffect(() => { if (wide) setOpen(false); }, [wide]);
-  useEffect(() => { const t = setTimeout(() => window.dispatchEvent(new Event('scroll')), 30); return () => clearTimeout(t); }, [current]);
-  const go = s => { setOpen(false); onChange(s); window.scrollTo({ top: 0, behavior: "smooth" }); };
   return (
-    <React.Fragment>
-    <nav className={"glass-nav" + (open ? " menu-open" : "")} style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center", padding: "0 48px", height: "72px" }}>
-      <div className="nav-left" style={{ display: "flex", gap: "32px", alignItems: "center" }}>
-        <button onClick={() => go("Profile")} style={{ background: "none", border: "none", fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", fontWeight: current === "Profile" ? 500 : 350, letterSpacing: "3px", textTransform: "uppercase", color: "#9e948a", padding: "6px 0", position: "relative", transition: "color 0.4s ease", cursor: "pointer" }}>
+    <nav className="glass-nav" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center", padding: "0 48px", height: "72px" }}>
+      <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
+        <button onClick={() => { onChange("Profile"); window.scrollTo({top:0,behavior:"smooth"}); }} style={{ background: "none", border: "none", fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", fontWeight: current === "Profile" ? 500 : 350, letterSpacing: "3px", textTransform: "uppercase", color: "#9e948a", padding: "6px 0", position: "relative", transition: "color 0.4s ease", cursor: "pointer" }}>
           {tr("About")}
           <span style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: current === "Profile" ? "100%" : "0%", height: "1px", background: "currentColor", transition: "width 0.4s ease" }} />
         </button>
-        <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style={{ color: "#9e948a", display: "flex", alignItems: "center", transition: "opacity 0.3s" }} onMouseEnter={e=>e.currentTarget.style.opacity="0.6"} onMouseLeave={e=>e.currentTarget.style.opacity="1"}>
-          <LinkedInIcon />
+        <a href="https://www.linkedin.com/in/laura-rachel-dubos-di-fiorini" target="_blank" rel="noopener noreferrer" style={{ color: "#9e948a", display: "flex", alignItems: "center", transition: "opacity 0.3s" }} onMouseEnter={e=>e.currentTarget.style.opacity="0.6"} onMouseLeave={e=>e.currentTarget.style.opacity="1"}>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
         </a>
-        <a href={EMAIL_URL} aria-label="Email" style={{ color: "#9e948a", display: "flex", alignItems: "center", transition: "opacity 0.3s" }} onMouseEnter={e=>e.currentTarget.style.opacity="0.6"} onMouseLeave={e=>e.currentTarget.style.opacity="1"}>
-          <MailIcon />
+        <a href="mailto:laurarachel.dubos@gmail.com" style={{ color: "#9e948a", display: "flex", alignItems: "center", transition: "opacity 0.3s" }} onMouseEnter={e=>e.currentTarget.style.opacity="0.6"} onMouseLeave={e=>e.currentTarget.style.opacity="1"}>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
         </a>
       </div>
-      <button className="nav-logo" onClick={() => go("Profile")} style={{ background: "none", border: "none", padding: "0 40px", fontFamily: "'EB Garamond',serif", fontSize: "26px", fontWeight: 300, fontStyle: "italic", letterSpacing: "1px", color: "#2c2622", cursor: "pointer", transition: "color 0.4s ease" }}>Di Fiorini</button>
-      <div className="nav-right" style={{ display: "flex", gap: "36px", justifyContent: "flex-end", alignItems: "center" }}>
+      <button onClick={() => { onChange("Profile"); window.scrollTo({top:0,behavior:"smooth"}); }} style={{ background: "none", border: "none", padding: "0 40px", fontFamily: "'EB Garamond',serif", fontSize: "26px", fontWeight: 300, fontStyle: "italic", letterSpacing: "1px", color: "#2c2622", cursor: "pointer" }}>Di Fiorini</button>
+      <div style={{ display: "flex", gap: "36px", justifyContent: "flex-end", alignItems: "center" }}>
         {["Direction","Research","Writing"].map(s => (
-          <button key={s} onClick={() => go(s)} style={{ background: "none", border: "none", fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", fontWeight: current === s ? 500 : 350, letterSpacing: "3px", textTransform: "uppercase", color: "#9e948a", padding: "6px 0", position: "relative", transition: "color 0.4s ease", cursor: "pointer" }}>
+          <button key={s} onClick={() => { onChange(s); window.scrollTo({top:0,behavior:"smooth"}); }} style={{ background: "none", border: "none", fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", fontWeight: current === s ? 500 : 350, letterSpacing: "3px", textTransform: "uppercase", color: "#9e948a", padding: "6px 0", position: "relative", transition: "color 0.4s ease", cursor: "pointer" }}>
             {tr(s)}
             <span style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: current === s ? "100%" : "0%", height: "1px", background: "currentColor", transition: "width 0.4s ease" }} />
           </button>
         ))}
         <span style={{ display: "flex", gap: "10px", marginLeft: "12px" }}>{['en','fr','it'].map(l => <button key={l} onClick={() => setLang(l)} style={{ background: "none", border: "none", fontFamily: "'Outfit',sans-serif", fontSize: "10px", fontWeight: lang === l ? 500 : 300, letterSpacing: "2px", textTransform: "uppercase", color: "#9e948a", padding: "6px 0", cursor: "pointer", opacity: lang === l ? 1 : 0.6, transition: "color 0.4s ease" }}>{l}</button>)}</span>
       </div>
-      <button className="nav-burger" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen(o => !o)}>
-        <span className="nb-line nb-1" /><span className="nb-line nb-2" />
-      </button>
     </nav>
-    <MobileMenu open={open} current={current} go={go} lang={lang} setLang={setLang} onClose={() => setOpen(false)} />
-    </React.Fragment>
   );
 }
 
@@ -621,7 +478,7 @@ function Profile() {
   const r = useReveal(6, 100);
   const tr = useT();
   return (
-    <div className="page-wrap" style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}>
+    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}>
 
       {/* ZONE NUIT — nom, titre, intro */}
       <div id="night-panel" className="content-card" style={{ padding: "64px 56px 56px", marginBottom: "32px" }}>
@@ -634,7 +491,7 @@ function Profile() {
           </h1>
         </div>
         <div style={fa(r, 1)}>
-          <p className="profile-roles" style={{ fontFamily: "'EB Garamond',serif", fontStyle: "normal", fontSize: "22px", letterSpacing: "0.04em", lineHeight: "1.8", fontWeight: 400, margin: "0 0 48px", textAlign: "center" }}>{tr("Creative & Strategic Director")}<br />{tr("Art & Jewellery Historian")}</p>
+          <p style={{ fontFamily: "'EB Garamond',serif", fontStyle: "normal", fontSize: "22px", letterSpacing: "0.04em", lineHeight: "1.8", fontWeight: 400, margin: "0 0 48px", textAlign: "center" }}>{tr("Creative & Strategic Director")}<br />{tr("Art & Jewellery Historian")}</p>
         </div>
         <div style={fa(r, 2)}>
           <p id="profile-intro" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", fontWeight: 300, lineHeight: 2, letterSpacing: "0.02em", margin: "0", textAlign: "center" }}>
@@ -646,7 +503,7 @@ function Profile() {
       {/* ZONE JOUR — texte long, apparaît dans le beige */}
       <div id="day-zone" className="content-card light-card" style={{ padding: "56px 56px 120px" }}>
         <div style={fa(r, 3)}>
-          <h2 className="page-title" style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: "0 0 28px", letterSpacing: "0.02em" }}>{tr("About")}</h2>
+          <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: "0 0 28px", letterSpacing: "0.02em" }}>{tr("About")}</h2>
           <div style={{ width: "48px", height: "0.5px", background: "#c8bfb4", margin: "0 0 36px" }} />
           {[
             ["An Authorial Practice", "Laura-Rachel Dubos di Fiorini is a French-Italian, Paris-based creative and strategic director, art historian, writer, art critic, and visual artist whose work operates at the intersection of art history, jewellery, gemmology, mythology, philosophy, and sociology.\n\nAt the core of her professional activity lies her work for the executive leadership of major luxury Maisons. She operates at the level of strategic direction, developing high-level marketing and communication frameworks grounded in historical depth, cultural legitimacy, and intellectual coherence.\n\nHer practice articulates heritage, material knowledge, and symbolic systems into long-term narratives that shape vision, meaning, and projection, positioning marketing as a central vector of cultural construction within the Maison."],
@@ -657,7 +514,7 @@ function Profile() {
             <div key={i} style={{ margin: i < 3 ? "0 0 40px" : "0" }}>
               <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10px", letterSpacing: "3px", textTransform: "uppercase", color: "#2c2622", margin: "0 0 14px", fontWeight: 500, background: "none", padding: "0 0 8px 0", borderBottom: "1px solid #1a3a6e", display: "block" }}>{tr(title)}</p>
               {tr(text).split('\n\n').map((para, j) => (
-                <p key={j} className="about-text" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 2, fontWeight: 300, margin: j < text.split('\n\n').length - 1 ? "0 0 16px" : "0", textAlign: "left" }}>{para}</p>
+                <p key={j} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 2, fontWeight: 300, margin: j < text.split('\n\n').length - 1 ? "0 0 16px" : "0", textAlign: "left" }}>{para}</p>
               ))}
             </div>
           ))}
@@ -685,8 +542,7 @@ function PdfViewer({ url }) {
       const vp = first.getViewport({ scale: 1 });
       const box = boxRef.current;
       const portrait = vp.height > vp.width;
-      const pad = window.innerWidth <= 720 ? 20 : 96;
-      const w = Math.min((box ? box.clientWidth : 900) - pad, portrait ? 760 : 1100);
+      const w = Math.min((box ? box.clientWidth : 900) - 96, portrait ? 760 : 1100);
       setPages({ n: doc.numPages, w, ratio: vp.height / vp.width });
     }).catch(() => setFailed(true));
     return () => { cancelled = true; if (docRef.current) docRef.current.destroy(); };
@@ -711,7 +567,7 @@ function PdfViewer({ url }) {
     return () => obs.disconnect();
   }, [pages]);
   return (
-    <div ref={boxRef} className="pdf-box" style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '40px 48px 56px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '28px' }}>
+    <div ref={boxRef} style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '40px 48px 56px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '28px' }}>
       {failed && <a href={url} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10.5px', letterSpacing: '2.5px', textTransform: 'uppercase', color: '#2c2622', borderBottom: '1px solid #2c2622', paddingBottom: '3px', textDecoration: 'none', marginTop: '40px' }}>{tr("Open the document")} →</a>}
       {!pages && !failed && <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#8a8078', marginTop: '40px' }}>Loading…</p>}
       {pages && Array.from({ length: pages.n }, (_, i) => (
@@ -730,8 +586,8 @@ function PdfModal({ url, label, onClose }) {
   }, []);
   return ReactDOM.createPortal(
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(5,8,18,0.35)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
-      <div className="modal-box modal-full" onClick={e => e.stopPropagation()} style={{ width: '86vw', maxWidth: '1300px', height: '88vh', background: 'rgba(240,237,232,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 24px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)', border: '0.5px solid rgba(255,255,255,0.2)' }}>
-        <div className="modal-head" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px', borderBottom: '0.5px solid rgba(214,206,198,0.4)', flexShrink: 0, background: 'rgba(200,196,190,0.4)' }}>
+      <div onClick={e => e.stopPropagation()} style={{ width: '86vw', maxWidth: '1300px', height: '88vh', background: 'rgba(240,237,232,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 24px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)', border: '0.5px solid rgba(255,255,255,0.2)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px', borderBottom: '0.5px solid rgba(214,206,198,0.4)', flexShrink: 0, background: 'rgba(200,196,190,0.4)' }}>
           <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#2c2622', fontWeight: 400 }}>{label}</span>
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '15px', color: '#2c2622', padding: '0 0 0 28px', fontFamily: "'Outfit',sans-serif" }}>✕</button>
         </div>
@@ -754,8 +610,8 @@ function VideoModal({ url, label, ratio, onClose }) {
   const native = /\.(mp4|webm|mov)(\?|$)/i.test(url);
   return ReactDOM.createPortal(
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(5,8,18,0.35)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
-      <div className="modal-box" onClick={e => e.stopPropagation()} style={{ width: 'min(86vw, 1200px, calc((88vh - 52px) * ' + rw + ' / ' + rh + '))', background: 'rgba(240,237,232,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 24px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)', border: '0.5px solid rgba(255,255,255,0.2)' }}>
-        <div className="modal-head" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px', borderBottom: '0.5px solid rgba(214,206,198,0.4)', flexShrink: 0, background: 'rgba(200,196,190,0.4)' }}>
+      <div onClick={e => e.stopPropagation()} style={{ width: 'min(86vw, 1200px, calc((88vh - 52px) * ' + rw + ' / ' + rh + '))', background: 'rgba(240,237,232,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 24px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)', border: '0.5px solid rgba(255,255,255,0.2)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px', borderBottom: '0.5px solid rgba(214,206,198,0.4)', flexShrink: 0, background: 'rgba(200,196,190,0.4)' }}>
           <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#2c2622', fontWeight: 400 }}>{label}</span>
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '15px', color: '#2c2622', padding: '0 0 0 28px', fontFamily: "'Outfit',sans-serif" }}>✕</button>
         </div>
@@ -780,15 +636,15 @@ function Gallery({ images, label, onClose, start }) {
   const arrow = { background: 'none', border: 'none', cursor: 'pointer', fontSize: '22px', color: '#2c2622', padding: '12px 18px', fontFamily: "'Outfit',sans-serif", flexShrink: 0 };
   return ReactDOM.createPortal(
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(5,8,18,0.35)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
-      <div className="modal-box modal-full" onClick={e => e.stopPropagation()} style={{ width: 'min(86vw, 760px)', height: '88vh', background: 'rgba(240,237,232,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 24px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)', border: '0.5px solid rgba(255,255,255,0.2)' }}>
-        <div className="modal-head" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px', borderBottom: '0.5px solid rgba(214,206,198,0.4)', flexShrink: 0, background: 'rgba(200,196,190,0.4)' }}>
+      <div onClick={e => e.stopPropagation()} style={{ width: 'min(86vw, 760px)', height: '88vh', background: 'rgba(240,237,232,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 24px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)', border: '0.5px solid rgba(255,255,255,0.2)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px', borderBottom: '0.5px solid rgba(214,206,198,0.4)', flexShrink: 0, background: 'rgba(200,196,190,0.4)' }}>
           <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#2c2622', fontWeight: 400 }}>{label}</span>
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '15px', color: '#2c2622', padding: '0 0 0 28px', fontFamily: "'Outfit',sans-serif" }}>✕</button>
         </div>
         <div style={{ flex: 1, minHeight: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '28px 8px 8px' }}>
-          {images.length > 1 && <button className="gallery-arrow" onClick={prev} aria-label="Previous" style={arrow}>←</button>}
+          {images.length > 1 && <button onClick={prev} aria-label="Previous" style={arrow}>←</button>}
           <img src={images[idx]} style={{ maxWidth: '100%', maxHeight: '100%', minWidth: 0, objectFit: 'contain', display: 'block', boxShadow: '0 12px 40px rgba(44,38,34,0.18)' }} />
-          {images.length > 1 && <button className="gallery-arrow" onClick={next} aria-label="Next" style={arrow}>→</button>}
+          {images.length > 1 && <button onClick={next} aria-label="Next" style={arrow}>→</button>}
         </div>
         <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', color: '#58504a', margin: 0, padding: '10px 0 18px', textAlign: 'center', flexShrink: 0 }}>{idx+1} / {images.length}</p>
       </div>
@@ -800,7 +656,6 @@ function Gallery({ images, label, onClose, start }) {
 function Mosaic({ items, label, cols, strips, masonry, free, onClose }) {
   const [zoom, setZoom] = useState(null);
   const [vid, setVid] = useState(null);
-  const narrow = useMedia('(max-width: 720px)');
   const imgs = items.filter(it => !it.video);
   const rootRef = React.useRef(null);
   useEffect(() => {
@@ -815,15 +670,15 @@ function Mosaic({ items, label, cols, strips, masonry, free, onClose }) {
   }, [zoom, vid]);
   return ReactDOM.createPortal(
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(5,8,18,0.35)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
-      <div className={"modal-box" + ((strips || free) ? "" : " modal-full")} onClick={e => e.stopPropagation()} style={{ width: 'min(90vw, 1240px)', height: (strips || free) ? 'auto' : '88vh', maxHeight: '88vh', background: 'rgba(240,237,232,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 24px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)', border: '0.5px solid rgba(255,255,255,0.2)' }}>
-        <div className="modal-head" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px', borderBottom: '0.5px solid rgba(214,206,198,0.4)', flexShrink: 0, background: 'rgba(200,196,190,0.4)' }}>
+      <div onClick={e => e.stopPropagation()} style={{ width: 'min(90vw, 1240px)', height: (strips || free) ? 'auto' : '88vh', maxHeight: '88vh', background: 'rgba(240,237,232,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 24px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)', border: '0.5px solid rgba(255,255,255,0.2)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px', borderBottom: '0.5px solid rgba(214,206,198,0.4)', flexShrink: 0, background: 'rgba(200,196,190,0.4)' }}>
           <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#2c2622', fontWeight: 400 }}>{label}</span>
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '15px', color: '#2c2622', padding: '0 0 0 28px', fontFamily: "'Outfit',sans-serif" }}>✕</button>
         </div>
-        <div ref={rootRef} className="mosaic-body" style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '28px' }}>
-          {free ? <div className="mosaic-free" style={{ display: 'flex', flexDirection: 'column', gap: '64px', padding: '20px 0 32px' }}>
+        <div ref={rootRef} style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '28px' }}>
+          {free ? <div style={{ display: 'flex', flexDirection: 'column', gap: '64px', padding: '20px 0 32px' }}>
             {(() => { const rows = []; items.forEach(it => { if (it.row !== undefined && rows[it.row]) rows[it.row].push(it); else rows[it.row === undefined ? rows.length : it.row] = [it]; }); return rows.map((row, ri) => (
-              <div key={ri} className="mosaic-free-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div key={ri} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 {row.map((it, i) => (
                   <div key={i} onClick={() => setZoom(imgs.indexOf(it))} style={{ width: (it.w * 100) + '%', flex: '0 0 auto', cursor: 'pointer' }}>
                     <img src={it.src} loading="lazy" style={{ width: '100%', height: 'auto', display: 'block' }} />
@@ -831,7 +686,7 @@ function Mosaic({ items, label, cols, strips, masonry, free, onClose }) {
                 ))}
               </div>)); })()}
           </div> : masonry ? <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-            {(() => { const n = narrow ? 2 : (cols || 3); const colsArr = Array.from({ length: n }, () => []); const h = Array(n).fill(0); items.forEach(it => { let k = 0; for (let j = 1; j < n; j++) if (h[j] < h[k] - 0.01) k = j; colsArr[k].push(it); h[k] += 1 / (it.ar || 1); }); return colsArr.map((col, ci) => (
+            {(() => { const n = cols || 3; const colsArr = Array.from({ length: n }, () => []); const h = Array(n).fill(0); items.forEach(it => { let k = 0; for (let j = 1; j < n; j++) if (h[j] < h[k] - 0.01) k = j; colsArr[k].push(it); h[k] += 1 / (it.ar || 1); }); return colsArr.map((col, ci) => (
               <div key={ci} style={{ flex: '1 1 0', minWidth: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {col.map((it, i) => (
                   <div key={i} onClick={() => it.video ? setVid(it) : setZoom(imgs.indexOf(it))} style={{ cursor: 'pointer', position: 'relative', background: it.bg || 'transparent' }}>
@@ -840,13 +695,13 @@ function Mosaic({ items, label, cols, strips, masonry, free, onClose }) {
                   </div>
                 ))}
               </div>)); })()}
-          </div> : strips ? <div className="mosaic-strips" style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+          </div> : strips ? <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
             {items.map((it, i) => (
               <div key={i} onClick={() => setZoom(i)} style={{ flex: (it.c || 1) + ' 1 0', minWidth: 0, cursor: 'pointer' }}>
                 <img src={it.src} loading="lazy" style={{ width: '100%', height: 'auto', display: 'block' }} />
               </div>
             ))}
-          </div> : <div className="mosaic-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(' + (cols || 4) + ', 1fr)', gridAutoRows: 'minmax(150px, 22vh)', gridAutoFlow: 'row dense', gap: '10px' }}>
+          </div> : <div style={{ display: 'grid', gridTemplateColumns: 'repeat(' + (cols || 4) + ', 1fr)', gridAutoRows: 'minmax(150px, 22vh)', gridAutoFlow: 'row dense', gap: '10px' }}>
             {items.map((it, i) => (
               <div key={i} onClick={() => it.video ? setVid(it) : setZoom(imgs.indexOf(it))} style={{ gridColumn: 'span ' + (it.c || 1), gridRow: 'span ' + (it.r || 1), overflow: 'hidden', cursor: 'pointer', background: 'rgba(214,206,198,0.3)', position: 'relative' }}>
                 {it.video ? <video src={it.video} poster={it.poster} muted loop autoPlay playsInline preload="metadata" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} /> : <img src={it.src} loading="lazy" style={{ width: '100%', height: '100%', objectFit: it.fit || 'cover', objectPosition: it.pos || 'center', display: 'block', transition: 'transform 0.8s cubic-bezier(0.2,0.6,0.2,1)' }} onMouseEnter={e => e.target.style.transform = 'scale(1.035)'} onMouseLeave={e => e.target.style.transform = 'scale(1)'} />}
@@ -871,16 +726,16 @@ function ProjectCard({ project, isCreative, onPdf }) {
   const videos = project.videos || (project.video ? [{ label: "Watch Film", url: project.video }] : []);
   const [linkVideo, setLinkVideo] = useState(null);
   return (
-    <div className="pc" style={{ borderTop: "0.5px solid #d6cec6", padding: "40px 0 48px" }}>
+    <div style={{ borderTop: "0.5px solid #d6cec6", padding: "40px 0 48px" }}>
       {showVideo && <VideoModal url={showVideo.url} ratio={showVideo.ratio} label={tr(project.title) + ' · ' + tr(showVideo.label)} onClose={() => setShowVideo(null)} />}
       {linkVideo && <VideoModal url={linkVideo.url} label={linkVideo.label} onClose={() => setLinkVideo(null)} />}
       {mosaic !== null && project.mosaics && <Mosaic items={project.mosaics[mosaic].items} cols={project.mosaics[mosaic].cols} strips={project.mosaics[mosaic].strips} masonry={project.mosaics[mosaic].masonry} free={project.mosaics[mosaic].free} label={tr(project.title) + ' · ' + tr(project.mosaics[mosaic].title)} onClose={() => setMosaic(null)} />}
       {showGallery && project.images && project.images.length > 0 && <Gallery images={project.images} label={tr(project.title) + (project.house ? ' · ' + project.house : '')} onClose={() => setShowGallery(false)} />}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "8px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "16px", flexWrap: "wrap" }}>
-          <h3 className="pc-title" style={{ fontFamily: "'EB Garamond',serif", fontSize: "26px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: 0 }}>{tr(project.title)}</h3>
+          <h3 style={{ fontFamily: "'EB Garamond',serif", fontSize: "26px", fontWeight: 400, fontStyle: "italic", color: "#2c2622", margin: 0 }}>{tr(project.title)}</h3>
         </div>
-        <span className="pc-house" style={{ fontFamily: "'EB Garamond',serif", fontSize: "17px", letterSpacing: "2px", color: "#a69e94", fontStyle: "italic", fontWeight: 400, flexShrink: 0 }}>
+        <span style={{ fontFamily: "'EB Garamond',serif", fontSize: "17px", letterSpacing: "2px", color: "#a69e94", fontStyle: "italic", fontWeight: 400, flexShrink: 0 }}>
           {isCreative ? project.house : tr(project.publication)}
         </span>
       </div>
@@ -888,7 +743,7 @@ function ProjectCard({ project, isCreative, onPdf }) {
       {project.locations && <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "11px", letterSpacing: "1px", color: "#c4bab0", margin: "4px 0 0", fontWeight: 300 }}>{project.locations}</p>}
       <Lbl s={{ margin: "22px 0 10px" }}>{tr(project.role)}</Lbl>
       <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.85, color: "#58504a", fontWeight: 300, margin: "0 0 20px", maxWidth: "740px" }}>{tr(project.text)}</p>
-      {project.tags && <div className="tag-row" style={{ display: "flex", gap: "8px", flexWrap: "nowrap", overflow: "hidden", marginBottom: "18px" }}>{project.tags.map(t => (<span key={t} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "9px", letterSpacing: "2px", textTransform: "uppercase", color: "#a69e94", background: "rgba(44,38,34,0.035)", padding: "5px 14px", borderRadius: "14px", fontWeight: 400 }}>{tr(t)}</span>))}</div>}
+      {project.tags && <div style={{ display: "flex", gap: "8px", flexWrap: "nowrap", overflow: "hidden", marginBottom: "18px" }}>{project.tags.map(t => (<span key={t} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "9px", letterSpacing: "2px", textTransform: "uppercase", color: "#a69e94", background: "rgba(44,38,34,0.035)", padding: "5px 14px", borderRadius: "14px", fontWeight: 400 }}>{tr(t)}</span>))}</div>}
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 32px" }}>
         {videos.map((v, i) => <a key={i} href={v.url} onClick={e => { e.preventDefault(); setShowVideo(v); }} style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#2c2622", textDecoration: "none", borderBottom: "1px solid #2c2622", paddingBottom: "3px", fontWeight: 450, display: "inline-block", alignSelf: "flex-start" }}>{tr(v.label)} →</a>)}
@@ -914,10 +769,10 @@ function CreativeDirection({ onPdf }) {
   const r = useReveal(CREATIVE_WORKS.length + 1, 80);
   const tr = useT();
   return (
-    <div className="page-wrap" style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}><div className="content-card light-card page-card" style={{ padding: "48px 72px 120px" }}>
+    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}><div className="content-card light-card" style={{ padding: "48px 72px 120px" }}>
       <div style={fa(r, 0)}>
-        <h2 className="page-title" style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>{tr("Creative & Strategic Direction")}</h2>
-        <p className="page-lede" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.8, color: "#8a8078", fontWeight: 300, margin: "0 0 48px", maxWidth: "660px" }}>{tr("Immersive films, narrative worlds, and visual universes conceived for the great houses of luxury — each grounded in original art-historical and mythological research.")}</p>
+        <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>{tr("Direction")}</h2>
+        <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.8, color: "#8a8078", fontWeight: 300, margin: "0 0 48px", maxWidth: "660px" }}>{tr("Immersive films, narrative worlds, and visual universes conceived for the great houses of luxury — each grounded in original art-historical and mythological research.")}</p>
       </div>
       {CREATIVE_WORKS.map((w, i) => <div key={i} style={fa(r, i + 1)}><ProjectCard project={w} isCreative onPdf={onPdf} /></div>)}
       <div style={{ borderTop: "0.5px solid #d6cec6" }} />
@@ -929,10 +784,10 @@ function WritingResearch({ onPdf }) {
   const r = useReveal(WRITINGS.length + 1, 80);
   const tr = useT();
   return (
-    <div className="page-wrap" style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}><div className="content-card light-card page-card" style={{ padding: "48px 72px 120px" }}>
+    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}><div className="content-card light-card" style={{ padding: "48px 72px 120px" }}>
       <div style={fa(r, 0)}>
-        <h2 className="page-title" style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>{tr("Research")}</h2>
-        <p className="page-lede" style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.8, color: "#8a8078", fontWeight: 300, margin: "0 0 48px", maxWidth: "660px" }}>{tr("Research drawing on art history, mythology, philosophy, anthropology and the sociology of luxury, applied to adornment and cultural heritage — establishing the foundations of a brand, a collection or a work.")}</p>
+        <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>{tr("Research")}</h2>
+        <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.8, color: "#8a8078", fontWeight: 300, margin: "0 0 48px", maxWidth: "660px" }}>{tr("Research drawing on art history, mythology, philosophy, anthropology and the sociology of luxury, applied to adornment and cultural heritage — establishing the foundations of a brand, a collection or a work.")}</p>
       </div>
       {WRITINGS.map((w, i) => <div key={i} style={fa(r, i + 1)}><ProjectCard project={w} isCreative={false} onPdf={onPdf} /></div>)}
       <div style={{ borderTop: "0.5px solid #d6cec6" }} />
@@ -944,12 +799,12 @@ function Contact() {
   const r = useReveal(4, 120);
   const tr = useT();
   return (
-    <div className="page-wrap" style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}><div className="content-card light-card page-card" style={{ padding: "48px 72px 120px" }}>
-      <div className="contact-grid" style={{ display: "grid", gridTemplateColumns: "5fr 6fr", gap: "96px", alignItems: "start" }}>
+    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}><div className="content-card light-card" style={{ padding: "48px 72px 120px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "5fr 6fr", gap: "96px", alignItems: "start" }}>
         <div>
           <div style={fa(r, 0)}>
             <Lbl s={{ marginBottom: "20px" }}>{tr("Collaboration")}</Lbl>
-            <h2 className="page-title" style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 36px", lineHeight: 1.15 }}>{tr("Let's work")}<br /><span style={{ fontStyle: "italic" }}>{tr("together")}</span></h2>
+            <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 36px", lineHeight: 1.15 }}>{tr("Let's work")}<br /><span style={{ fontStyle: "italic" }}>{tr("together")}</span></h2>
           </div>
           <div style={fa(r, 1)}>
             <Hr s={{ marginBottom: "32px" }} />
@@ -957,7 +812,7 @@ function Contact() {
             <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "15px", lineHeight: 1.9, color: "#58504a", fontWeight: 300 }}>{tr("Based in Paris. Working across France and internationally.")}</p>
           </div>
         </div>
-        <div className="contact-right" style={{ paddingTop: "52px" }}>
+        <div style={{ paddingTop: "52px" }}>
           <div style={fa(r, 2)}>
             {[{ label: "Email", value: "laurarachel.dubos@gmail.com", href: "mailto:laurarachel.dubos@gmail.com" },{ label: "Phone", value: "+33 6 08 27 72 27", href: "tel:+33608277227" },{ label: "Web", value: "voyagedanslecristal.com", href: "https://voyagedanslecristal.com" }].map((c, i) => (
               <div key={i} style={{ borderTop: "0.5px solid #d6cec6", padding: "26px 0" }}>
@@ -1006,15 +861,15 @@ function ArticleModal({ article, onClose }) {
   const body = article.text || loaded;
   return ReactDOM.createPortal(
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(5,8,18,0.35)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
-      <div className="modal-box modal-full" onClick={e => e.stopPropagation()} style={{ width: article.pdf ? '86vw' : '72vw', maxWidth: article.pdf ? '1300px' : '860px', height: '88vh', background: 'rgba(240,237,232,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 24px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)', border: '0.5px solid rgba(255,255,255,0.2)' }}>
-        <div className="modal-head" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px', borderBottom: '0.5px solid rgba(214,206,198,0.4)', flexShrink: 0, background: 'rgba(200,196,190,0.4)' }}>
+      <div onClick={e => e.stopPropagation()} style={{ width: article.pdf ? '86vw' : '72vw', maxWidth: article.pdf ? '1300px' : '860px', height: '88vh', background: 'rgba(240,237,232,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 24px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)', border: '0.5px solid rgba(255,255,255,0.2)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px', borderBottom: '0.5px solid rgba(214,206,198,0.4)', flexShrink: 0, background: 'rgba(200,196,190,0.4)' }}>
           <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#2c2622', fontWeight: 400 }}>{tr(article.category)} · {article.publication}</span>
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '15px', color: '#2c2622', padding: '0 0 0 28px' }}>✕</button>
         </div>
         {article.pdf ? <PdfViewer url={article.pdf} /> :
-        <div className="article-body" style={{ flex: 1, overflowY: 'auto', padding: '48px 56px' }}>
+        <div style={{ flex: 1, overflowY: 'auto', padding: '48px 56px' }}>
           <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: '#a69e94', margin: '0 0 24px' }}>{tr(article.period)}</p>
-          <h2 className="article-title" style={{ fontFamily: "'EB Garamond',serif", fontSize: '34px', fontWeight: 400, color: '#2c2622', margin: '0 0 40px', lineHeight: 1.25 }}>{article.title}</h2>
+          <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: '34px', fontWeight: 400, color: '#2c2622', margin: '0 0 40px', lineHeight: 1.25 }}>{article.title}</h2>
           {article.url && <a href={article.url} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', margin: '0 0 36px', fontFamily: "'Outfit',sans-serif", fontSize: '10.5px', letterSpacing: '2.5px', textTransform: 'uppercase', color: '#2c2622', textDecoration: 'none', borderBottom: '1px solid #2c2622', paddingBottom: '3px', fontWeight: 450 }}>{tr("Read the article on")} {article.publication} →</a>}
           {article.image && <img src={article.image} style={{ display: 'block', width: '100%', height: 'auto', margin: '0 0 40px' }} />}
           {body
@@ -1063,16 +918,16 @@ function TextsEssays() {
     {col:'span 1',row:'span 1'},
   ];
   return (
-    <div className="texts-wrap" style={{ maxWidth: "1100px", margin: "72px auto 0", padding: "80px 40px 120px" }}>
+    <div style={{ maxWidth: "1100px", margin: "72px auto 0", padding: "80px 40px 120px" }}>
       {active && <ArticleModal article={active} onClose={() => setActive(null)} />}
       <div style={fa(r, 0)}>
-        <h2 className="page-title" style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 48px", fontStyle: "italic" }}>{tr("Writing")}</h2>
+        <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 48px", fontStyle: "italic" }}>{tr("Writing")}</h2>
       </div>
-      <div className="texts-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "300px", gridAutoFlow: "row dense", background: "#ede5d6", outline: "1px solid rgba(44,38,34,0.4)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "300px", gridAutoFlow: "row dense", background: "#ede5d6", outline: "1px solid rgba(44,38,34,0.4)" }}>
         {TEXTS.map((article, i) => {
           const s = sizes[i] || {col:'span 1',row:'span 1'};
           return (
-            <div key={i} className="text-tile" style={{ ...fa(r, i+1), gridColumn: s.col, gridRow: s.row, boxShadow: "1px 0 0 0 rgba(44,38,34,0.4), 0 1px 0 0 rgba(44,38,34,0.4), inset 1px 0 0 0 rgba(44,38,34,0.4), inset 0 1px 0 0 rgba(44,38,34,0.4)", display: "flex", flexDirection: "column", cursor: "pointer", overflow: "hidden", transition: "background 0.3s", background: "#ede5d6" }}
+            <div key={i} style={{ ...fa(r, i+1), gridColumn: s.col, gridRow: s.row, boxShadow: "1px 0 0 0 rgba(44,38,34,0.4), 0 1px 0 0 rgba(44,38,34,0.4), inset 1px 0 0 0 rgba(44,38,34,0.4), inset 0 1px 0 0 rgba(44,38,34,0.4)", display: "flex", flexDirection: "column", cursor: "pointer", overflow: "hidden", transition: "background 0.3s", background: "#ede5d6" }}
               onClick={() => setActive(article)}
               onMouseEnter={e => e.currentTarget.style.background = "#e4dacb"}
               onMouseLeave={e => e.currentTarget.style.background = "#ede5d6"}
@@ -1117,7 +972,7 @@ function App() {
         {page === "Writing" && <TextsEssays />}
         {page === "Contact" && <Contact />}
       </Transition>
-      <footer className="site-footer" style={{ textAlign: "center", padding: "48px 56px", borderTop: "0.5px solid rgba(48,40,32,0.04)" }}>
+      <footer style={{ textAlign: "center", padding: "48px 56px", borderTop: "0.5px solid rgba(48,40,32,0.04)" }}>
         <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "10px", letterSpacing: "3px", color: "#b4aaa0", fontWeight: 350, textTransform: "uppercase", margin: 0 }}>© 2026 Di Fiorini</p>
       </footer>
     </div>
