@@ -25,6 +25,17 @@
     .light-card{background:rgba(250,248,245,0.72)!important;box-shadow:0 24px 80px rgba(120,100,80,0.15)!important;}
     .light-card h2,.light-card h3{color:#2c2622!important;}
     .light-card p,.light-card span,.light-card a{color:#58504a!important;}
+    @media (max-width: 720px){
+      nav.glass-nav{display:flex!important;flex-wrap:wrap;justify-content:center;align-items:center;height:auto!important;padding:10px 12px 8px!important;row-gap:2px;column-gap:20px;}
+      .nav-logo{order:-1;flex:0 0 100%;padding:0 0 4px!important;font-size:22px!important;text-align:center;}
+      .nav-left,.nav-right{gap:18px!important;justify-content:center!important;}
+      .nav-left button,.nav-right button{letter-spacing:2px!important;font-size:10px!important;}
+      .nav-lang{margin-left:4px!important;gap:8px!important;}
+      .content-card{padding:36px 22px 72px!important;}
+      #cur{display:none!important;}
+      .page-wrap{padding-top:60px!important;}
+      .page-wrap.wide{padding-left:14px!important;padding-right:14px!important;}
+    }
   </style>
 </head>
 <body>
@@ -442,7 +453,7 @@ function Nav({ current, onChange, lang, setLang }) {
   const tr = useT();
   return (
     <nav className="glass-nav" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center", padding: "0 48px", height: "72px" }}>
-      <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
+      <div className="nav-left" style={{ display: "flex", gap: "32px", alignItems: "center" }}>
         <button onClick={() => { onChange("Profile"); window.scrollTo({top:0,behavior:"smooth"}); }} style={{ background: "none", border: "none", fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", fontWeight: current === "Profile" ? 500 : 350, letterSpacing: "3px", textTransform: "uppercase", color: "#9e948a", padding: "6px 0", position: "relative", transition: "color 0.4s ease", cursor: "pointer" }}>
           {tr("About")}
           <span style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: current === "Profile" ? "100%" : "0%", height: "1px", background: "currentColor", transition: "width 0.4s ease" }} />
@@ -454,15 +465,15 @@ function Nav({ current, onChange, lang, setLang }) {
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
         </a>
       </div>
-      <button onClick={() => { onChange("Profile"); window.scrollTo({top:0,behavior:"smooth"}); }} style={{ background: "none", border: "none", padding: "0 40px", fontFamily: "'EB Garamond',serif", fontSize: "26px", fontWeight: 300, fontStyle: "italic", letterSpacing: "1px", color: "#2c2622", cursor: "pointer" }}>Di Fiorini</button>
-      <div style={{ display: "flex", gap: "36px", justifyContent: "flex-end", alignItems: "center" }}>
+      <button className="nav-logo" onClick={() => { onChange("Profile"); window.scrollTo({top:0,behavior:"smooth"}); }} style={{ background: "none", border: "none", padding: "0 40px", fontFamily: "'EB Garamond',serif", fontSize: "26px", fontWeight: 300, fontStyle: "italic", letterSpacing: "1px", color: "#2c2622", cursor: "pointer" }}>Di Fiorini</button>
+      <div className="nav-right" style={{ display: "flex", gap: "36px", justifyContent: "flex-end", alignItems: "center" }}>
         {["Direction","Research","Writing"].map(s => (
           <button key={s} onClick={() => { onChange(s); window.scrollTo({top:0,behavior:"smooth"}); }} style={{ background: "none", border: "none", fontFamily: "'Outfit',sans-serif", fontSize: "10.5px", fontWeight: current === s ? 500 : 350, letterSpacing: "3px", textTransform: "uppercase", color: "#9e948a", padding: "6px 0", position: "relative", transition: "color 0.4s ease", cursor: "pointer" }}>
             {tr(s)}
             <span style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: current === s ? "100%" : "0%", height: "1px", background: "currentColor", transition: "width 0.4s ease" }} />
           </button>
         ))}
-        <span style={{ display: "flex", gap: "10px", marginLeft: "12px" }}>{['en','fr','it'].map(l => <button key={l} onClick={() => setLang(l)} style={{ background: "none", border: "none", fontFamily: "'Outfit',sans-serif", fontSize: "10px", fontWeight: lang === l ? 500 : 300, letterSpacing: "2px", textTransform: "uppercase", color: "#9e948a", padding: "6px 0", cursor: "pointer", opacity: lang === l ? 1 : 0.6, transition: "color 0.4s ease" }}>{l}</button>)}</span>
+        <span className="nav-lang" style={{ display: "flex", gap: "10px", marginLeft: "12px" }}>{['en','fr','it'].map(l => <button key={l} onClick={() => setLang(l)} style={{ background: "none", border: "none", fontFamily: "'Outfit',sans-serif", fontSize: "10px", fontWeight: lang === l ? 500 : 300, letterSpacing: "2px", textTransform: "uppercase", color: "#9e948a", padding: "6px 0", cursor: "pointer", opacity: lang === l ? 1 : 0.6, transition: "color 0.4s ease" }}>{l}</button>)}</span>
       </div>
     </nav>
   );
@@ -478,7 +489,7 @@ function Profile() {
   const r = useReveal(6, 100);
   const tr = useT();
   return (
-    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}>
+    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }} className="page-wrap">
 
       {/* ZONE NUIT — nom, titre, intro */}
       <div id="night-panel" className="content-card" style={{ padding: "64px 56px 56px", marginBottom: "32px" }}>
@@ -769,7 +780,7 @@ function CreativeDirection({ onPdf }) {
   const r = useReveal(CREATIVE_WORKS.length + 1, 80);
   const tr = useT();
   return (
-    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}><div className="content-card light-card" style={{ padding: "48px 72px 120px" }}>
+    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }} className="page-wrap"><div className="content-card light-card" style={{ padding: "48px 72px 120px" }}>
       <div style={fa(r, 0)}>
         <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>{tr("Direction")}</h2>
         <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.8, color: "#8a8078", fontWeight: 300, margin: "0 0 48px", maxWidth: "660px" }}>{tr("Immersive films, narrative worlds, and visual universes conceived for the great houses of luxury — each grounded in original art-historical and mythological research.")}</p>
@@ -784,7 +795,7 @@ function WritingResearch({ onPdf }) {
   const r = useReveal(WRITINGS.length + 1, 80);
   const tr = useT();
   return (
-    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}><div className="content-card light-card" style={{ padding: "48px 72px 120px" }}>
+    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }} className="page-wrap"><div className="content-card light-card" style={{ padding: "48px 72px 120px" }}>
       <div style={fa(r, 0)}>
         <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 12px" }}>{tr("Research")}</h2>
         <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "14px", lineHeight: 1.8, color: "#8a8078", fontWeight: 300, margin: "0 0 48px", maxWidth: "660px" }}>{tr("Research drawing on art history, mythology, philosophy, anthropology and the sociology of luxury, applied to adornment and cultural heritage — establishing the foundations of a brand, a collection or a work.")}</p>
@@ -799,7 +810,7 @@ function Contact() {
   const r = useReveal(4, 120);
   const tr = useT();
   return (
-    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }}><div className="content-card light-card" style={{ padding: "48px 72px 120px" }}>
+    <div style={{ maxWidth: "660px", margin: "72px auto 0", padding: "80px 0 0" }} className="page-wrap"><div className="content-card light-card" style={{ padding: "48px 72px 120px" }}>
       <div style={{ display: "grid", gridTemplateColumns: "5fr 6fr", gap: "96px", alignItems: "start" }}>
         <div>
           <div style={fa(r, 0)}>
@@ -918,7 +929,7 @@ function TextsEssays() {
     {col:'span 1',row:'span 1'},
   ];
   return (
-    <div style={{ maxWidth: "1100px", margin: "72px auto 0", padding: "80px 40px 120px" }}>
+    <div className="page-wrap wide" style={{ maxWidth: "1100px", margin: "72px auto 0", padding: "80px 40px 120px" }}>
       {active && <ArticleModal article={active} onClose={() => setActive(null)} />}
       <div style={fa(r, 0)}>
         <h2 style={{ fontFamily: "'EB Garamond',serif", fontSize: "44px", fontWeight: 400, color: "#2c2622", margin: "0 0 48px", fontStyle: "italic" }}>{tr("Writing")}</h2>
